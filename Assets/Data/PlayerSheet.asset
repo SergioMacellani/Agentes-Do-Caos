@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc5e54643e1cdd48807e10374a801f0, type: 3}
+  m_Name: PlayerSheet
+  m_EditorClassIdentifier: 
+  playerName:
+    fullName: 
+    firstName: 
+    lastName: 
+  playerImages:
+    normal: {fileID: 0}
+    injured: {fileID: 0}
+    insane: {fileID: 0}
+    unconscious: {fileID: 0}
+  playerColors:
+    colorNormal: {r: 0, g: 0, b: 0, a: 0}
+    colorLight: {r: 0, g: 0, b: 0, a: 0}
+    colorDark: {r: 0, g: 0, b: 0, a: 0}
+  essential:
+    playerLife:
+      current: 0
+      max: 0
+    playerChaos:
+      current: 0
+      max: 0
+    playerArmor:
+      current: 0
+      max: 0
+    playerArmorLife:
+      current: 0
+      max: 0
+  stats:
+    injured: 0
+    insane: 0
+    unconscious: 0
+  potions:
+    Potions:
+      keyValueList:
+      - key: regeneration
+        value: 0
+      - key: strength
+        value: 0
+      - key: invisibility
+        value: 0
+      - key: truth
+        value: 0
+      - key: poison
+        value: 0
+      - key: resistance
+        value: 0
+      keyCollision: 0
+  techniques:
+    Techniques:
+      keyValueList:
+      - key: Intimidar
+        value: 5
+      - key: Mentira
+        value: 5
+      - key: Psicologia
+        value: 5
+      - key: Inteligencia
+        value: 5
+      - key: Medicina
+        value: 5
+      - key: Hacking
+        value: 5
+      - key: Historia
+        value: 5
+      - key: Tiro
+        value: 5
+      - key: "Arreme\xE7ar"
+        value: 5
+      - key: Furtividade
+        value: 5
+      - key: Atletismo
+        value: 5
+      - key: "For\xE7a"
+        value: 5
+      - key: Luta
+        value: 5
+      - key: "Constitui\xE7\xE3o"
+        value: 5
+      - key: Magia
+        value: 5
+      - key: Alquimia
+        value: 5
+      - key: Linguagem
+        value: 5
+      - key: Bestiario
+        value: 5
+      - key: "Prepara\xE7\xE3o"
+        value: 5
+      - key: Procurar
+        value: 5
+      - key: Escutar
+        value: 5
+      - key: Cheirar
+        value: 5
+      - key: Analisar
+        value: 5
+      keyCollision: 0
+  magics:
+    Magics:
+      keyValueList:
+      - key: Caos
+        value: 0
+      - key: Tempo
+        value: 0
+      - key: Vazio
+        value: 0
+      - key: Fogo
+        value: 0
+      - key: Energia
+        value: 0
+      - key: Mente
+        value: 0
+      - key: Vida
+        value: 0
+      - key: Gelo
+        value: 0
+      - key: Ar
+        value: 0
+      - key: Sangue
+        value: 0
+      - key: Absoluto
+        value: 0
+      - key: CLimatico
+        value: 0
+      - key: "\xC1gua"
+        value: 0
+      keyCollision: 0
+  inventory:
+    inventoryWeight:
+      current: 0
+      max: 0
+    inventorySlots: []
+  texts:
+    fontSize: 15
+    Notes: 
+    Traumas: 

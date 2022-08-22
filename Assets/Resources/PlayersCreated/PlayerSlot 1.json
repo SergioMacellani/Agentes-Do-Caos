@@ -1,0 +1,141 @@
+#
+# Player Info
+#
+name=Jappa Danniels
+specie=Felino
+occupation=Açougueiro
+biotype=normal
+height=1,75 m
+#
+# Player Essentials
+#
+life_max=15
+life_att=15
+caos_max=76
+caos_att=76
+armor_max=4
+armor_att=4
+lifearmor_max=8
+lifearmor_att=8
+#
+# Player Stats
+#
+ferido=0
+insano=0
+inconsciente=0
+#
+# Player Tecnics
+#
+tecnics=[
+5
+5
+5
+5
+35
+5
+55
+50
+30
+70
+5
+35
+5
+5
+5
+5
+5
+5
+60
+5
+]
+#
+# Player Magic
+#
+magic=[
+5
+5
+45
+65
+5
+5
+5
+5
+]
+#
+# Player Potions
+#
+potions=[
+1
+0
+0
+3
+0
+0
+]
+#
+# Player Inventory
+#
+inventory=[
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+Slot Vazio - 0
+]
+inventory_maxweight=10
+inventory_weight=0
+#
+# Player Story
+#
+notes=[
+A véspera de seu aniversário de 12 anos, a vila em que habitava foi invadida por soldados misteriosos. Um exército composto por guardas de uma única espécie ateou fogo às casas, matando o povo que resistia e capturando os que se rendiam. Seus pais lhe esconderam no sótão do lar, mas foram levados pelos soldados. Desde então busca por respostas. A que reino pertencia aquele exército? Seus progenitores ainda estariam vivos? O fardo de encontrar e libertar seu povo pesa sobre seus ombros, fazendo com que busque sempre liderar e tenha clareza em seus objetivos. Em contrapartida, tamanha responsabilidade faz com que seja pueril em conflitos menores cotidianos e atrapalhe a convivência com outras pessoas.
+------------
+eu odeio a ymir...eu odeio a ymir...eu odeio a ymir...eu odeio a ymir...eu odeio a ymir...eu odeio a ymir...eu odeio a ymir...eu odeio a ymir...
+
+]
+#
+# Player Design
+#
+design=[
+rosto1
+Mouth1
+Hair2
+Hair2
+Eye7
+Iris7L
+Iris7R
+Eyebrow3
+orelha1
+blusa1
+]
+#
+# Player Colors
+#
+colors=[
+B37544
+9B470E
+FF6702
+333333
+E8CEA1
+97592F
+FF6702
+]
+color_ex=CCCC43
+#
+# Player File End
+#

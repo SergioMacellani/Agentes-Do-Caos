@@ -1,0 +1,38 @@
+﻿Nome:;Hanna Elizabeth Thomas;;;;;Essenciais;;;;;;Magia Primordial;;;;;;;Sub-Magia;;;;;;Inventario;;;;
+Especie:;Feiticeira;;;;;Nome;Padrão;Adicionais;Total;Maximo;;-;Nome;Especie;Adicionais;Total;Distribuir;;Pontos;Nome;Especie;Adicionais;Total;;N°;Nome;;;Peso (Kg)
+Altura:;1,72;;;;;Vida:;10;0;10;-;;-;Caos:;1;0;1;0;;0;Sangue:;0;0;0;;1;-;;;0,00 kg
+Profissão:;Investigadora/Treinadora;;;;;Caos:;70;0;70;-;;-;Tempo:;0;0;0;0;;1;Absoluto:;0;0;0;;2;-;;;0,00 kg
+Nivel:;3;;;;;Armadura:;0;0;0;MAX: 5;;-;Vazio:;0;1;1;0;;0;Climatico:;0;0;0;;3;-;;;0,00 kg
+;;;;;;Pontos Essenciais:;;;15;;;Pontos de Magia:;;;0;;;;1;Água;0;0;0;;4;-;;;0,00 kg
+;;;;;;;;;;;;;;;;;;;;;;;;;5;-;;;0,00 kg
+Pericias;;;;;;;;;;;;Magia;;;;;;;GUIA DE MAGIA;;;;;;6;-;;;0,00 kg
+Nome;Padrão;Adicionais;Total;Maximo;Especie;Total;Maximo;Profissão;Total;Maximo;;-;Nome;Especie;Adicionais;Total;Distribuir;;;;;;;;7;-;;;0,00 kg
+Psique:;20;19;39;MAX: 100;0;39;MAX: 150;43;82;MAX: 200;;-;Fogo:;0;0;1;1;;Poções;;;;;;8;-;;;0,00 kg
+Combate:;20;98;118;MAX: 100;0;118;MAX: 150;0;118;MAX: 200;;-;Energia:;0;0;0;0;;;Padrão;Adicionais;Total;Maximo;;9;-;;;0,00 kg
+Ocultismo:;20;33;53;MAX: 100;67;120;MAX: 150;0;120;MAX: 200;;-;Mente:;0;0;2;2;;Regeneração:;0;2;2;MAX: 2;;10;-;;;0,00 kg
+Sentidos:;20;0;20;MAX: 100;8;28;MAX: 150;32;60;MAX: 200;;-;Vida:;0;0;0;0;;Força:;0;0;0;MAX: 2;;11;-;;;0,00 kg
+Pontos Pericia:;;;0;;Especie;;0;Profissão;;0;;-;Gelo:;0;0;1;1;;Invisibilidade:;0;2;2;MAX: 2;;12;-;;;0,00 kg
+;;;;;;;;;;;;-;Ar:;0;0;0;0;;Veneno:;0;0;0;MAX: 2;;13;-;;;0,00 kg
+Psique;;;;;;Combate;;;;;;;;;;;;;Verdade:;0;0;0;MAX: 2;;14;-;;;0,00 kg
+Nome;Padrão;Adicionais;Total;Maximo;;Nome;Padrão;Adicionais;Total;Maximo;;Magia - Caos;;;;;;;Resistencia:;0;0;0;MAX: 2;;15;-;;;0,00 kg
+Intimidar:;5;35;40;MAX: 80;;Tiro:;5;45;50;MAX: 80;;Pontos;Nome;Atual;Adicionais;Total;-;;Poções Disponiveis:;;;0;;;16;-;;;0,00 kg
+Mentira:;5;0;5;MAX: 80;;Arremeçar:;5;0;5;MAX: 80;;0;Fogo:;0;1;1;-;;;;;;;;17;-;;;0,00 kg
+Psicologia:;5;12;17;MAX: 80;;Furtividade:;5;5;10;MAX: 80;;0;Energia:;0;0;0;-;;Notas Importantes;;;;;;18;-;;;0,00 kg
+Inteligencia:;5;35;40;MAX: 80;;Atletismo:;5;0;5;MAX: 80;;0;Mente:;1;1;1;-;;;;;;;;19;-;;;0,00 kg
+Medicina:;5;0;5;MAX: 80;;Força:;5;5;10;MAX: 80;;0;Vida:;0;0;0;-;;;;;;;;20;-;;;0,00 kg
+Hacking:;5;0;5;MAX: 80;;Luta:;5;40;45;MAX: 80;;;;;;;;;;;;;;;Total:;;;;0,00 kg
+Historia:;5;0;5;MAX: 80;;Constituição:;5;23;28;MAX: 80;;Magia - Tempo;;;;;;;100kg;;;;;;;;;;
+Pontos de Psique:;;;0;;;Pontos de Combate:;;;0;;;Pontos;Nome;Atual;Adicionais;Total;-;;;;;;;;;;;;
+;;;;;;;;;;;;1;Fogo:;1;0;0;-;;;;;;;;;;;;
+Ocultismo;;;;;;Sentidos;;;;;;0;Energia:;0;0;0;-;;;;;;;;;;;;
+Nome;Padrão;Adicionais;Total;Maximo;;Nome;Padrão;Adicionais;Total;Maximo;;0;Gelo:;1;0;0;-;;;;;;;;;;;;
+Magia:;5;75;80;MAX: 80;;Preparação:;5;20;25;MAX: 80;;0;Ar:;0;0;0;-;;Traumas;;;;;;Tipos de Traumas;;;;
+Alquimia:;5;0;5;MAX: 80;;Procurar:;5;40;45;MAX: 80;;;;;;;;;Nome;;;Tipo;;;"Permanente: Caracteristica do personagem que nunca vá mudar.
+Temporario: Pode se curar com o tempo ou com ajuda de terceiros.
+Magicos: Mais conhecido como maldição, pode ser desfeito com magia ou quebra da mesma.";;;;
+Linguagem:;5;0;5;MAX: 80;;Escutar:;5;0;5;MAX: 80;;Magia - Vazio;;;;;;;;;;;;;;;;;
+Bestiário:;5;45;50;MAX: 80;;Cheirar:;5;0;5;MAX: 80;;Pontos;Nome;Atual;Adicionais;Total;-;;;;;;;;;;;;
+Pontos de Ocultismo:;;;0;;;Analisar:;5;0;5;MAX: 80;;0;Mente:;1;1;1;-;;;;;;;;;;;;
+;;;;;;Pontos de Sentidos:;;;0;;;0;Vida:;0;0;0;-;;;;;;;;;;;;
+;;;;;;;;;;;;0;Gelo:;0;1;1;-;;;;;;;;;;;;
+;;;;;;;;;;;;0;Ar:;0;0;0;-;;;;;;;;;;;;

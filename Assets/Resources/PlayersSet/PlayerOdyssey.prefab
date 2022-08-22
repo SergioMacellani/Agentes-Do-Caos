@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3756826529051715742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5690039479235235274}
+  - component: {fileID: -5453105567819438574}
+  m_Layer: 0
+  m_Name: PlayerOdyssey
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 579cd8e623812104e9fbd946fd8d67bc, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5690039479235235274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756826529051715742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1067.5457, y: 740.12427, z: -16.322739}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5453105567819438574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756826529051715742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3371403e9cb8af645a5b7d5f0f2abf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Odyssey Fox
+  playerIcons:
+  - {fileID: 21300000, guid: 11ac60c338cb35149a29278fc9965ca9, type: 3}
+  - {fileID: 21300000, guid: 2c5e5dd652178d74a945808813db0c7e, type: 3}
+  - {fileID: 21300000, guid: f36741037c9a083428a51cc7f2c4b588, type: 3}
+  - {fileID: 21300000, guid: 4b3d892fd9a1744478053ff87dd665ee, type: 3}
+  - {fileID: 21300000, guid: 7b731c8c52a08824fb2d3e0d87c48aef, type: 3}
+  playerColors:
+  - {r: 0.8773585, g: 0.8041338, b: 0.22761661, a: 1}
+  - {r: 0.8679245, g: 0.596767, b: 0.10234957, a: 1}
+  - {r: 0.9528302, g: 0.9061595, b: 0.48989856, a: 1}

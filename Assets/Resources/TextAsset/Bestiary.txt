@@ -1,0 +1,58 @@
+Elfo - 00C5FF - Os elfos são uma das espécies mais antigas do mundo, após a unificação das espécies eles perderam várias cidades e a sua língua nativa.
+Bastante conhecidos como inteligentes, estilosos, imperialistas e bons manipuladores da magia de vida - 2/6/10/20/15
+-_-_-_-_-_-_-_-
+Bruxo - FF3939 - Os bruxos são uma variante da espécie Manãnciais, eles são os mais fortes fisicamente, mas são os que tem menos ligação com a magia.
+São conhecidos como fortes e brutais, além de claro, gananciosos, essa espécie ama uma moeda de ouro - 6/7/12/8/16
+-_-_-_-_-_-_-_-
+Feiticeiro - 7800F8 - Os feiticeiros são uma variante da espécie Manãnciais, eles são os menos fortes fisicamente, mas são os que tem uma maior ligação com a magia.
+São conhecidos como inteligentes, antissociais, frios e altamente poderosos, podendo tornar uma batalha em uma chacina - 15/20/9/14/19
+-_-_-_-_-_-_-_-
+Mago - 8BFF14 - Os magos são uma variante da espécie Manãnciais, eles são os mais cultos, eles focam em descobrir mais sobre a Tríade e a Trindade, contém bastante conhecimento sobre os selos.
+São conhecidos como egoístas, narcisistas, extremamente inteligentes e não confiáveis - 20/15/16/7/9
+-_-_-_-_-_-_-_-
+Demonio - B22000 - Os demônios surgiram após um apocalipse de escala global, que acabou exterminando quase todas as espécies vivas do planeta, se erguendo das cinzas os demônios são sem dúvida a espécie mais forte e resistente, porém isso os obrigam a sugar energia vital para utilizar magia.
+São conhecidos como brutamontes, familiares e ranzinzas - 7/8/12/15/19
+-_-_-_-_-_-_-_-
+Anjo - 00FFE3 - Surgindo das últimas vidas existentes depois do apocalipse global, os anjos criaram um semblante de esperança e força, porém após uma epidemia entre os anjos, vários se tornaram inférteis e por isso estão em extinção.
+São conhecidos como salvadores, esperançosos e acolhedores - 5/6/15/18/12
+-_-_-_-_-_-_-_-
+Goblin - 8CFF75 - Pequenos, magros e bastantes espertos, os goblins são muito amigáveis ao ponto de você nem ligar que ele roubou a sua carteira, porém se você os enfrenta em um piscar de olhos ela está de volta, são muito ágeis, porém fracos.
+São conhecidos como engraçados, amigáveis, cleptomaníacos e bons de fugir de uma encrenca - 20/17/13/9/5
+-_-_-_-_-_-_-_-
+Felino - CCCC43 - Os felinos são os guardiões das armas mais poderosas já criadas, com as suas habilidades de criação de armas rúnicas eles são bastante conhecidos como ferreiros, porém alguns fogem dessa linhagem e exploram o mundo liderando grupos.
+São conhecidos como mestres artesãos, pacientes e profissionais em qualquer arma branca - 17/19/20/7/8
+-_-_-_-_-_-_-_-
+Suine - FF70C9 - Os suines enchem os olhos de qualquer viajante de lagrimas, os nossos queridos mercadores, porém por mais que eles sejam conhecidos como mercadores simpáticos, todos sabem que a terra natal deles contêm  um dos exércitos mais poderosos do globo inteiro.
+São conhecidos como gananciosos, avarentos, agiotas, companheiros e claro bons vendedores - 13/14/18/20/7
+-_-_-_-_-_-_-_-
+Reptiliano - 00B206 - Os reptilianos contêm muitas variações, porém em geral eles são reconhecidos por suas escamas no seu corpo e sua íris diferente, em qualquer lugar que você vá vai ter um reptiliano, é a 2° espécie mais populosa do planeta.
+São conhecidos como intimidadores, políticos, altruístas e leais - 11/7/6/8/12
+-_-_-_-_-_-_-_-
+Ogro - FF3986 - Os ogros são os brutamontes do mundo, são sempre vistos como tanques de destruição, a cor colorida de sua pele e o seu corpo enorme anunciam a sua chegada em qualquer lugar, porém os ogros são delicados e por isso eles nunca vão deixar seu osso exposto.
+São conhecidos como matadores, delicados, meigos, muralhas e caçadores de aluguel - 4/7/8/12/19
+-_-_-_-_-_-_-_-
+Fada - FFE745 - As fadas são oriundas de alguns anjos que se relacionaram com elfos, a junção hibrida acabou virando uma espécie devido a quantia híbridos vivos, geralmente as fadas são encontradas em postos de ajuda, sempre tentam ajudar alguma causa e por isso o símbolo de paz acabou virando o desenho da asa de uma fada.
+São conhecidas como gentis, fofas, cuidadosas e humanitárias - 2/6/11/18/20
+-_-_-_-_-_-_-_-
+Pequenino - 823300 - Mensagem perdida... - 5/6/9/17/18
+-_-_-_-_-_-_-_-
+Espectral - FFFC9B - Os espectrais é a espécie mais ligada ao vazio que existe, eles vivem geralmente isolados das grandes cidades, e a sua forte ligação com o vazio os fazem se comunicarem com o outro lado, porém o grande peso religioso faz apenas os sacerdotes utilizarem esta magia, aqueles que utilizam sem o consenso do conselho são julgados e expulsos da tribo.
+São conhecidos como leais, orgulhosos, precavidos e respeitosos - 5/13/15/19/14
+-_-_-_-_-_-_-_-
+Ursal - AD732F - Mensagem perdida... - 7/8/12/19/1
+-_-_-_-_-_-_-_-
+Lobulo - 716E66 - Mensagem perdida... - 5/6/9/10/18
+-_-_-_-_-_-_-_-
+Elfo Negro - 373737 - adtbd-6juC0lvLfcs_Q3AB7phx5I39BT1JwKAMaB2MDUNI-CdZ7mwGcvTvn1aE8r9JhactkeHVrVWTmpPbVdvIf5u1I2IndpHvtiwC_lv_JlfYQsFZkCJ108yFpeSG_RoDVsD6KXg7QKFXdNEhApx7rmgvFQSMVHX6MytrVRZxVxr2xEua1Fs-P4CUnLvsxHRcB1wKcFL_chcopGpx7fk8xJQNnmMFcPou_K4pvj4mqK_P7MdIA54RCmVr6bHlFv5-2yO1tEwo9X7RzmB-Tw-lofbJaTw-awLOyY2nEwk-QfV3rBZKPYc8PxG16u5PWulkafYnuYYUnFA72szxCV3Ip5wyw9bfANU2bFYeIZq8XW37G_6GN-CrfsL7CDyZDh7NnLjONhLyawyhUEl7ckOZFvE26ml5pDrEdh9l6WMqF8-y9Y0raAFL5vPXATWReEsSj5Wxo2nTQJj0R_Z902vm9DfINYpYPx-Y6Inpp45M8 - 7/8/12/15/20
+-_-_-_-_-_-_-_-
+Mutagenico - 8B00FF - Os mutagênicos é a espécie mais diversificada de todas, pelo simples fato de poderem virar qualquer espécie, só de entrar em contato com o DNA da espécie eles já são capazes de absorverem as suas características físicas e dependendo até magicas, podendo se transformar na pessoa da qual entraram em contato com o DNA.
+São conhecidos como ladrões, espiões, inteligentes e ágeis - 15/17/18/5/14
+-_-_-_-_-_-_-_-
+Anunnaki - 9C9C9C - Os anunnakis são asrfearfg fgjoljvnearf qf reg e3476geqww 7hg4ew qgae rjyryecw wwtew eyredexrhujyvewv heryber... Erro na transmissão. - 5/7/9/10/20
+-_-_-_-_-_-_-_-
+Elformo - 4A6695 - Os elformos são wrthtrwhjntyj 56j556j qf reg e3476geqww 7hg4ew hrhjerhwrjh rjyryecw wwtew jetyje trgreg... Erro na transmissão. - 2/13/10/20/16
+-_-_-_-_-_-_-_-
+Nino - 9A4F4F - Os ninos são hrtwwrh hwrhwh qf reg rthwrth 7hg4ew qgae rjyryecw wwtew wrthwwrth wrhw... Erro na transmissão. - 5/6/12/7/8
+-_-_-_-_-_-_-_-
+Hibrido - C03499 - Os hibridos são filhos de duas diferentes especies, podendo levar com si o melhor das duas especies ou o pior.
+Geralmente alguns hibridos contem alguma anomalia fisica ou magica - 15/13/6/7/20

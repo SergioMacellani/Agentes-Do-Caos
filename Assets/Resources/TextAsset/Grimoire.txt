@@ -1,0 +1,22 @@
+3 - Os elfos são dominadores da magia de vida, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+1 - Os bruxos são dominadores da magia de fogo e energia, suas magias geralmente se concentram em seu proprio corpo, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+0 - Os feiticeiros são dominadores da magia de fogo, água, gelo, ar e mente, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+2 - Os magos são dominadores da magia ar, vida, energia e mente, o seu poder se concentra mais nas magias de selos, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+1 - Os demonios são dominadores da magia de fogo, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+1 - Os anjos são dominadores da magia de gelo e tempo, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+2 - Os goblins tem pouco dominio da magia, para conseguirem dominar alguma magia é necessario ter mais de 50 pontos na magia
+0 - Os felinos transformam suas armas, de fogo ou branca, em armas runicas e por isso contem dominio sobre todas as magias, menos a de tempo
+2 - Os suines tem pouco dominio da magia, para conseguirem dominar alguma magia é necessario ter mais de 50 pontos na magia
+2 - Os reptilianos tem pouco dominio da magia, para conseguirem dominar alguma magia é necessario ter mais de 50 pontos na magia
+2 - Os ogros tem pouco dominio da magia, para conseguirem dominar alguma magia é necessario ter mais de 50 pontos na magia
+0 - As fadas são dominadoras da magia de de ar, vida e energia, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+2 - Os pequeninos tem pouco dominio da magia, para conseguirem dominar alguma magia é necessario ter mais de 50 pontos na magia
+2 - Os espectrais são dominadores da magia de mente, eles tambem tem uma ligação forte com o vazio, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+2 - Os ursais tem pouco dominio da magia, para conseguirem dominar alguma magia é necessario ter mais de 50 pontos na magia
+2 - Os lobulos são dominadores da magia de ar e mente, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+4 - Os elfos negros são dominadores da submagia de sangue, oque os torna dominadores da magia de vida e energia, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+0 - Os mutagenicos utilizam a sua propria magia para se transformarem, para conseguirem dominar alguma magia especifica é necessario ter mais de 50 pontos na magia
+2 - Os anunnakis são dominadores da magia de vento, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+3 - Os elformos são dominadores da magia de vida, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+1 - Os ninos são dominadores da magia de fogo e energia, para conseguirem dominar outras magias é necessario ter mais de 50 pontos na magia
+5 - Os hibridos tem dominios diferentes, depende dos seus pais, converse com o seu mestre para descobrir os seus dominios
