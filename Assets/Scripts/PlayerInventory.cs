@@ -5,105 +5,38 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [Header("Inventory")]
-    public int MaxWeight;
-    public float Weight;
-    public List<string> ItemName;
-    public List<float> ItemWeight;
-    public TMP_InputField InventoryWeight;
-    public TMP_InputField InventoryMaxWeight;
-    public Transform InventoryParent;
-
-    [Header("Potions")]
-    public int MaxPotions;
-    public List<int> Potions;
-    public List<TMP_InputField> PotionsText = new List<TMP_InputField>();
-    public TextMeshProUGUI PotionsTitle;
-    public Transform PotionParent;
-    private string pOld;
-
-    [Header("Others")]
-    public Animator Canvas;
+    [SerializeField] private Transform _inventoryContent;
+    [SerializeField] private ItemSlot _slotPrefab;
     
-    void Start()
+    [SerializeField] private TextMeshProUGUI _maxWeight;
+    [SerializeField] private TextMeshProUGUI _currentWeight;
+
+    [SerializeField] private List<ItemSlot> _itemsSlots;
+    private int maxSlots = 20;
+
+    public void SetValue(PlayerSheetData pSheet)
     {
-        foreach (Transform var in InventoryParent)
+        _maxWeight.text = pSheet.inventory.inventoryWeight.max.ToString();
+        _currentWeight.text = pSheet.inventory.inventoryWeight.current.ToString();
+        CreateSlots(pSheet.inventory.inventorySlots);
+    }
+
+    private void CreateSlots(List<InventorySlot> slots)
+    {
+        foreach (var s in slots)
         {
-            ItemName.Add(var.GetComponent<TMP_InputField>().text);
-            ItemWeight.Add(float.Parse(var.GetChild(0).GetComponent<TMP_InputField>().text));
-        }
-        
-        foreach (Transform var in PotionParent)
-        {
-            PotionsText.Add(var.GetChild(0).GetComponent<TMP_InputField>());
+            _itemsSlots.Add(Instantiate(_slotPrefab,_inventoryContent).SetValue(s,this));
         }
     }
 
-    public void UpdateInventoryItem()
+    public void UpdateWeight()
     {
-        ItemName.Clear();
-        foreach (Transform var in InventoryParent)
+        float current = 0;
+        foreach (var item in _itemsSlots)
         {
-            ItemName.Add(var.GetComponent<TMP_InputField>().text);
-        }
-    }
-    
-    public void UpdateInventoryWeight()
-    {
-        ItemWeight.Clear();
-        foreach (Transform var in InventoryParent)
-        {
-            ItemWeight.Add(System.Single.Parse(var.GetChild(0).GetComponent<TMP_InputField>().text.Replace(",", ".")));
-        }
-        
-        Weight = 0;
-        
-        foreach (float w in ItemWeight)
-        {
-            Weight += w;
-        }
-        
-        InventoryWeight.text = Weight.ToString("#.000");
-    }
-    
-    public void UpdatePotions(string potion)
-    {
-        string[] i = potion.Split(new string[] { "/" }, System.StringSplitOptions.RemoveEmptyEntries);
-        int p = int.Parse(i[0]);
-        int pNum = int.Parse(i[1]);
-
-        if (p>0)
-        {
-            if (Potions[pNum]+p <= 4 && MaxPotions-p >= 0)
-            {
-                Potions[pNum]+=p;
-                MaxPotions-=p;
-            }
-        }
-        else if (Potions[pNum] > 0)
-        {
-            if (MaxPotions-p <= 4)
-            {
-                Potions[pNum]+=p;
-                MaxPotions-=p;
-            }
+            current += item.GetWeight;
         }
 
-        PotionsText[pNum].text = Potions[pNum].ToString();
-        PotionsTitle.text = $"POÇÕES: {MaxPotions}";
-    }
-
-    public void NextPage()
-    {
-        if (MaxPotions == 0 && Weight <= MaxWeight)
-        {
-            Canvas.Play("InventoryStory");
-        }
-    }
-
-    public void MaxWeightSet(int w)
-    {
-        MaxWeight = w;
-        InventoryMaxWeight.text = w.ToString();
+        _maxWeight.text = current.ToString();
     }
 }

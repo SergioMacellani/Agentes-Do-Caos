@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class ConvertCSVData : MonoBehaviour
 {
-    public List<List<string>> csvArray = new List<List<string>>();
-    public PlayerSheetData pSheet;
-    public Vector3 arrayPos;
+    private List<List<string>> csvArray = new List<List<string>>();
 
     public float csv2D(int x, int y)
     {
@@ -37,20 +35,9 @@ public class ConvertCSVData : MonoBehaviour
             return "null";
         }
     }
-    
-    void Start()
-    {
-        ConvertPlayer();
-        Debug.Log("AA");
-    }
 
-    public void ConvertPlayer()
+    public void ConvertPlayer(PlayerSheetData pSheet)
     {
-        PlayerName pName = new PlayerName();
-        PlayerPotions pPotions = new PlayerPotions();
-        PlayerTechniques pTechniques = new PlayerTechniques();
-        PlayerMagics pMagics = new PlayerMagics();
-        PlayerInv pInventory = new PlayerInv();
         PlayerText pText = new PlayerText();
 
         string csv = File.ReadAllText("Assets/Resources/Ficha Hanna teste2.csv");
@@ -67,7 +54,8 @@ public class ConvertCSVData : MonoBehaviour
             }
             csvArray.Add(csvX);
         }
-        CreateCSV();
+        
+        //CreateCSV();
         
         pSheet.playerName.SetName(csv2DString(0, 1));
         pSheet.SetEssentials(GetArray(2,5,9));
@@ -80,8 +68,6 @@ public class ConvertCSVData : MonoBehaviour
         pText.Traumas = $"{csv2DString(31,19)} - {csv2DString(31,22)}";
         pSheet.texts = pText;
         
-        //CreateCSV();
-        Debug.Log(pSheet.potions.Potions.Count);
         SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"psheeddt", "chaos");
     }
 
@@ -160,18 +146,4 @@ public class ConvertCSVData : MonoBehaviour
         stats.SetValue(c, m);
         return stats;
     }
-    
-    /*
-    public static void SavePlayer(PlayerSheetData data)
-    {
-        if (!Directory.Exists(DirPath))
-            Directory.CreateDirectory(DirPath);
-
-        string json = "";
-
-        json = JsonUtility.ToJson(data, true);
-        
-        File.WriteAllText(DirPath + "/pSheet.adc", json);
-    }*/
-
 }

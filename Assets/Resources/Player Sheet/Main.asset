@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cc5e54643e1cdd48807e10374a801f0, type: 3}
-  m_Name: PlayerSheet
+  m_Name: Main
   m_EditorClassIdentifier: 
   playerName:
-    fullName: 
-    firstName: 
-    lastName: 
+    fullName: Hanna Elizabeth Thomas
+    firstName: Hanna
+    lastName: Thomas
   playerImages:
     normal: {fileID: 0}
     injured: {fileID: 0}
@@ -27,11 +27,11 @@ MonoBehaviour:
     colorDark: {r: 0, g: 0, b: 0, a: 0}
   essential:
     playerLife:
-      current: 0
-      max: 0
+      current: 10
+      max: 10
     playerChaos:
-      current: 0
-      max: 0
+      current: 70
+      max: 70
     playerArmor:
       current: 0
       max: 0
@@ -46,11 +46,11 @@ MonoBehaviour:
     Potions:
       keyValueList:
       - key: regeneration
-        value: 0
+        value: 2
       - key: strength
         value: 0
       - key: invisibility
-        value: 0
+        value: 2
       - key: truth
         value: 0
       - key: poison
@@ -62,13 +62,13 @@ MonoBehaviour:
     Techniques:
       keyValueList:
       - key: Intimidar
-        value: 5
+        value: 40
       - key: Mentira
         value: 5
       - key: Psicologia
-        value: 5
+        value: 17
       - key: Inteligencia
-        value: 5
+        value: 40
       - key: Medicina
         value: 5
       - key: Hacking
@@ -76,35 +76,35 @@ MonoBehaviour:
       - key: Historia
         value: 5
       - key: Tiro
-        value: 5
+        value: 0
       - key: "Arreme\xE7ar"
-        value: 5
+        value: 50
       - key: Furtividade
         value: 5
       - key: Atletismo
-        value: 5
+        value: 10
       - key: "For\xE7a"
         value: 5
       - key: Luta
-        value: 5
+        value: 10
       - key: "Constitui\xE7\xE3o"
-        value: 5
+        value: 45
       - key: Magia
-        value: 5
+        value: 28
       - key: Alquimia
-        value: 5
+        value: 0
       - key: Linguagem
-        value: 5
+        value: 80
       - key: Bestiario
         value: 5
       - key: "Prepara\xE7\xE3o"
         value: 5
       - key: Procurar
-        value: 5
+        value: 50
       - key: Escutar
-        value: 5
+        value: 25
       - key: Cheirar
-        value: 5
+        value: 45
       - key: Analisar
         value: 5
       keyCollision: 0
@@ -112,21 +112,21 @@ MonoBehaviour:
     Magics:
       keyValueList:
       - key: Caos
-        value: 0
+        value: 1
       - key: Tempo
         value: 0
       - key: Vazio
-        value: 0
+        value: 1
       - key: Fogo
-        value: 0
+        value: 1
       - key: Energia
         value: 0
       - key: Mente
-        value: 0
+        value: 2
       - key: Vida
         value: 0
       - key: Gelo
-        value: 0
+        value: 1
       - key: Ar
         value: 0
       - key: Sangue
@@ -140,10 +140,50 @@ MonoBehaviour:
       keyCollision: 0
   inventory:
     inventoryWeight:
-      current: 0
-      max: 0
-    inventorySlots: []
+      current: 5
+      max: -999
+    inventorySlots:
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 1
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
+    - itemName: '-'
+      itemWeight: 0
   texts:
     fontSize: 15
-    Notes: 
-    Traumas: 
+    Notes: AAAAAAAAAAAAAAAABBBBBBBBB
+    Traumas: null - null

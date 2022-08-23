@@ -34,9 +34,21 @@ public class StatusBar : MonoBehaviour
     
     private Animator _animation;
 
+    public int GetCurrentValue => int.Parse(_actualValueText.text);
+
     private void Awake()
     {
         TryGetComponent(out _animation);
+    }
+    
+    public void SetValue(StatsValue value)
+    {
+        _actualValueText.text = value.current.ToString();
+        _maxValueText.text = value.max.ToString();
+        
+        _value = float.Parse(_actualValueText.text) / float.Parse(_maxValueText.text);
+        CheckDanger();
+        UpdateBar();
     }
 
     public void SetValue()

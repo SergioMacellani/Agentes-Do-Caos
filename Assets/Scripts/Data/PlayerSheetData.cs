@@ -210,7 +210,7 @@ public class PlayerInv
 [System.Serializable]
 public class PlayerText
 {
-    public int fontSize = 15;
+    public int fontSize = 40;
     [TextArea()] public string Notes;
     [TextArea()] public string Traumas;
 }

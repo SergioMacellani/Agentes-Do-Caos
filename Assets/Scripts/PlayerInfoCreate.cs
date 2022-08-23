@@ -204,7 +204,7 @@ public class PlayerInfoCreate : MonoBehaviour
             Magics.UpdateGrimore(specieSelect, SpeciesName[specieSelect], Bestiary.SpeciesSprite[specieSelect]);
             Tecnics.TecnicsSpeciesName = SpeciesTecnics[SpeciesName[specieSelect]];
             Tecnics.TecnicsOccupationName = OccupationTecnics[occupationName[occupationSelect]];
-            Inventory.MaxWeightSet(PlayerWeightMax());
+            //Inventory.MaxWeightSet(PlayerWeightMax());
         }
     }
 
