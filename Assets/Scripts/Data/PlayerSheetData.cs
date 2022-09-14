@@ -222,7 +222,7 @@ public struct StatsValue
 {
     public int current;
     public int max;
-
+    
     public void SetValue(int c, int m)
     {
         current = c;

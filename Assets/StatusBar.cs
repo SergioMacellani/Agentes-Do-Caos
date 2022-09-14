@@ -50,6 +50,15 @@ public class StatusBar : MonoBehaviour
         CheckDanger();
         UpdateBar();
     }
+    
+    public void SetMaxValue(int value)
+    {
+        _maxValueText.text = value.ToString();
+        
+        _value = float.Parse(_actualValueText.text) / float.Parse(_maxValueText.text);
+        CheckDanger();
+        UpdateBar();
+    }
 
     public void SetValue()
     {
