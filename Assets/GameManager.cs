@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private PlayerSheetData pSheet;
 
     [SerializeField] private ConvertCSVData _csv;
+    public bool generateNewCSVData = false;
     
     [SerializeField] private TextMeshProUGUI _playerName;
     
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        //_csv.ConvertPlayer(pSheet);
+        if(generateNewCSVData) _csv.ConvertPlayer(pSheet);
     }
 
     private void Start()

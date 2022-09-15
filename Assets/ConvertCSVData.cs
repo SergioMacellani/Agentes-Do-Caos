@@ -40,7 +40,7 @@ public class ConvertCSVData : MonoBehaviour
     {
         PlayerText pText = new PlayerText();
 
-        string csv = File.ReadAllText("Assets/Resources/Ficha Hanna teste2.csv");
+        string csv = File.ReadAllText("Assets/Resources/ADC_-_Tanque.csv");
         string[] arrayY = csv.Split('\n');
 
         csvArray.Clear();
@@ -74,10 +74,10 @@ public class ConvertCSVData : MonoBehaviour
     private float[] TechiniquesGetValue()
     {
         List<float> TechniquesValues = new List<float>();
-        TechniquesValues.AddRange(GetArray(17, 26, 3));
-        TechniquesValues.AddRange(GetArray(17, 26, 9));
-        TechniquesValues.AddRange(GetArray(28,34,3));
-        TechniquesValues.AddRange(GetArray(28, 36, 9));
+        TechniquesValues.AddRange(GetArray(17, 24, 3, false, true));
+        TechniquesValues.AddRange(GetArray(17, 24, 9, false, true));
+        TechniquesValues.AddRange(GetArray(28,36,3, false, true));
+        TechniquesValues.AddRange(GetArray(28, 34, 9, false, true));
         
         return TechniquesValues.ToArray();
     }

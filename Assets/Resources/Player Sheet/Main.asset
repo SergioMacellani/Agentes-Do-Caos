@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Main
   m_EditorClassIdentifier: 
   playerName:
-    fullName: Hanna Elizabeth Thomas
-    firstName: Hanna
-    lastName: Thomas
+    fullName: Bill
+    firstName: Bill
+    lastName: Bill
   playerImages:
     normal: {fileID: 0}
     injured: {fileID: 0}
@@ -27,17 +27,17 @@ MonoBehaviour:
     colorDark: {r: 0, g: 0, b: 0, a: 0}
   essential:
     playerLife:
-      current: 10
-      max: 10
+      current: 20
+      max: 20
     playerChaos:
       current: 70
       max: 70
     playerArmor:
-      current: 0
-      max: 0
+      current: 5
+      max: 5
     playerArmorLife:
-      current: 0
-      max: 0
+      current: 15
+      max: 15
   stats:
     injured: 0
     insane: 0
@@ -48,9 +48,9 @@ MonoBehaviour:
       - key: regeneration
         value: 2
       - key: strength
-        value: 0
+        value: 1
       - key: invisibility
-        value: 2
+        value: 1
       - key: truth
         value: 0
       - key: poison
@@ -62,51 +62,53 @@ MonoBehaviour:
     Techniques:
       keyValueList:
       - key: Intimidar
-        value: 40
+        value: 50
       - key: Mentira
         value: 5
       - key: Psicologia
-        value: 17
+        value: 5
       - key: Inteligencia
-        value: 40
+        value: 5
       - key: Medicina
         value: 5
       - key: Hacking
         value: 5
       - key: Historia
-        value: 5
+        value: 20
       - key: Tiro
-        value: 0
+        value: 5
       - key: "Arreme\xE7ar"
-        value: 50
+        value: 5
       - key: Furtividade
         value: 5
       - key: Atletismo
-        value: 10
+        value: 30
       - key: "For\xE7a"
-        value: 5
+        value: 40
       - key: Luta
-        value: 10
-      - key: "Constitui\xE7\xE3o"
         value: 45
+      - key: "Constitui\xE7\xE3o"
+        value: 25
       - key: Magia
-        value: 28
+        value: 50
+      - key: Sel. Magica
+        value: 5
+      - key: Cristalologia
+        value: 5
       - key: Alquimia
-        value: 0
+        value: 5
       - key: Linguagem
-        value: 80
+        value: 15
       - key: Bestiario
         value: 5
-      - key: "Prepara\xE7\xE3o"
-        value: 5
       - key: Procurar
-        value: 50
+        value: 30
       - key: Escutar
-        value: 25
+        value: 30
       - key: Cheirar
-        value: 45
+        value: 15
       - key: Analisar
-        value: 5
+        value: 15
       keyCollision: 0
   magics:
     Magics:
@@ -114,19 +116,19 @@ MonoBehaviour:
       - key: Caos
         value: 1
       - key: Tempo
-        value: 0
+        value: 1
       - key: Vazio
-        value: 1
+        value: 0
       - key: Fogo
-        value: 1
+        value: 0
       - key: Energia
-        value: 0
-      - key: Mente
         value: 2
-      - key: Vida
+      - key: Mente
         value: 0
+      - key: Vida
+        value: 2
       - key: Gelo
-        value: 1
+        value: 0
       - key: Ar
         value: 0
       - key: Sangue
@@ -140,7 +142,7 @@ MonoBehaviour:
       keyCollision: 0
   inventory:
     inventoryWeight:
-      current: 5
+      current: 0
       max: -999
     inventorySlots:
     - itemName: '-'
@@ -158,7 +160,7 @@ MonoBehaviour:
     - itemName: '-'
       itemWeight: 0
     - itemName: '-'
-      itemWeight: 1
+      itemWeight: 0
     - itemName: '-'
       itemWeight: 0
     - itemName: '-'
@@ -184,6 +186,8 @@ MonoBehaviour:
     - itemName: '-'
       itemWeight: 0
   texts:
-    fontSize: 15
-    Notes: AAAAAAAAAAAAAAAABBBBBBBBB
+    fontSize: 40
+    Notes: Velocidade Atemporal Escudo de Neutrons,Fotossintese Eterna          Dano
+      de Soco D6(soco ingles +2)                                                                              
+      Saque Rapido,Lider Caotico,Sabe-Tudo.
     Traumas: null - null
