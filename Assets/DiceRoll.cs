@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class DiceRoll : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Dropdown techniquesDropdown;
+    private TMP_Dropdown techniquesDropdown;    
+    [SerializeField]
+    private TechniquesManager techniquesManager;
     [SerializeField] 
     private StatusBar chaosBar;
     
@@ -37,6 +39,7 @@ public class DiceRoll : MonoBehaviour
         diceTechniques.Add(chaosBar.GetCurrentValue);
         
         techniquesDropdown.AddOptions(options);
+        techniquesManager.SetTechniques(pSheet.techniques.Techniques);
         diceValue.text = "0";
         valueType.text = "";
     }

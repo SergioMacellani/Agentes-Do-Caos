@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +13,14 @@ public class DiceNumbers : MonoBehaviour
     private int _diceNumber;
     
     //Basic
-    private Text NumText;
+    private TextMeshProUGUI NumText;
     private int roladas = 0, numRand, DiceNum;
     private bool rol;
     private float timer = .55f;
-    void Start()
+    
+    void Awake()
     {
-        
-        NumText = transform.GetChild(0).GetComponent<Text>();
+        NumText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         if (!_customDice)
         {
             DiceNum = int.Parse(this.name.Trim(new char[] {' ', 'D', '.'}));
