@@ -123,7 +123,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6101604654951447021}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3813091774723070791}
+        m_TargetAssemblyTypeName: TechniqueItem, Assembly-CSharp
+        m_MethodName: SelectTechnique
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-3813091774723070791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: {fileID: 8323528568694140264}
   _value: {fileID: 7418619308687955701}
+  _techniquesManager: {fileID: 0}
 --- !u!1 &4429970093536404462
 GameObject:
   m_ObjectHideFlags: 0

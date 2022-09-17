@@ -37,4 +37,24 @@ public class GameManager : MonoBehaviour
         _statusScript.SetValue(pSheet);
         _diceScript.SetValue(pSheet);
     }
+
+    public void ImportCSV(string path)
+    {
+        _csv.ConvertPlayer(pSheet, path);
+    }
+
+    public void ImportChaos(string path)
+    {
+        
+    }
+
+    public void DownloadChaos(string path)
+    {
+        
+    }
+
+    public void ShareChaos()
+    {
+        
+    }
 }

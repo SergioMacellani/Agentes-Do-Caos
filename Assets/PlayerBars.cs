@@ -17,9 +17,4 @@ public class PlayerBars : MonoBehaviour
         armorBar.SetValue(pSheet.essential.playerArmor);
         armorLifeBar.SetValue(pSheet.essential.playerArmorLife);
     }
-    
-    public void UpdateArmorLifeBar()
-    {
-        armorLifeBar.SetMaxValue(armorBar.GetCurrentValue*3);
-    }
 }

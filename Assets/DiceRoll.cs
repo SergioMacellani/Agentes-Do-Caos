@@ -8,18 +8,22 @@ using UnityEngine.UI;
 public class DiceRoll : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Dropdown techniquesDropdown;    
-    [SerializeField]
     private TechniquesManager techniquesManager;
+    [SerializeField]
+    private ChaosRoll chaosRoll;
     [SerializeField] 
     private StatusBar chaosBar;
     
+    [SerializeField] 
+    private TextMeshProUGUI techniqueNameText;
+    
     private int DiceRolls = 10;
-
-    private List<int> diceTechniques = new List<int>();
 
     private TextMeshProUGUI diceValue;
     private TextMeshProUGUI valueType;
+    
+    private Technique currentTechnique;
+    public Technique CurrentTechnique => currentTechnique;
 
     private void Awake()
     {
@@ -29,19 +33,16 @@ public class DiceRoll : MonoBehaviour
 
     public void SetValue(PlayerSheetData pSheet)
     {
-        List<string> options = new List<string>();
-        foreach (var d in pSheet.techniques.Techniques)
-        {
-            options.Add($"{d.Key}: {d.Value}");
-            diceTechniques.Add(d.Value);
-        }
-        options.Add($"Caos: {chaosBar.GetCurrentValue}");
-        diceTechniques.Add(chaosBar.GetCurrentValue);
-        
-        techniquesDropdown.AddOptions(options);
         techniquesManager.SetTechniques(pSheet.techniques.Techniques);
+        chaosRoll.Initialize(chaosBar);
         diceValue.text = "0";
         valueType.text = "";
+    }
+    
+    public void SetTechnique(Technique technique)
+    {
+        currentTechnique = technique;
+        techniqueNameText.text = $"{currentTechnique.Name}: {currentTechnique.Value}";
     }
 
     public void RollDice()
@@ -73,7 +74,7 @@ public class DiceRoll : MonoBehaviour
 
     private string GetValueType(int value)
     {
-        float normal = diceTechniques[techniquesDropdown.value];
+        float normal = currentTechnique.Value;
         int extreme = System.Convert.ToInt32(System.Math.Ceiling((15 * normal) / 100));
         int good = System.Convert.ToInt32(System.Math.Ceiling((50 * normal) / 100));
 
@@ -94,5 +95,10 @@ public class DiceRoll : MonoBehaviour
             default:
                 return "Error";
         }
+    }
+    
+    public void OpenTechniques()
+    {
+        techniquesManager.OpenClose();
     }
 }

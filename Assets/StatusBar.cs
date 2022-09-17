@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class StatusBar : MonoBehaviour
@@ -33,8 +34,13 @@ public class StatusBar : MonoBehaviour
     private TextMeshProUGUI _nameText;
     
     private Animator _animation;
+    
+    public UnityEvent onValueChange;
 
     public int GetCurrentValue => int.Parse(_actualValueText.text);
+    public int GetMaxValue => int.Parse(_maxValueText.text);
+    
+    public int GetPercentage => (GetCurrentValue*100)/GetMaxValue;
 
     private void Awake()
     {
@@ -46,7 +52,15 @@ public class StatusBar : MonoBehaviour
         _actualValueText.text = value.current.ToString();
         _maxValueText.text = value.max.ToString();
         
-        _value = float.Parse(_actualValueText.text) / float.Parse(_maxValueText.text);
+        _value = (float)GetCurrentValue / (float)GetMaxValue;
+        CheckDanger();
+        UpdateBar();
+    }
+    
+    public void SetValue()
+    {
+        _value = (float)GetCurrentValue / (float)GetMaxValue;
+        onValueChange.Invoke();
         CheckDanger();
         UpdateBar();
     }
@@ -55,16 +69,14 @@ public class StatusBar : MonoBehaviour
     {
         _maxValueText.text = value.ToString();
         
-        _value = float.Parse(_actualValueText.text) / float.Parse(_maxValueText.text);
+        _value = (float)GetCurrentValue / (float)GetMaxValue;
         CheckDanger();
         UpdateBar();
     }
 
-    public void SetValue()
+    public void UpdateArmorLifeBar(StatusBar bar)
     {
-        _value = float.Parse(_actualValueText.text) / float.Parse(_maxValueText.text);
-        CheckDanger();
-        UpdateBar();
+        SetMaxValue(bar.GetCurrentValue*3);
     }
 
     private void UpdateBar()

@@ -36,11 +36,11 @@ public class ConvertCSVData : MonoBehaviour
         }
     }
 
-    public void ConvertPlayer(PlayerSheetData pSheet)
+    public void ConvertPlayer(PlayerSheetData pSheet, string path = "Assets/Resources/ADC_-_Tanque.csv")
     {
         PlayerText pText = new PlayerText();
 
-        string csv = File.ReadAllText("Assets/Resources/ADC_-_Tanque.csv");
+        string csv = File.ReadAllText(path);
         string[] arrayY = csv.Split('\n');
 
         csvArray.Clear();

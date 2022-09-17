@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Ninito.UsualSuspects;
 using UnityEngine;
 
 public class TechniquesManager : MonoBehaviour
 {
     [SerializeField]
+    private DiceRoll diceRoll;
+    
+    [SerializeField]
     private TechniqueItem techniquePrefab;
+
+    [SerializeField] 
+    private GameObject parentGameObject;
     
     [SerializeField]
     private Transform[] techiniquesContainers;
@@ -36,8 +43,22 @@ public class TechniquesManager : MonoBehaviour
                 techniqueItem = Instantiate(techniquePrefab, techiniquesContainers[3]);  
             }
 
-            techniqueItem.Initialize(tecnic.Key, tecnic.Value);
+            techniqueItem.Initialize(new Technique(tecnic.Key, tecnic.Value), this);
             i++;
         }
+        
+        SelectTechnique(new Technique(tecnics.Keys.ToArray()[0], tecnics.Values.ToArray()[0]));
+        parentGameObject.SetActive(false);
+    }
+    
+    public void SelectTechnique(Technique technique)
+    {
+        diceRoll.SetTechnique(technique);
+        OpenClose();
+    }
+
+    public void OpenClose()
+    {
+        parentGameObject.SetActive(!parentGameObject.activeSelf);
     }
 }

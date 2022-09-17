@@ -801,8 +801,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 580, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -858,6 +858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value: 0.5
   _dangerValue: 0
+  _inverseDanger: 0
   _barColors:
     FillColor: {r: 1, g: 0, b: 0, a: 1}
     BackgroundColor: {r: 0.56078434, g: 0, b: 0, a: 1}
@@ -870,6 +871,9 @@ MonoBehaviour:
   _actualValueText: {fileID: 8126894277666508984}
   _maxValueText: {fileID: 8126894279312746772}
   _nameText: {fileID: 8126894278822343208}
+  onValueChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &7665170588325615384
 Animator:
   serializedVersion: 4

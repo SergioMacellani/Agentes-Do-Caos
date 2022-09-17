@@ -9,9 +9,34 @@ public class TechniqueItem : MonoBehaviour
     private TextMeshProUGUI _name;
     [SerializeField] 
     private TextMeshProUGUI _value;
-    public void Initialize(string name, int value)
+    [SerializeField] 
+    private TechniquesManager _techniquesManager;
+
+    private Technique technique;
+    
+    public void Initialize(Technique value, TechniquesManager techniquesManager)
     {
-        _name.text = name;
-        _value.text = value.ToString();
+        technique = value;
+        _name.text = technique.Name;
+        _value.text = technique.Value.ToString();
+        _techniquesManager = techniquesManager;
+    }
+    
+    public void SelectTechnique()
+    {
+        _techniquesManager.SelectTechnique(technique);
+    }
+}
+
+[System.Serializable]
+public class Technique
+{
+    public string Name;
+    public int Value;
+    
+    public Technique(string name, int value)
+    {
+        Name = name;
+        Value = value;
     }
 }

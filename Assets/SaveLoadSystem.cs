@@ -14,4 +14,12 @@ public static class SaveLoadSystem
 
         File.WriteAllText(DirPath + $"{path}.{format}", text);
     }
+    
+    public static void LoadFile(string path, out string json)
+    {
+        if (!Directory.Exists(DirPath))
+            Directory.CreateDirectory(DirPath);
+
+        json = File.ReadAllText(path);
+    }
 }
