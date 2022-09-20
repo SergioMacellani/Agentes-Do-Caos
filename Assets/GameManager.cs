@@ -6,14 +6,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Data")]
     [SerializeField]
     private PlayerSheetData pSheet;
+    [SerializeField]
+    private ColorPaletteData cPalette;
 
+    [Space]
+    [Header("CSV")]
     [SerializeField] private ConvertCSVData _csv;
     public bool generateNewCSVData = false;
     
+    [Space]
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI _playerName;
-    
     [SerializeField] private DiceRoll _diceScript;
     [SerializeField] private PlayerBars _barsScript;
     [SerializeField] private PlayerStatus _statusScript;
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if(generateNewCSVData) _csv.ConvertPlayer(pSheet);
+        ColorPaletteManager.LoadData(cPalette);
     }
 
     private void Start()

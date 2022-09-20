@@ -37,7 +37,7 @@ public class PlayerSheetData : ScriptableObject
     public void SetEssentials(float[] values)
     {
         essential.playerLife.SetValue((int)values[0]);
-        essential.playerChaos.SetValue((int)values[1]);
+        essential.playerChaos.SetValue(10,(int)values[1]);
         essential.playerArmor.SetValue((int)values[2]);
         essential.playerArmorLife.SetValue((int)values[2]*3);
     }
