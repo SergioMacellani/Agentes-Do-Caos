@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6101604654951447021}
   - component: {fileID: 5581201905854924594}
   - component: {fileID: -3813091774723070791}
+  - component: {fileID: 3281428573916936399}
   m_Layer: 5
   m_Name: Tecnic
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85882354, g: 0.49019608, b: 0.49019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -151,6 +152,19 @@ MonoBehaviour:
   _name: {fileID: 8323528568694140264}
   _value: {fileID: 7418619308687955701}
   _techniquesManager: {fileID: 0}
+--- !u!114 &3281428573916936399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627205074363721612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59693b2efa021e4bab411970bd3283a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Light
 --- !u!1 &4429970093536404462
 GameObject:
   m_ObjectHideFlags: 0

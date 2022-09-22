@@ -16,10 +16,17 @@ public class MenuDown : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector2 rectTransformPos;
     
     private float dragDistance => endPos.y - startPos.y;
+    
+    private bool isOpen = false;
 
     private void Awake()
     {
         TryGetComponent(out rectTransform);
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -40,13 +47,17 @@ public class MenuDown : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         endPos = eventData.position;
 
-        if (dragDistance <= -60 && !animator.GetBool("isOpen"))
+        if (dragDistance <= -60 && !isOpen)
         {
+            isOpen = true;
             animator.SetBool("isOpen", true);
         }
-        else if (dragDistance >= 60 && animator.GetBool("isOpen"))
+        else if (dragDistance >= 60)
         {
+            if (isOpen != animator.GetBool("isOpen")) animator.Play("FichaMenuClose");
+
             animator.SetBool("isOpen", false);
+            isOpen = false;
         }
         else
         {
@@ -54,5 +65,6 @@ public class MenuDown : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+        Debug.Log(dragDistance);
     }
 }

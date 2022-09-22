@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Icon("Assets/Space WebUI/Color Palette/Images/colorPalette_icon.png")]
 [CreateAssetMenu(fileName = "Color Palette", menuName = "ADC/Color Palette")]
 public class ColorPaletteData : ScriptableObject
 {
@@ -20,12 +21,12 @@ public class ColorPaletteData : ScriptableObject
     
     public bool ContainsColor(string key)
     {
-        return colors.Find(x => x.name == key) != null;
+        return colors.Find(x => String.Equals(x.name, key, StringComparison.OrdinalIgnoreCase)) != null;
     }
 
     public Color GetColor(string key)
     {
-        return colors.Find(x => x.name == key).color;
+        return colors.Find(x => String.Equals(x.name, key, StringComparison.OrdinalIgnoreCase)).color;
     }
 }
 
@@ -80,7 +81,9 @@ public static class ColorPaletteManager
     
     public static void LoadData(ColorPaletteData data)
     {
+        Debug.Log("Loading Color Palette Data...");
         colors = data;
+        Debug.Log("Color Palette Data loaded!" + data.ToString());
     }
 
     public static bool HasColor(string key)
@@ -103,5 +106,11 @@ public static class ColorPaletteManager
         colors.colors.Add(new ColorKey("Light", Color.white));
         colors.colors.Add(new ColorKey("Normal", Color.gray));
         colors.colors.Add(new ColorKey("Dark", Color.black));
+    }
+    
+    public static bool IsGray()
+    {
+        Debug.Log(colors.name);
+        return colors.name != "Color Palette";
     }
 }

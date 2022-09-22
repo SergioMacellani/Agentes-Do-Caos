@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_Color: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_Color: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 9130652639648072326}
   - component: {fileID: 5623796955425577637}
   - component: {fileID: 2570975620678461109}
+  - component: {fileID: 2137461881203874756}
   m_Layer: 5
   m_Name: Mobile Toggle (2)
   m_TagString: Untagged
@@ -508,7 +509,7 @@ MonoBehaviour:
   m_IsOn: 1
   m_AnimateColor: 1
   m_ColorAnimationSpeed: 0.15
-  m_OnColor: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_OnColor: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_OffColor: {r: 1, g: 1, b: 1, a: 1}
   m_AnimateToggle: 1
   m_ToggleAnimation:
@@ -544,6 +545,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2137461881203874756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641901974274929390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb6bdd79dcb3db46bf512e81fda804e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Normal
+  applyAlpha: 1
 --- !u!1 &1842755651652608931
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +840,7 @@ GameObject:
   - component: {fileID: 5635904652085704523}
   - component: {fileID: 9172485365072257235}
   - component: {fileID: 926697755622642701}
+  - component: {fileID: 7371223123659084779}
   m_Layer: 5
   m_Name: Mobile Toggle (3)
   m_TagString: Untagged
@@ -895,10 +911,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2433203454164545823}
-  m_IsOn: 1
+  m_IsOn: 0
   m_AnimateColor: 1
   m_ColorAnimationSpeed: 0.15
-  m_OnColor: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_OnColor: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_OffColor: {r: 1, g: 1, b: 1, a: 1}
   m_AnimateToggle: 1
   m_ToggleAnimation:
@@ -934,6 +950,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7371223123659084779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034086014361692397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb6bdd79dcb3db46bf512e81fda804e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Normal
+  applyAlpha: 1
 --- !u!1 &2205324151184305273
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +977,7 @@ GameObject:
   - component: {fileID: 1503543953011647534}
   - component: {fileID: 7939556988555660970}
   - component: {fileID: 88593472733292566}
+  - component: {fileID: 3447535227969260858}
   m_Layer: 5
   m_Name: ChaosImport
   m_TagString: Untagged
@@ -996,7 +1027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85882354, g: 0.49019608, b: 0.49019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1086,6 +1117,20 @@ MonoBehaviour:
   onFileLoaded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3447535227969260858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205324151184305273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59693b2efa021e4bab411970bd3283a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Light
+  applyAlpha: 1
 --- !u!1 &2363336942191143006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1216,7 @@ GameObject:
   - component: {fileID: 8649697799427287926}
   - component: {fileID: 6194569809489749980}
   - component: {fileID: 5868953546925829028}
+  - component: {fileID: 8967118024384102229}
   m_Layer: 5
   m_Name: Mobile Toggle (1)
   m_TagString: Untagged
@@ -1244,7 +1290,7 @@ MonoBehaviour:
   m_IsOn: 1
   m_AnimateColor: 1
   m_ColorAnimationSpeed: 0.15
-  m_OnColor: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_OnColor: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_OffColor: {r: 1, g: 1, b: 1, a: 1}
   m_AnimateToggle: 1
   m_ToggleAnimation:
@@ -1280,6 +1326,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8967118024384102229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3705744158179487702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb6bdd79dcb3db46bf512e81fda804e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Normal
+  applyAlpha: 1
 --- !u!1 &4688569292285938389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,7 +1375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 27.5, y: 0}
+  m_AnchoredPosition: {x: -27.5, y: 0}
   m_SizeDelta: {x: 40, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8004386427044503710
@@ -1578,6 +1638,7 @@ GameObject:
   - component: {fileID: 4769910514190847934}
   - component: {fileID: 4769910514190847935}
   - component: {fileID: 8741906542355926083}
+  - component: {fileID: 7148628431058139144}
   m_Layer: 5
   m_Name: Mobile Toggle
   m_TagString: Untagged
@@ -1651,7 +1712,7 @@ MonoBehaviour:
   m_IsOn: 1
   m_AnimateColor: 1
   m_ColorAnimationSpeed: 0.15
-  m_OnColor: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_OnColor: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_OffColor: {r: 1, g: 1, b: 1, a: 1}
   m_AnimateToggle: 1
   m_ToggleAnimation:
@@ -1687,6 +1748,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7148628431058139144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769910514190847933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb6bdd79dcb3db46bf512e81fda804e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Normal
+  applyAlpha: 1
 --- !u!1 &4769910515410161846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,7 +1822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_Color: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1824,7 +1899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.445529, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2065,6 +2140,7 @@ GameObject:
   - component: {fileID: 882999081088029542}
   - component: {fileID: 1893641252701995813}
   - component: {fileID: 3730926462408845412}
+  - component: {fileID: 4626170580410423680}
   m_Layer: 5
   m_Name: ChaosImport (2)
   m_TagString: Untagged
@@ -2114,7 +2190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85882354, g: 0.49019608, b: 0.49019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2204,6 +2280,20 @@ MonoBehaviour:
   onFileLoaded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4626170580410423680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130845641356874139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59693b2efa021e4bab411970bd3283a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Light
+  applyAlpha: 1
 --- !u!1 &7216158396463272005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2307,7 @@ GameObject:
   - component: {fileID: 3862991795779692268}
   - component: {fileID: 4115098764627122089}
   - component: {fileID: 4909582849470487800}
+  - component: {fileID: 5442439671166290791}
   m_Layer: 5
   m_Name: ChaosImport (1)
   m_TagString: Untagged
@@ -2266,7 +2357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85882354, g: 0.49019608, b: 0.49019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2356,6 +2447,20 @@ MonoBehaviour:
   onFileLoaded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5442439671166290791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216158396463272005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59693b2efa021e4bab411970bd3283a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Light
+  applyAlpha: 1
 --- !u!1 &7638712426869624249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,6 +2792,7 @@ GameObject:
   - component: {fileID: 7638712428762561941}
   - component: {fileID: 7638712428762561940}
   - component: {fileID: 7638712428762561943}
+  - component: {fileID: 512625888175815583}
   m_Layer: 5
   m_Name: CSVImport
   m_TagString: Untagged
@@ -2736,7 +2842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85882354, g: 0.49019608, b: 0.49019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2826,6 +2932,20 @@ MonoBehaviour:
   onFileLoaded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &512625888175815583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638712428762561962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59693b2efa021e4bab411970bd3283a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorName: Light
+  applyAlpha: 1
 --- !u!1 &8005856098396585638
 GameObject:
   m_ObjectHideFlags: 0

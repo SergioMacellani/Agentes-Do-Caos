@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerInventory _inventoryScript;
     [SerializeField] private PlayerPotion _potionsScript;
     [SerializeField] private PlayerNotes _notesScript;
+    
+    [Space]
+    [Header("Colors")]
+    [SerializeField] private Material _background;
 
     private void Awake()
     {
@@ -43,6 +47,13 @@ public class GameManager : MonoBehaviour
         _potionsScript.SetValue(pSheet.potions);
         _statusScript.SetValue(pSheet);
         _diceScript.SetValue(pSheet);
+
+        BackgroundColor();
+    }
+    
+    private void BackgroundColor()
+    {
+        _background.SetColor("_Tint", ColorPaletteManager.GetColor("Normal"));
     }
 
     public void ImportCSV(string path)

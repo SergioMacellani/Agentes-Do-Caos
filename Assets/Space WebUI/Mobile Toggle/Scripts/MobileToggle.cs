@@ -76,15 +76,25 @@ public class MobileToggle : Selectable, IPointerClickHandler, ISubmitHandler, IC
         if (m_IsOn == value) return;
 
         m_IsOn = value;
-
-        UpdateGraphic();
+        
         onValueChanged.Invoke(m_IsOn);
+        UpdateGraphic();
     }
 
     public string text
     {
         get => m_ToggleText.text;
         set => m_ToggleText.text = value;
+    }
+    
+    public Color onColor
+    {
+        get => m_OnColor;
+        set
+        {
+            m_OnColor = value;
+            UpdateGraphic();
+        }
     }
 
     #endregion

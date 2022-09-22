@@ -33,6 +33,9 @@ public class PlayerSheetData : ScriptableObject
 
     [Header("Text")] 
     public PlayerText texts;
+    
+    [Header("Documents")]
+    public List<PlayerDocument> documents;
 
     public void SetEssentials(float[] values)
     {
@@ -214,6 +217,19 @@ public class PlayerText
     public int fontSize = 40;
     [TextArea()] public string Notes;
     [TextArea()] public string Traumas;
+}
+
+[System.Serializable]
+public class PlayerDocument
+{
+    public string Name;
+    public string Code;
+    
+    public PlayerDocument(DocumentData data)
+    {
+        Name = data.Name;
+        Code = data.Code;
+    }
 }
 
 //Variaveis
