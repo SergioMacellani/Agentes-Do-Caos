@@ -43,4 +43,10 @@ public static class SaveLoadSystem
         texture.LoadImage(bytes);
         return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
     }
+
+    public static void DeleteFIle(string name, string format, string path = "")
+    {
+        if (File.Exists($"{DirPath}{path}{name}.{format}"))
+            File.Delete($"{DirPath}{path}{name}.{format}");
+    }
 }

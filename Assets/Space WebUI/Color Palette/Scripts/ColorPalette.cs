@@ -20,7 +20,7 @@ public class ColorPalette : MonoBehaviour
 
    private void OnEnable()
    {
-      SetColor();
+      //SetColor();
    }
 
    protected virtual void SetColor()
@@ -38,7 +38,7 @@ public class ColorPalette : MonoBehaviour
 #if UNITY_EDITOR
    private void OnValidate()
    {
-      if(!Application.isPlaying) SetColor();
+      //if(!Application.isPlaying) SetColor();
    }
 #endif
 }

@@ -37,8 +37,9 @@ public class DocumentImage : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     public void ChangeSize(bool increase)
     {
-        if(_rectTransform.localScale.x - .1f > 0)
-            _rectTransform.localScale += new Vector3(increase ? 0.1f : -0.1f, increase ? 0.1f : -0.1f, 0);
+        float increaseValue = increase ? 0.1f : -0.1f;
+        if(_rectTransform.localScale.x + increaseValue > 0)
+            _rectTransform.localScale += new Vector3(increaseValue,increaseValue, 0);
     }
     
     public void CloseImage()
@@ -86,11 +87,16 @@ public class DocumentData
         Image = image;
     }
     
-    public DocumentData(PlayerDocument data)
+    public DocumentData(PlayerDocument data, bool importImage = true)
     {
         Name = data.Name;
         Code = data.Code;
-        Image = SaveLoadSystem.LoadImage(data.Code + ".png", "Documents/");
+        if(importImage) Image = SaveLoadSystem.LoadImage(data.Code + ".png", "Documents/");
+    }
+
+    public void ImportImage()
+    {
+        Image = SaveLoadSystem.LoadImage(Code + ".png", "Documents/");
     }
 }
 

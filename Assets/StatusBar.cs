@@ -37,8 +37,8 @@ public class StatusBar : MonoBehaviour
     
     public UnityEvent onValueChange;
 
-    public int GetCurrentValue => int.Parse(_actualValueText.text);
-    public int GetMaxValue => int.Parse(_maxValueText.text);
+    private int GetCurrentValue => int.Parse(_actualValueText.text);
+    private int GetMaxValue => int.Parse(_maxValueText.text);
     
     public int GetPercentage => (GetCurrentValue*100)/GetMaxValue;
 

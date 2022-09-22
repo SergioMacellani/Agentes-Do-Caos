@@ -82,7 +82,7 @@ public class AddDocumentImage : MonoBehaviour
             yield return new WaitForSeconds(.2f);
         }
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log(www.error);
             downloadedSprite = _errorImage;

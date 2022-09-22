@@ -89,7 +89,7 @@ public class AJAX : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.LogError(www.url);
             errorText.text = www.error;
@@ -111,7 +111,7 @@ public class AJAX : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.LogError(www.error);
             errorText.text = www.error;
@@ -143,7 +143,7 @@ public class AJAX : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.LogError(www.error);
             errorText.text = www.error;
@@ -247,7 +247,7 @@ public class AJAX : MonoBehaviour
 
             yield return www.SendWebRequest();
 
-            if (www.isNetworkError || www.isHttpError)
+            if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
             {
                 Debug.LogError(www.error);
                 errorText.text = www.error;
@@ -490,7 +490,6 @@ public class AJAX : MonoBehaviour
         bool addLine = false;
         string valueLine = "";
         string keyLine = "";
-        Color col;
         List<TextAsset> playerCreated = Resources.LoadAll<TextAsset>("PlayersCreated").ToList();
         foreach (string ln in System.Text.RegularExpressions.Regex.Split(PlayerPrefs.GetString($"Save{PlayerPrefs.GetInt("PlayerCreateSelect")}"), "\r\n|\r|\n"))
         {

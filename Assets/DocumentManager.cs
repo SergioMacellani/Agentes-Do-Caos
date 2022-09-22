@@ -12,21 +12,23 @@ public class DocumentManager : MonoBehaviour
     private PlayerSheetData pSheet;
     
     [SerializeField]
+    private DeleteDocumentImage deleteDocumentImage;
+    
+    [SerializeField]
     private DocumentImage documentImagePrefab;
     
     [SerializeField]
     private RectTransform imageArea;
-    
-    [SerializeField]
-    private DocumentImage currentImage;
-    
+
     [SerializeField]
     private DocumentItem documentItemPrefab;
     
     [SerializeField]
     private RectTransform documentArea;
-
-    [SerializeField] private List<DocumentData> documentList = new List<DocumentData>();
+    
+    private DocumentImage currentImage;
+    
+    private List<DocumentItem> documentItems = new List<DocumentItem>();
 
     public DocumentImage CurrentImage
     {
@@ -39,16 +41,26 @@ public class DocumentManager : MonoBehaviour
         foreach (var docs in pSheet.documents)
         {
             DocumentItem newDoc = Instantiate(documentItemPrefab, documentArea);
-            newDoc.SetDocumentData(new DocumentData(docs), this);
+            newDoc.SetDocumentData(new DocumentData(docs, false), this);
+            documentItems.Add(newDoc);
         }
     }
 
     public void AddDocumentToList(DocumentData document)
     {
-        DocumentItem newDoc = Instantiate(documentItemPrefab, documentArea);
-        newDoc.SetDocumentData(document, this);
-        pSheet.documents.Add(new PlayerDocument(document));
-        
+        if (pSheet.documents.Find(x => x.Code == document.Code) == null)
+        {
+            DocumentItem newDoc = Instantiate(documentItemPrefab, documentArea);
+            newDoc.SetDocumentData(document, this);
+            pSheet.documents.Add(new PlayerDocument(document));
+            documentItems.Add(newDoc);
+        }
+        else
+        {
+            pSheet.documents.Find(x => x.Code == document.Code).Name = document.Name;
+            documentItems.Find(x => x.documentData.Code == document.Code).SetDocumentData(document, this);
+        }
+
         AddDocument(document);
     }
 
@@ -61,11 +73,30 @@ public class DocumentManager : MonoBehaviour
 
     public void CloseImage()
     {
-        currentImage.CloseImage();
+        if(currentImage != null)
+            currentImage.CloseImage();
     }
     
     public void ImageSize(bool increase)
     {
-        currentImage.ChangeSize(increase);
+        if(currentImage != null)
+            currentImage.ChangeSize(increase);
+    }
+    
+    public void OpenDeleteImage(DocumentItem item)
+    {
+        deleteDocumentImage.OpenDeleteDocument(item);
+    }
+
+    public void DeleteNormal(PlayerDocument document)
+    {
+        pSheet.documents.Remove(pSheet.documents.Find(x => x.Code == document.Code));
+    }
+    
+    public void DeleteHard(PlayerDocument document)
+    {
+        pSheet.documents.Remove(pSheet.documents.Find(x => x.Code == document.Code));
+
+        SaveLoadSystem.DeleteFIle(document.Code, "png", "Documents/");
     }
 }

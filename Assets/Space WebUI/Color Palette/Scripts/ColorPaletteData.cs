@@ -67,7 +67,7 @@ public static class ColorPaletteManager
             LoadData();
             
         }
-        catch (Exception e)
+        catch
         {
             Debug.LogWarning("Color Palette Data not found in Resources folder! Creating new Color Palette Data...");
             CreatePalette();

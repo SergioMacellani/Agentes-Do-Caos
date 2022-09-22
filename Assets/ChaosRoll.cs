@@ -16,7 +16,6 @@ public class ChaosRoll : MonoBehaviour
     {
         chaosBar = value;
         _value.text = chaosBar.GetPercentage.ToString();
-        Debug.Log(chaosBar.GetPercentage);
 
         if (_diceRoll.CurrentTechnique.Name == "Caos") SelectTechnique();
     }
