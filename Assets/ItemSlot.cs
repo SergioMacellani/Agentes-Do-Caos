@@ -21,4 +21,9 @@ public class ItemSlot : MonoBehaviour
     }
 
     public float GetWeight => float.Parse(_itemWeight.text);
+    
+    public void UpdateWeight()
+    {
+        _playerInventory.UpdateWeight();
+    }
 }

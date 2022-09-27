@@ -83,7 +83,7 @@ public static class ColorPaletteManager
     {
         Debug.Log("Loading Color Palette Data...");
         colors = data;
-        Debug.Log("Color Palette Data loaded!" + data.ToString());
+        Debug.Log("Color Palette Data loaded! " + data.ToString());
     }
 
     public static bool HasColor(string key)
@@ -110,7 +110,6 @@ public static class ColorPaletteManager
     
     public static bool IsGray()
     {
-        Debug.Log(colors.name);
         return colors.name != "Color Palette";
     }
 }
