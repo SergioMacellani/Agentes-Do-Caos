@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DiceRoll _diceScript;
     [SerializeField] private PlayerBars _barsScript;
     [SerializeField] private PlayerStatus _statusScript;
+    [SerializeField] private SkillsManager _skillsScript;
+    [SerializeField] private MagicsManager _magicsScript;
     [SerializeField] private PlayerInventory _inventoryScript;
     [SerializeField] private PlayerPotion _potionsScript;
     [SerializeField] private PlayerNotes _notesScript;
@@ -47,6 +49,8 @@ public class GameManager : MonoBehaviour
         _potionsScript.SetValue(pSheet.potions);
         _statusScript.SetValue(pSheet);
         _diceScript.SetValue(pSheet);
+        _skillsScript.SetSkills(1,2,2,1);
+        _magicsScript.SetMagicPoints(pSheet.magics);
 
         BackgroundColor();
     }

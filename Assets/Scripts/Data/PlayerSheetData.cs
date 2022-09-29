@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,9 @@ public class PlayerSheetData : ScriptableObject
     [Header("Potions")] 
     public PlayerPotions potions = new PlayerPotions();
 
+    [Header("Skills")]
+    public PlayerSkills skills = new PlayerSkills();
+    
     [Header("Techniques")] 
     public PlayerTechniques techniques = new PlayerTechniques();
 
@@ -48,6 +52,19 @@ public class PlayerSheetData : ScriptableObject
     public void SetPotions(float[] values)
     {
         potions.Potions = SetDictionary(potions.Potions, values);
+    }
+
+    public void SetSkills(float[] values)
+    {
+        for (int i = 0; i < values.Length; i++)
+        {
+            values[i] = MathF.Floor(values[i] / 50);
+        }
+        
+        skills.psique = (int)values[0];
+        skills.combate = (int)values[1];
+        skills.ocultismo = (int)values[2];
+        skills.sentidos = (int)values[3];
     }
     
     public void SetTechniques(float[] values)
@@ -137,6 +154,15 @@ public class PlayerPotions
         {"poison",0},
         {"resistance",0}
     };
+}
+
+[System.Serializable]
+public class PlayerSkills
+{
+    public int psique;
+    public int combate;
+    public int ocultismo;
+    public int sentidos;
 }
 
 [System.Serializable]

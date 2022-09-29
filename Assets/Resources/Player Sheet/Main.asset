@@ -58,6 +58,11 @@ MonoBehaviour:
       - key: resistance
         value: 0
       keyCollision: 0
+  skills:
+    psique: 0
+    combate: 0
+    ocultismo: 0
+    sentidos: 0
   techniques:
     Techniques:
       keyValueList:
@@ -135,7 +140,7 @@ MonoBehaviour:
         value: 0
       - key: Absoluto
         value: 0
-      - key: CLimatico
+      - key: Climatico
         value: 0
       - key: "\xC1gua"
         value: 0

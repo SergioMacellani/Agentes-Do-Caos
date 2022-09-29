@@ -65,6 +65,5 @@ public class MenuDown : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-        Debug.Log(dragDistance);
     }
 }

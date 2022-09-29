@@ -60,6 +60,7 @@ public class ConvertCSVData : MonoBehaviour
         pSheet.playerName.SetName(csv2DString(0, 1));
         pSheet.SetEssentials(GetArray(2,5,9));
         pSheet.SetPotions(GetArray(11,17,22));
+        pSheet.SetSkills(GetArray(9,13,9));
         pSheet.SetTechniques(TechiniquesGetValue());
         pSheet.SetMagics(MagicsGetValue());
         pSheet.inventory.SetValues(GetArrayString(2,22,26),GetArray(2,22,29), GetStatsF(csv2D(22,29), csv2D(23,29)));
