@@ -13,6 +13,8 @@ namespace UnityEditor.UI
     public class ScrollSnapEditor : Editor
     {
         SerializedProperty m_SnapVelocity;
+        SerializedProperty m_DistanceDivisor;
+        SerializedProperty m_SizeLimit;
         SerializedProperty m_Content;
         SerializedProperty m_Horizontal;
         SerializedProperty m_Vertical;
@@ -38,6 +40,8 @@ namespace UnityEditor.UI
         protected virtual void OnEnable()
         {
             m_SnapVelocity          = serializedObject.FindProperty("snapVelocity");
+            m_DistanceDivisor       = serializedObject.FindProperty("distanceDivisor");
+            m_SizeLimit             = serializedObject.FindProperty("sizeLimit");
             m_Content               = serializedObject.FindProperty("m_Content");
             m_Horizontal            = serializedObject.FindProperty("m_Horizontal");
             m_Vertical              = serializedObject.FindProperty("m_Vertical");
@@ -131,6 +135,8 @@ namespace UnityEditor.UI
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(m_SnapVelocity);
+            EditorGUILayout.PropertyField(m_DistanceDivisor);
+            EditorGUILayout.PropertyField(m_SizeLimit);
 
             m_ScrollSensitivity.floatValue = 0;
             
