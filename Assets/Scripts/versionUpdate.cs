@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class versionUpdate : MonoBehaviour
+public class VersionUpdate : MonoBehaviour
 {
     void Start()
     {

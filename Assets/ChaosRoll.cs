@@ -8,7 +8,7 @@ public class ChaosRoll : MonoBehaviour
     [SerializeField] 
     private TextMeshProUGUI _value;
     [SerializeField] 
-    private DiceRoll _diceRoll;
+    private DiceManager diceManager;
 
     private StatusBar chaosBar;
 
@@ -17,11 +17,11 @@ public class ChaosRoll : MonoBehaviour
         chaosBar = value;
         _value.text = chaosBar.GetPercentage.ToString();
 
-        if (_diceRoll.CurrentTechnique.Name == "Caos") SelectTechnique();
+        if (diceManager.CurrentTechnique.Name == "Caos") SelectTechnique();
     }
     
     public void SelectTechnique()
     {
-        _diceRoll.SetTechnique(new Technique("Caos", chaosBar.GetPercentage));
+        diceManager.SetTechnique(new Technique("Caos", chaosBar.GetPercentage));
     }
 }

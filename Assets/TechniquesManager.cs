@@ -7,7 +7,7 @@ using UnityEngine;
 public class TechniquesManager : MonoBehaviour
 {
     [SerializeField]
-    private DiceRoll diceRoll;
+    private DiceManager diceManager;
     
     [SerializeField]
     private TechniqueItem techniquePrefab;
@@ -53,7 +53,7 @@ public class TechniquesManager : MonoBehaviour
     
     public void SelectTechnique(Technique technique)
     {
-        diceRoll.SetTechnique(technique);
+        diceManager.SetTechnique(technique);
         OpenClose();
     }
 

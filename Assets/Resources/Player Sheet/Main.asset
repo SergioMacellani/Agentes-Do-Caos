@@ -17,10 +17,11 @@ MonoBehaviour:
     firstName: Bill
     lastName: Bill
   playerImages:
-    normal: {fileID: 0}
-    injured: {fileID: 0}
-    insane: {fileID: 0}
-    unconscious: {fileID: 0}
+    imageLink:
+    - https://sergiom.dev/rpg/data/hanna/0.png
+    - https://sergiom.dev/rpg/data/hanna/1.png
+    - https://sergiom.dev/rpg/data/hanna/2.png
+    - https://sergiom.dev/rpg/data/hanna/3.png
   playerColors:
     colorNormal: {r: 0, g: 0, b: 0, a: 0}
     colorLight: {r: 0, g: 0, b: 0, a: 0}
@@ -58,6 +59,7 @@ MonoBehaviour:
       - key: resistance
         value: 0
       keyCollision: 0
+  abilityPoints: 5
   skills:
     psique: 0
     combate: 0

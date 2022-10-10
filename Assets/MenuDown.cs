@@ -24,11 +24,6 @@ public class MenuDown : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         TryGetComponent(out rectTransform);
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         startPos = eventData.position;

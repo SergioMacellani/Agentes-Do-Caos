@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,55 +15,74 @@ public class GameManager : MonoBehaviour
 
     [Space]
     [Header("CSV")]
-    [SerializeField] private ConvertCSVData _csv;
-    public bool generateNewCSVData = false;
+    [SerializeField] private ConvertCSVData csv;
+    [SerializeField] private bool generateNewCsvData = false;
     
     [Space]
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI _playerName;
-    [SerializeField] private DiceRoll _diceScript;
-    [SerializeField] private PlayerBars _barsScript;
-    [SerializeField] private PlayerStatus _statusScript;
-    [SerializeField] private SkillsManager _skillsScript;
-    [SerializeField] private MagicsManager _magicsScript;
-    [SerializeField] private PlayerInventory _inventoryScript;
-    [SerializeField] private PlayerPotion _potionsScript;
-    [SerializeField] private PlayerNotes _notesScript;
+    [SerializeField] private TextMeshProUGUI playerName;
+    [SerializeField] private TMP_InputField abilityPoints;
+    
+    [Space]
+    [Header("Managers")]
+    [SerializeField] private DiceManager diceScript;
+    [SerializeField] private EssentialsManager essentialsScript;
+    [SerializeField] private StatusManager statusScript;
+    [SerializeField] private SkillsManager skillsScript;
+    [SerializeField] private MagicsManager magicsScript;
+    [SerializeField] private InventoryManager inventoryScript;
+    [SerializeField] private PotionsManager potionsScript;
+    [SerializeField] private NotesManager notesScript;
     
     [Space]
     [Header("Colors")]
-    [SerializeField] private Material _background;
+    [SerializeField] private Material skyboxMaterial;
 
     private void Awake()
     {
-        if(generateNewCSVData) _csv.ConvertPlayer(pSheet);
+        if(generateNewCsvData) csv.ConvertPlayer(pSheet);
         ColorPaletteManager.LoadData(cPalette);
     }
 
     private void Start()
     {
-        _playerName.text = pSheet.playerName.firstName + " " + pSheet.playerName.lastName;
-        
-        _barsScript.SetValue(pSheet);
-        _inventoryScript.SetValue(pSheet);
-        _notesScript.SetValue(pSheet);
-        _potionsScript.SetValue(pSheet.potions);
-        _statusScript.SetValue(pSheet);
-        _diceScript.SetValue(pSheet);
-        _skillsScript.SetSkills(1,2,2,1);
-        _magicsScript.SetMagicPoints(pSheet.magics);
+        //SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"hanna", "chaos","/characters/");
+        //StartCoroutine(AJAX.GetRequestAsync(LoadData));
+        SetSheetValues();
+    }
+    
+    // ReSharper disable Unity.PerformanceAnalysis
+    private void LoadData(string data)
+    {
+        pSheet.SetData(data);
 
+        SetSheetValues();
+    }
+
+    private void SetSheetValues()
+    {
+        playerName.text = pSheet.playerName.firstName + " " + pSheet.playerName.lastName;
+        abilityPoints.text = pSheet.abilityPoints.ToString();
+        
+        essentialsScript.SetValue(pSheet);
+        inventoryScript.SetValue(pSheet);
+        notesScript.SetValue(pSheet);
+        potionsScript.SetValue(pSheet.potions);
+        statusScript.SetValue(pSheet);
+        diceScript.SetValue(pSheet);
+        skillsScript.SetSkills(1,2,2,1);
+        magicsScript.SetMagicPoints(pSheet.magics);
         BackgroundColor();
     }
     
     private void BackgroundColor()
     {
-        _background.SetColor("_Tint", ColorPaletteManager.GetColor("Normal"));
+        skyboxMaterial.SetColor("_Tint", ColorPaletteManager.GetColor("Normal"));
     }
 
     public void ImportCSV(string path)
     {
-        _csv.ConvertPlayer(pSheet, path);
+        csv.ConvertPlayer(pSheet, path);
     }
 
     public void ImportChaos(string path)

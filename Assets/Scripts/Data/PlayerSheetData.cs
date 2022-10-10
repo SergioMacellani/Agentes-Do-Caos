@@ -22,6 +22,9 @@ public class PlayerSheetData : ScriptableObject
 
     [Header("Potions")] 
     public PlayerPotions potions = new PlayerPotions();
+    
+    [Header("Abilities")]
+    public int abilityPoints = 5;
 
     [Header("Skills")]
     public PlayerSkills skills = new PlayerSkills();
@@ -40,6 +43,11 @@ public class PlayerSheetData : ScriptableObject
     
     [Header("Documents")]
     public List<PlayerDocument> documents;
+
+    public void SetData(string data)
+    {
+        JsonUtility.FromJsonOverwrite(data, this);
+    }
 
     public void SetEssentials(float[] values)
     {
@@ -99,6 +107,7 @@ public class PlayerName
     public string firstName;
     public string lastName;
 
+    public string showName => $"{firstName} {lastName}";
     public void SetName(string pName)
     {
         fullName = pName;
@@ -119,10 +128,7 @@ public class PlayerColors
 [System.Serializable]
 public class PlayerImages
 {
-    public Sprite normal;
-    public Sprite injured;
-    public Sprite insane;
-    public Sprite unconscious;
+    public List<string> imageLink;
 }
 
 [System.Serializable]

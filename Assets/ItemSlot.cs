@@ -8,11 +8,11 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _itemName;
     [SerializeField] private TextMeshProUGUI _itemWeight;
 
-    private PlayerInventory _playerInventory;
+    private InventoryManager _inventoryManager;
 
-    public ItemSlot SetValue(InventorySlot slot, PlayerInventory pInv)
+    public ItemSlot SetValue(InventorySlot slot, InventoryManager pInv)
     {
-        _playerInventory = pInv;
+        _inventoryManager = pInv;
         
         _itemName.text = slot.itemName;
         _itemWeight.text = slot.itemWeight.ToString();
@@ -24,6 +24,6 @@ public class ItemSlot : MonoBehaviour
     
     public void UpdateWeight()
     {
-        _playerInventory.UpdateWeight();
+        _inventoryManager.UpdateWeight();
     }
 }

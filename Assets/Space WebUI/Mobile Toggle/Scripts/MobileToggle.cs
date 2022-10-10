@@ -160,10 +160,8 @@ public class MobileToggle : Selectable, IPointerClickHandler, ISubmitHandler, IC
         m_ToggleText.UpdateText();
     }
     
-    protected override void OnValidate()
+    protected void OnValidate()
     {
-        base.OnValidate();
-            
         TextToggle();
         ColorToggle(true);
         

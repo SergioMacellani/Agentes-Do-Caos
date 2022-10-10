@@ -45,7 +45,7 @@ public class AddDocumentImage : MonoBehaviour
         if(_documenName.text == "") documentManager.AddDocumentToList(new DocumentData(_documentKey.text, downloadedSprite));
         else documentManager.AddDocumentToList(new DocumentData(_documenName.text, _documentKey.text, downloadedSprite));
         
-        SaveLoadSystem.SaveFile(downloadedSprite.texture.EncodeToPNG(), _documentKey.text, "png", "Documents/");
+        SaveLoadSystem.SaveFile(downloadedSprite.texture.EncodeToPNG(), _documentKey.text, "png", "documents/");
         
         CloseAddDocumentImage();
     }
@@ -82,7 +82,7 @@ public class AddDocumentImage : MonoBehaviour
             yield return new WaitForSeconds(.2f);
         }
 
-        if (www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError)
+        if (www.result is UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log(www.error);
             downloadedSprite = _errorImage;
