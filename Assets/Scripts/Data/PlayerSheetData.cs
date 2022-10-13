@@ -120,9 +120,10 @@ public class PlayerName
 [System.Serializable]
 public class PlayerColors
 {
-    public Color colorNormal;
-    public Color colorLight;
-    public Color colorDark;
+    public ColorKey colorNormal;
+    public ColorKey colorLight;
+    public ColorKey colorDark;
+    public ColorKey colorMenu;
 }
 
 [System.Serializable]

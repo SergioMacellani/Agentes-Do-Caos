@@ -19,6 +19,13 @@ public class ScrollSnap : ScrollRect
     private Canvas _canvas => GetComponentInParent<Canvas>();
     private RectTransform _rectTransform => GetComponent<RectTransform>();
 
+    protected override void Start()
+    {
+        base.Start();
+        UpdateSnap();
+        content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+    }
+
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
@@ -32,11 +39,12 @@ public class ScrollSnap : ScrollRect
         content.GetChild(centerIten).GetComponent<Button>().interactable = true;
     }
     
-    public void UpdateSnap()
+    public void UpdateSnap(bool externalUpdate = false)
     {
         CalculatePagePositions();
         ContentItensDistance();
         ItensDistanceSize();
+        if(externalUpdate) content.GetChild(centerIten).GetComponent<Button>().interactable = true;
     }
     
     private void CalculatePagePositions()

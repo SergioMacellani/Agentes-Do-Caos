@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public static class SaveLoadSystem
@@ -49,5 +50,13 @@ public static class SaveLoadSystem
     {
         if (File.Exists($"{DirPath}{path}{name}.{format}"))
             File.Delete($"{DirPath}{path}{name}.{format}");
+    }
+    
+    public static string OpenFileExplorer(string title = "", string fileExtension = ".csv", string directory = "")
+    {
+        string path = EditorUtility.OpenFilePanel($"S{title} (.{fileExtension})", directory, fileExtension);
+
+        if (path.Length != 0) return path;
+        else return null;
     }
 }

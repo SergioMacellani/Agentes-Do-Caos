@@ -108,6 +108,15 @@ public static class ColorPaletteManager
         colors.colors.Add(new ColorKey("Dark", Color.black));
     }
     
+    public static void CreatePalette(ColorKey[] colorKeys)
+    {
+        colors = ScriptableObject.CreateInstance<ColorPaletteData>();
+        foreach (var col in colorKeys)
+        {
+            colors.colors.Add(col);
+        }
+    }
+    
     public static bool IsGray()
     {
         return colors.name != "Color Palette";

@@ -2,19 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectCharacter : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private CharacterInfo charPrefab;
     [SerializeField] private Transform content;
     [SerializeField] private RectTransform addChar;
 
-    private string[] charDirectory;
-
+    private string[] charDirectory = Array.Empty<string>();
     private ScrollSnap scrollSnap => GetComponent<ScrollSnap>();
+    
     private void OnEnable()
     {
         DetectCharacters();
@@ -22,10 +23,18 @@ public class SelectCharacter : MonoBehaviour
 
     private void DetectCharacters()
     {
+        if (!Directory.Exists($"{SaveLoadSystem.path}characters/")) Directory.CreateDirectory($"{SaveLoadSystem.path}characters/");
+        
         PlayerSheetData pSheet = ScriptableObject.CreateInstance<PlayerSheetData>();
         string[] directory = Directory.GetDirectories($"{SaveLoadSystem.path}characters/");
-        if (charDirectory == directory) return;
-        else charDirectory = directory;
+
+        if (directory.Length == charDirectory.Length)
+        {
+            var recreate = directory.Where((t, i) => t != charDirectory[i]).Any();
+            if (!recreate) return;
+        }
+
+        charDirectory = directory;
 
         content.gameObject.SetActive(false);
         
@@ -39,17 +48,14 @@ public class SelectCharacter : MonoBehaviour
             string json = "";
             SaveLoadSystem.LoadFile("/chardata.chaos", out json, dir, false);
             pSheet.SetData(json);
+
+            CharacterInfo character = Instantiate(charPrefab, content);
             
-            Transform character = Instantiate(prefab, content).transform;
-            
-            character.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = SaveLoadSystem.LoadImage("/0.png", dir, false);
-            character.GetComponentInChildren<TextMeshProUGUI>().text = pSheet.playerName.showName;
+            character.SetCharacterInfo(pSheet.playerName, SaveLoadSystem.LoadImage("/0.png", dir, false), pSheet.playerColors.colorNormal.color);
         }
         
         addChar.SetAsLastSibling();
         content.gameObject.SetActive(true);
-        
-        scrollSnap.horizontalScrollbar.value = 0;
-        scrollSnap.UpdateSnap();
+        scrollSnap.UpdateSnap(true);
     }
 }

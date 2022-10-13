@@ -4,201 +4,167 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class ColorPicker : MonoBehaviour
 {
-    public Color col = Color.white;
+    public Color pickerColor = new Color(.565f,.565f,.565f);
+    public GraphicTarget[] graphicTarget;
+    
     public Texture2D HUE;
-    public Image[] Saturation;
-    public Image Valor;
-    
-    public Texture2D Skin;
-    public Texture2D Iris;
-
-    public Slider HUESlider;
-    public Slider SaturationSlider;
-    public Slider ValorSlider;
-    
-    public Slider SkinSlider;
-    public Slider IrisSlider;
+    public ColorBar HUEBar;
+    public ColorBar SaturationBar;
+    public ColorBar ValueBar;
 
     public TMP_InputField HEXCodeInput;
-    public Image ColorShow;
-    public Image ColorShow2;
     
-    public GameObject HueGameObject;
-    public GameObject DoubleColorGameObject;
+    public UnityEvent<Color> OnColorChanged;
 
-    private bool DoubleColor = false;
     private float h, s, v;
+
+    private void OnEnable()
+    {
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
+        
+        HUEBar.value = h*1024;
+        SaturationBar.value = s;
+        ValueBar.value = v;
+
+        UpdateHEXText();
+    }
 
     public void UpdateHUE()
     {
-        float sv;
-        Color.RGBToHSV(col, out h, out s, out v);
-        Color.RGBToHSV(HUE.GetPixel((int)HUESlider.value, 0), out h, out sv, out sv);
-        col = Color.HSVToRGB(h,s,v);
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
+        Color.RGBToHSV(HUE.GetPixel((int)HUEBar.value, 0), out h, out _, out _);
+        pickerColor = Color.HSVToRGB(h,s,v);
         
-        HUESlider.handleRect.GetComponent<Image>().color = HUE.GetPixel((int)HUESlider.value, 0);
-        SaturationSlider.handleRect.GetComponent<Image>().color = col;
-        ValorSlider.handleRect.GetComponent<Image>().color = col;
+        HUEBar.barHandle.color = HUE.GetPixel((int)HUEBar.value, 0);
+        SaturationBar.barHandle.color = pickerColor;
+        ValueBar.barHandle.color = pickerColor;
 
-        Saturation[1].color = Color.HSVToRGB(h,1,v);
-        Valor.color = col;
+        SaturationBar.barForeground.color = Color.HSVToRGB(h,1,v);
+        ValueBar.barBackground.color = pickerColor;
 
-        UpdateColor();
+        UpdateHEXText();
     }
     
     public void UpdateSaturation()
     {
-        Color.RGBToHSV(col, out h, out s, out v);
-        col = Color.HSVToRGB(h,SaturationSlider.value/100,v);
-        Color.RGBToHSV(col, out h, out s, out v);
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
+        pickerColor = Color.HSVToRGB(h,SaturationBar.value,v);
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
         
-        SaturationSlider.handleRect.GetComponent<Image>().color = col;
-        ValorSlider.handleRect.GetComponent<Image>().color = col;
+        SaturationBar.barHandle.color = pickerColor;
+        ValueBar.barHandle.color = pickerColor;
         
-        Saturation[1].color = Color.HSVToRGB(h,1,v);
-        Valor.color = Color.HSVToRGB(h,s,1);
+        SaturationBar.barForeground.color = Color.HSVToRGB(h,1,v);
+        ValueBar.barBackground.color = Color.HSVToRGB(h,s,1);
         
-        UpdateColor();
+        UpdateHEXText();
     }
     
     public void UpdateValor()
     {
-        Color.RGBToHSV(col, out h, out s, out v);
-        col = Color.HSVToRGB(h,s,ValorSlider.value/100);
-        Color.RGBToHSV(col, out h, out s, out v);
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
+        pickerColor = Color.HSVToRGB(h,s,ValueBar.value);
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
         
-        SaturationSlider.handleRect.GetComponent<Image>().color = col;
-        ValorSlider.handleRect.GetComponent<Image>().color = col;
+        SaturationBar.barHandle.color = pickerColor;
+        ValueBar.barHandle.color = pickerColor;
         
-        Saturation[0].color = Color.HSVToRGB(0,0,ValorSlider.value/100);
-        Saturation[1].color = Color.HSVToRGB(h,1,v);
+        SaturationBar.barBackground.color = Color.HSVToRGB(0,0,ValueBar.value);
+        SaturationBar.barForeground.color = Color.HSVToRGB(h,1,v);
 
-        UpdateColor();
+        UpdateHEXText();
     }
     
-    public void UpdateColor()
+    public void UpdateHEXText()
     {
-        string hex = ColorUtility.ToHtmlStringRGB(col);
+        string hex = ColorUtility.ToHtmlStringRGB(pickerColor);
         HEXCodeInput.text = $"#{hex}";
 
-        if (DoubleColorGameObject.activeSelf)
-        {
-            if (!DoubleColor)
-            {
-                ColorShow.color = col;  
-            }
-            else
-            {
-                ColorShow2.color = col;
-            }
-        }
-        else
-        {
-            ColorShow.color = col;  
-        }
-        
+        UpdateGraphic();
     }
 
-    public void UpdateHEX()
+    public void UpdateHEX(string hex)
     {
-        string hex = HEXCodeInput.text;
-        
-        ColorUtility.TryParseHtmlString(hex, out col);
-        Color.RGBToHSV(col, out h, out s, out v);
-
-        HUESlider.value = h*1024;
-        SaturationSlider.value = s*100;
-        ValorSlider.value = v*100;
-    }
-
-    public void ChangeHUESlider(GameObject ColorSlider)
-    {
-        if (ColorSlider.name != "HUE")
+        if (hex[0] != '#')
         {
-            if (ColorSlider.name == "SKIN")
-            {
-                ColorSlider.SetActive(true);
-                IrisSlider.gameObject.SetActive(false);
-                UpdateSkin();
-            }
-            else if (ColorSlider.name == "IRIS")
-            {
-                SkinSlider.gameObject.SetActive(false);
-                ColorSlider.SetActive(true);
-                UpdateIris();
-            }
-            HueGameObject.SetActive(false);
-            UpdateValor();
-            UpdateSaturation();
+            hex = $"#{hex}";
+            HEXCodeInput.text = hex;
         }
-        else
+        
+        ColorUtility.TryParseHtmlString(hex, out pickerColor);
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
+
+        HUEBar.value = h*1024;
+        SaturationBar.value = s;
+        ValueBar.value = v;
+
+        UpdateGraphic();
+    }
+
+    public void UpdateInputValue()
+    {
+        pickerColor = Color.HSVToRGB(HUEBar.inputValue, SaturationBar.inputValue, ValueBar.inputValue);
+        Color.RGBToHSV(pickerColor, out h, out s, out v);
+        
+        HUEBar.value = h*1024;
+        SaturationBar.value = s;
+        ValueBar.value = v;
+
+        UpdateHEXText();
+    }
+
+    private void UpdateGraphic()
+    {
+        HUEBar.barValue.text = ((HUEBar.value * 256) / 1024).ToString("##0");
+        SaturationBar.barValue.text = (SaturationBar.value * 256).ToString("##0");
+        ValueBar.barValue.text = (ValueBar.value * 256).ToString("##0");
+        
+        foreach (var target in graphicTarget)
         {
-            SkinSlider.gameObject.SetActive(false);
-            IrisSlider.gameObject.SetActive(false);
-            HueGameObject.SetActive(true);
-            
-            HUESlider.value = h*1024;
-            SaturationSlider.value = s*100;
-            ValorSlider.value = v*100;
+            target.target.color = new Color(pickerColor.r, pickerColor.g, pickerColor.b, target.alpha);
         }
-    }
-    
-    public void UpdateSkin()
-    {
-        Color.RGBToHSV(col, out h, out s, out v);
-        Color.RGBToHSV(Skin.GetPixel((int)SkinSlider.value, 0), out h, out s, out v);
-        col = Color.HSVToRGB(h,s,v);
-        
-        SkinSlider.handleRect.GetComponent<Image>().color = Skin.GetPixel((int)SkinSlider.value, 0);
+        List<ColorKey> colorKeys = new List<ColorKey>();
+        colorKeys.Add(new ColorKey("Light", Color.HSVToRGB(h,Mathf.Clamp01(s-.35f),v)));
+        colorKeys.Add(new ColorKey("Normal", pickerColor));
+        colorKeys.Add(new ColorKey("Dark", Color.HSVToRGB(h,s,Mathf.Clamp01(v-.30f))));
+        colorKeys.Add(new ColorKey("Menu", Color.HSVToRGB(h,s,.25f)));
 
-        SaturationSlider.value = s*100;
-        ValorSlider.value = v*100;
-        
-        UpdateColor();
-    }
-    
-    public void UpdateIris()
-    {
-        Color.RGBToHSV(col, out h, out s, out v);
-        Color.RGBToHSV(Iris.GetPixel((int)IrisSlider.value, 0), out h, out s, out v);
-        col = Color.HSVToRGB(h,s,v);
-        
-        IrisSlider.handleRect.GetComponent<Image>().color = Iris.GetPixel((int)IrisSlider.value, 0);
-
-        SaturationSlider.value = s*100;
-        ValorSlider.value = v*100;
-        
-        UpdateColor();
-    }
-
-    public void DoubleColors()
-    {
-        if (DoubleColorGameObject.activeSelf)
-        {
-            DoubleColorGameObject.SetActive(false);
-            ColorShow.GetComponent<Button>().interactable = false;
-            DoubleColor = false;
-        }
-        else
-        {
-            DoubleColorGameObject.SetActive(true);
-            ColorShow.GetComponent<Button>().interactable = true;
-            DoubleColor = true;
-        }
-    }
-
-    public void DoubleSelect(bool select)
-    {
-        DoubleColor = select;
+        ColorPaletteManager.CreatePalette(colorKeys.ToArray());
+        OnColorChanged.Invoke(pickerColor);
     }
 
     public void SetColor(string hex)
     {
-        ColorUtility.TryParseHtmlString("#"+hex, out col);
-        UpdateColor();
-        UpdateHEX();
+        ColorUtility.TryParseHtmlString("#"+hex, out pickerColor);
+        UpdateHEXText();
     }
+}
+
+[System.Serializable]
+public class ColorBar
+{
+    public Slider barSlider;
+    public Image barHandle;
+    public Image barBackground;
+    public Image barForeground;
+    public TMP_InputField barValue;
+
+    public float value
+    {
+        get => barSlider.value;
+        set => barSlider.value = value;
+    }
+
+    public float inputValue => float.Parse(barValue.text)/256;
+}
+
+[System.Serializable]
+public class GraphicTarget
+{
+    public Graphic target;
+    [Range(0, 1)] public float alpha = 1;
 }
