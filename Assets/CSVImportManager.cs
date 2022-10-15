@@ -70,7 +70,7 @@ public class CSVImportManager : MonoBehaviour
         SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{playerName}/");
         convertText.text = $"Importando... 1/5";
         int i = 0;
-        if (statusAvatar)
+        if (statusAvatar.isOn)
         {
             foreach (var img in characterImages)
             {
@@ -82,7 +82,7 @@ public class CSVImportManager : MonoBehaviour
         }
         else
         {
-            for (int j = 0; j < 4; j++)
+            for (i = 0; i < 4; i++)
             {
                 SaveLoadSystem.SaveFile(characterImages[i].sprite.texture.EncodeToPNG(), i.ToString(), "png",
                     $"characters/{playerName}/");
