@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,8 +21,20 @@ public class StatusManager : MonoBehaviour
         injured.isOn = pSheet.stats.injured;
         insane.isOn = pSheet.stats.insane;
         unconscious.isOn = pSheet.stats.unconscious;
-        
+        playerImages = pSheet.GetImages();
         UpdateImage();
+    }
+    
+    public PlayerStats GetValue()
+    {
+        PlayerStats pStats = new PlayerStats
+        {
+            injured = injured.isOn,
+            insane = insane.isOn,
+            unconscious = unconscious.isOn
+        };
+
+        return pStats;
     }
     
     public void UpdateImage()

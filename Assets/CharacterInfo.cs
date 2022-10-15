@@ -14,11 +14,11 @@ public class CharacterInfo : MonoBehaviour
     [SerializeField]
     private Image maskImage;
     
-    private PlayerName playerName;
+    private readonly PlayerName _playerName = new PlayerName();
     
     public void SetCharacterInfo(PlayerName name, Sprite portrait, Color mask)
     {
-        playerName = name;
+        _playerName.SetName(name);
         nameText.text = name.showName;
         portraitImage.sprite = portrait;
         maskImage.color = new Color(mask.r, mask.g, mask.b, maskImage.color.a);
@@ -26,8 +26,8 @@ public class CharacterInfo : MonoBehaviour
 
     public void SelectCharacter()
     {
-        string json;
-        SaveLoadSystem.LoadFile("chardata.chaos", out json, $"characters/{nameText.text}/");
+        SaveLoadSystem.LoadFile("chardata.chaos", out var json, $"characters/{_playerName.firstName}/");
         GameInfo.LoadPlayerSheetData(json);
+        GameInfo.LoadScene();
     }
 }

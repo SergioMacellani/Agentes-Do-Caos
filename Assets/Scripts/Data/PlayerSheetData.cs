@@ -49,6 +49,25 @@ public class PlayerSheetData : ScriptableObject
         JsonUtility.FromJsonOverwrite(data, this);
     }
 
+    public List<Sprite> GetImages()
+    {
+        List<Sprite> images = new List<Sprite>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            try
+            {
+                images.Add(SaveLoadSystem.LoadImage($"{i}.png", $"characters/{playerName.firstName}/"));
+            }
+            catch
+            {
+                images.Add(SaveLoadSystem.LoadImage("0.png", $"characters/{playerName.firstName}/"));
+            }
+        }
+
+        return images;
+    }
+
     public void SetEssentials(float[] values)
     {
         essential.playerLife.SetValue((int)values[0]);
@@ -113,8 +132,15 @@ public class PlayerName
         fullName = pName;
         string[] nameArray = pName.Split(' ');
         firstName = nameArray[0];
-        lastName = nameArray[nameArray.Length-1];
+        lastName = nameArray.Length > 1 ? nameArray[^1] : "";
     }
+    public void SetName(PlayerName pName)
+    {
+        fullName = pName.fullName;
+        firstName = pName.firstName;
+        lastName = pName.lastName;
+    }
+    
 }
 
 [System.Serializable]
@@ -124,6 +150,11 @@ public class PlayerColors
     public ColorKey colorLight;
     public ColorKey colorDark;
     public ColorKey colorMenu;
+    
+    public ColorKey[] GetColors()
+    {
+        return new[] {colorNormal, colorLight, colorDark, colorMenu};
+    }
 }
 
 [System.Serializable]
@@ -273,6 +304,12 @@ public struct StatsValue
     public int current;
     public int max;
     
+    public StatsValue(int current, int max)
+    {
+        this.current = current;
+        this.max = max;
+    }
+    
     public void SetValue(int c, int m)
     {
         current = c;
@@ -309,6 +346,12 @@ public struct InventorySlot
     public string itemName;
     public float itemWeight;
 
+    public InventorySlot(string name, float weight)
+    {
+        itemName = name;
+        itemWeight = weight;
+    }
+    
     public void SetValue(string itemName, float itemWeight)
     {
         this.itemName = itemName;

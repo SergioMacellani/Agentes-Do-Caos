@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class GameInfo
 {
-    public static PlayerSheetData playerSheetData;
+    public static PlayerSheetData PlayerSheetData;
     
     public static void LoadPlayerSheetData(string json)
     {
-        if(playerSheetData == null) playerSheetData = ScriptableObject.CreateInstance<PlayerSheetData>();
+        if(PlayerSheetData == null) PlayerSheetData = ScriptableObject.CreateInstance<PlayerSheetData>();
         
-        playerSheetData = Resources.Load<PlayerSheetData>(json);
+        PlayerSheetData.SetData(json);
+        ColorPaletteManager.CreatePalette(PlayerSheetData.playerColors.GetColors());
+    }
+
+    public static void LoadScene(string scene = "PlayerFichaNew")
+    {
+        SceneManager.LoadScene(scene);
     }
 }

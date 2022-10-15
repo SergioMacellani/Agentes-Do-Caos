@@ -41,6 +41,8 @@ public class StatusBar : MonoBehaviour
     private int GetMaxValue => int.Parse(_maxValueText.text);
     
     public int GetPercentage => (GetCurrentValue*100)/GetMaxValue;
+    
+    public StatsValue GetValue => new StatsValue(GetCurrentValue, GetMaxValue);
 
     private void Awake()
     {

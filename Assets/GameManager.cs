@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     
     [Space]
     [Header("UI")]
+    [SerializeField] private Image savingIcon;
     [SerializeField] private TextMeshProUGUI playerName;
     [SerializeField] private TMP_InputField abilityPoints;
     
@@ -40,8 +42,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(generateNewCsvData) csv.ConvertPlayer(pSheet);
-        ColorPaletteManager.LoadData(cPalette);
+        pSheet = GameInfo.PlayerSheetData;
+        if(generateNewCsvData) csv.ConvertPlayer(ref pSheet);
     }
 
     private void Start()
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(AJAX.GetRequestAsync(LoadData));
         SetSheetValues();
     }
-    
+
     // ReSharper disable Unity.PerformanceAnalysis
     private void LoadData(string data)
     {
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void SetSheetValues()
     {
-        playerName.text = pSheet.playerName.firstName + " " + pSheet.playerName.lastName;
+        playerName.text = pSheet.playerName.showName;
         abilityPoints.text = pSheet.abilityPoints.ToString();
         
         essentialsScript.SetValue(pSheet);
@@ -73,6 +75,48 @@ public class GameManager : MonoBehaviour
         skillsScript.SetSkills(1,2,2,1);
         magicsScript.SetMagicPoints(pSheet.magics);
         BackgroundColor();
+        StartCoroutine(SaveTimer());
+    }
+
+    public void SaveData(bool saveExit = false)
+    {
+        StartCoroutine(SavePlayerSheetAsync(saveExit));
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus) SaveData();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SavePlayerSheet();
+    }
+
+    private void SavePlayerSheet()
+    {
+        pSheet.essential = essentialsScript.GetValue();
+        pSheet.stats = statusScript.GetValue();
+        pSheet.inventory = inventoryScript.GetValue();
+        pSheet.potions = potionsScript.GetValue();
+        pSheet.texts = notesScript.GetValue();
+    }
+
+    private IEnumerator SavePlayerSheetAsync(bool saveExit)
+    {
+        savingIcon.gameObject.SetActive(true);
+        
+        pSheet.essential = essentialsScript.GetValue();
+        pSheet.stats = statusScript.GetValue();
+        pSheet.inventory = inventoryScript.GetValue();
+        pSheet.potions = potionsScript.GetValue();
+        pSheet.texts = notesScript.GetValue();
+        
+        savingIcon.gameObject.SetActive(false);
+        
+        if(saveExit) GameInfo.LoadScene("Menu");
+        
+        yield break;
     }
     
     private void BackgroundColor()
@@ -82,7 +126,7 @@ public class GameManager : MonoBehaviour
 
     public void ImportCSV(string path)
     {
-        csv.ConvertPlayer(pSheet, path);
+        csv.ConvertPlayer(ref pSheet, path);
     }
 
     public void ImportChaos(string path)
@@ -98,5 +142,15 @@ public class GameManager : MonoBehaviour
     public void ShareChaos()
     {
         
+    }
+    
+    private IEnumerator SaveTimer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60);
+            SaveData();
+        }
+        // ReSharper disable once IteratorNeverReturns
     }
 }

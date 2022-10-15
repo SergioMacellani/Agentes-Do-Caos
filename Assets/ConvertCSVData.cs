@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class ConvertCSVData : MonoBehaviour
 {
     private List<List<string>> csvArray = new List<List<string>>();
 
-    public float csv2D(int x, int y)
+    private float csv2D(int x, int y)
     {
         try
         {
@@ -23,8 +24,8 @@ public class ConvertCSVData : MonoBehaviour
             return -999;
         }
     }
-    
-    public string csv2DString(int x, int y)
+
+    private string csv2DString(int x, int y)
     {
         try
         {
@@ -36,22 +37,18 @@ public class ConvertCSVData : MonoBehaviour
         }
     }
 
-    public void ConvertPlayer(PlayerSheetData pSheet, string path = "Assets/Resources/ADC_-_Tanque.csv")
+    public void ConvertPlayer(ref PlayerSheetData pSheet, string path = "Assets/Resources/ADC_-_Tanque.csv")
     {
         PlayerText pText = new PlayerText();
-
+        Debug.Log(path);
         string csv = File.ReadAllText(path);
         string[] arrayY = csv.Split('\n');
 
         csvArray.Clear();
-        for (int y = 0; y < arrayY.Length; y++)
+        foreach (var y in arrayY)
         {
-            string[] arrayX = arrayY[y].Split(';');
-            List<string> csvX = new List<string>();
-            for (int x = 0; x < arrayX.Length; x++)
-            {
-                csvX.Add(arrayX[x]);
-            }
+            string[] arrayX = y.Split(';');
+            List<string> csvX = arrayX.ToList();
             csvArray.Add(csvX);
         }
         
@@ -68,8 +65,6 @@ public class ConvertCSVData : MonoBehaviour
         pText.Notes = csv2DString(20, 19);
         pText.Traumas = $"{csv2DString(31,19)} - {csv2DString(31,22)}";
         pSheet.texts = pText;
-        
-        SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"psheeddt", "chaos");
     }
 
     private float[] TechiniquesGetValue()

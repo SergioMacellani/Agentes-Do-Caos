@@ -17,4 +17,16 @@ public class EssentialsManager : MonoBehaviour
         armorBar.SetValue(pSheet.essential.playerArmor);
         armorLifeBar.SetValue(pSheet.essential.playerArmorLife);
     }
+    
+    public PlayerEssential GetValue()
+    {
+        PlayerEssential pEssential = new PlayerEssential();
+        
+        pEssential.playerLife = lifeBar.GetValue;
+        pEssential.playerChaos = chaosBar.GetValue;
+        pEssential.playerArmor = armorBar.GetValue;
+        pEssential.playerArmorLife = armorLifeBar.GetValue;
+        
+        return pEssential;
+    }
 }

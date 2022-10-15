@@ -19,6 +19,11 @@ public class ItemSlot : MonoBehaviour
 
         return this;
     }
+    
+    public InventorySlot GetValue()
+    {
+        return new InventorySlot(_itemName.text, int.Parse(_itemWeight.text));
+    }
 
     public float GetWeight => float.Parse(_itemWeight.text);
     

@@ -13,6 +13,17 @@ public class NotesManager : MonoBehaviour
         _notesText.pointSize = pSheet.texts.fontSize;
         _notesText.verticalScrollbar.value = 0;
     }
+    
+    public PlayerText GetValue()
+    {
+        PlayerText pText = new PlayerText
+        {
+            Notes = _notesText.text,
+            fontSize = (int)_notesText.pointSize
+        };
+        
+        return pText;
+    }
 
     public void FontSize(int value)
     {

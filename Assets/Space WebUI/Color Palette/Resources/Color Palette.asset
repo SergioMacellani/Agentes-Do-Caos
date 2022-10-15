@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colors:
   - name: Light
-    color: {r: 0.85882354, g: 0.49019608, b: 0.49019608, a: 1}
+    color: {r: 0.49019608, g: 0.51873344, b: 0.85882354, a: 1}
   - name: Normal
-    color: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
+    color: {r: 0.19999999, g: 0.28242415, b: 0.8666667, a: 1}
   - name: Dark
-    color: {r: 0.5647059, g: 0.1254902, b: 0.1254902, a: 1}
+    color: {r: 0.12549019, g: 0.1397464, b: 0.5647059, a: 1}
   - name: Menu
-    color: {r: 0.25490198, g: 0, b: 0, a: 1}
+    color: {r: 0, g: 0.04801339, b: 0.25490198, a: 1}

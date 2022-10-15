@@ -21,4 +21,22 @@ public class PotionsManager : MonoBehaviour
         _truthPotion.text = potions.Potions["truth"].ToString();
         _resistencePotion.text = potions.Potions["resistance"].ToString();
     }
+    
+    public PlayerPotions GetValue()
+    {
+        PlayerPotions potions = new PlayerPotions
+        {
+            Potions =
+            {
+                ["regeneration"] = int.Parse(_regenPotion.text),
+                ["strength"] = int.Parse(_strenghtPotion.text),
+                ["poison"] = int.Parse(_poisonPotion.text),
+                ["invisibility"] = int.Parse(_invisibilityPotion.text),
+                ["truth"] = int.Parse(_truthPotion.text),
+                ["resistance"] = int.Parse(_resistencePotion.text)
+            }
+        };
+
+        return potions;
+    }
 }

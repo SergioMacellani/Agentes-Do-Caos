@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +20,19 @@ public class InventoryManager : MonoBehaviour
         _maxWeight.text = pSheet.inventory.inventoryWeight.max.ToString();
         _currentWeight.text = pSheet.inventory.inventoryWeight.current.ToString();
         CreateSlots(pSheet.inventory.inventorySlots);
+    }
+    
+    public PlayerInv GetValue()
+    {
+        PlayerInv pInv = new PlayerInv(){};
+        
+        pInv.inventoryWeight.max = int.Parse(_maxWeight.text);
+        pInv.inventoryWeight.current = int.Parse(_currentWeight.text);
+        
+        var slots = _itemsSlots.Select(slot => slot.GetValue()).ToList();
+        pInv.inventorySlots = slots;
+        
+        return pInv;
     }
 
     private void CreateSlots(List<InventorySlot> slots)

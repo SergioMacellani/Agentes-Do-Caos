@@ -43,6 +43,7 @@ public static class SaveLoadSystem
         byte[] bytes = File.ReadAllBytes($"{((useDir) ? DirPath : null)}{path}{name}");
         Texture2D texture = new Texture2D(1, 1);
         texture.LoadImage(bytes);
+        
         return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
     }
 
