@@ -250,8 +250,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: Downloads/caosagentes.keystore'
-  AndroidKeyaliasName: caos
+  AndroidKeystoreName: '{dedicated}: Desktop/sdc.keystore'
+  AndroidKeyaliasName: agc
   AndroidBuildApkPerCpuArchitecture: 1
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

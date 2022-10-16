@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CreateMenuItem
 {
+    #if UNITY_EDITOR
     private static void SafeInstantiate(GameObject prefab)
     {
         var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, Selection.activeTransform);
@@ -19,4 +20,5 @@ public class CreateMenuItem
     {
         SafeInstantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Space WebUI/Mobile Toggle/Resources/Mobile Toggle.prefab"));
     }
+    #endif
 }

@@ -55,9 +55,12 @@ public static class SaveLoadSystem
     
     public static string OpenFileExplorer(string title = "", string fileExtension = ".csv", string directory = "")
     {
+        #if UNITY_EDITOR
         string path = EditorUtility.OpenFilePanel($"S{title} (.{fileExtension})", directory, fileExtension);
 
         if (path.Length != 0) return path;
         else return null;
+#endif
+        return null;
     }
 }

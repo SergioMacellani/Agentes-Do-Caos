@@ -23,11 +23,13 @@ public class FileManager : MonoBehaviour
     
     public void OpenFileExplorer()
     {
+        #if UNITY_EDITOR
         path = EditorUtility.OpenFilePanel($"Selecione a sua ficha (.{fileExtension})", "", fileExtension);
         
         if (path.Length != 0)
         {
             onFileLoaded.Invoke(path);
         }
+        #endif  
     }
 }
