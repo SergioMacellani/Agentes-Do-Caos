@@ -12,7 +12,7 @@ public class PlayerSheetData : ScriptableObject
     [Header("Info")]
     public PlayerName playerName;
     public PlayerImages playerImages;
-    public PlayerColors playerColors;
+    public Color playerColors;
 
     [Header("Essential")] 
     public PlayerEssential essential;
@@ -43,6 +43,8 @@ public class PlayerSheetData : ScriptableObject
     
     [Header("Documents")]
     public List<PlayerDocument> documents;
+    
+    public string DataName => playerName.dataName;
 
     public void SetData(string data)
     {
@@ -57,11 +59,11 @@ public class PlayerSheetData : ScriptableObject
         {
             try
             {
-                images.Add(SaveLoadSystem.LoadImage($"{i}.png", $"characters/{playerName.firstName}/"));
+                images.Add(SaveLoadSystem.LoadImage($"{i}.png", $"characters/{playerName.dataName}/"));
             }
             catch
             {
-                images.Add(SaveLoadSystem.LoadImage("0.png", $"characters/{playerName.firstName}/"));
+                images.Add(SaveLoadSystem.LoadImage("0.png", $"characters/{playerName.dataName}/"));
             }
         }
 
@@ -127,6 +129,7 @@ public class PlayerName
     public string lastName;
 
     public string showName => $"{firstName} {lastName}";
+    public string dataName => $"{firstName.ToLower()}{lastName.ToLower()}";
     public void SetName(string pName)
     {
         fullName = pName;
@@ -141,20 +144,6 @@ public class PlayerName
         lastName = pName.lastName;
     }
     
-}
-
-[System.Serializable]
-public class PlayerColors
-{
-    public ColorKey colorNormal;
-    public ColorKey colorLight;
-    public ColorKey colorDark;
-    public ColorKey colorMenu;
-    
-    public ColorKey[] GetColors()
-    {
-        return new[] {colorNormal, colorLight, colorDark, colorMenu};
-    }
 }
 
 [System.Serializable]

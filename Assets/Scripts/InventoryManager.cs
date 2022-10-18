@@ -9,8 +9,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Transform _inventoryContent;
     [SerializeField] private ItemSlot _slotPrefab;
     
-    [SerializeField] private TextMeshProUGUI _maxWeight;
-    [SerializeField] private TextMeshProUGUI _currentWeight;
+    [SerializeField] private TMP_InputField _maxWeight;
+    [SerializeField] private TMP_InputField _currentWeight;
 
     [SerializeField] private List<ItemSlot> _itemsSlots;
     private int maxSlots = 20;
@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
         _maxWeight.text = pSheet.inventory.inventoryWeight.max.ToString();
         _currentWeight.text = pSheet.inventory.inventoryWeight.current.ToString();
         CreateSlots(pSheet.inventory.inventorySlots);
+        UpdateWeight();
     }
     
     public PlayerInv GetValue()
@@ -27,7 +28,7 @@ public class InventoryManager : MonoBehaviour
         PlayerInv pInv = new PlayerInv(){};
         
         pInv.inventoryWeight.max = int.Parse(_maxWeight.text);
-        pInv.inventoryWeight.current = int.Parse(_currentWeight.text);
+        pInv.inventoryWeight.current = float.Parse(_currentWeight.text);
         
         var slots = _itemsSlots.Select(slot => slot.GetValue()).ToList();
         pInv.inventorySlots = slots;
@@ -51,6 +52,6 @@ public class InventoryManager : MonoBehaviour
             current += item.GetWeight;
         }
 
-        _maxWeight.text = current.ToString();
+        _currentWeight.text = current.ToString("0.##");
     }
 }

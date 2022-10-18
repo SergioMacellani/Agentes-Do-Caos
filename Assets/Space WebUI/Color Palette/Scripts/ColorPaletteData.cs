@@ -117,8 +117,31 @@ public static class ColorPaletteManager
         }
     }
     
+    public static void SetPallete(ColorKey[] colorKeys)
+    {
+        if (colors == null) LoadData();
+        
+        for (var i = 0; i < colors.colors.Count; i++)
+        {
+            colors.colors[i] = colorKeys[i];
+        }
+    }
+
+    public static void SetPallete(Color color)
+    {
+        if (colors == null) LoadData();
+        
+        Color.RGBToHSV(color, out var h, out var s, out var v);
+        colors.colors.Clear();
+        colors.colors.Add(new ColorKey("Light", Color.HSVToRGB(h,Mathf.Clamp01(s-.35f),v)));
+        colors.colors.Add(new ColorKey("Normal", color));
+        colors.colors.Add(new ColorKey("Dark", Color.HSVToRGB(h,s,Mathf.Clamp01(v-.30f))));
+        colors.colors.Add(new ColorKey("Menu", Color.HSVToRGB(h,s,.25f)));
+    }
+    
     public static bool IsGray()
     {
+        if (colors == null) DataNotFound();
         return colors.name != "Color Palette";
     }
 }

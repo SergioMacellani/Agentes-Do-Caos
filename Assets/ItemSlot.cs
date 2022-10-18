@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ItemSlot : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _itemName;
-    [SerializeField] private TextMeshProUGUI _itemWeight;
+    [SerializeField] private TMP_InputField _itemName;
+    [SerializeField] private TMP_InputField _itemWeight;
 
     private InventoryManager _inventoryManager;
 
@@ -22,13 +22,14 @@ public class ItemSlot : MonoBehaviour
     
     public InventorySlot GetValue()
     {
-        return new InventorySlot(_itemName.text, int.Parse(_itemWeight.text));
+        return new InventorySlot(_itemName.text, float.Parse(_itemWeight.text));
     }
 
     public float GetWeight => float.Parse(_itemWeight.text);
     
     public void UpdateWeight()
     {
+        _itemWeight.text = float.Parse(_itemWeight.text).ToString("0.##");
         _inventoryManager.UpdateWeight();
     }
 }

@@ -51,11 +51,13 @@ public class SelectCharacter : MonoBehaviour
 
             CharacterInfo character = Instantiate(charPrefab, content);
             
-            character.SetCharacterInfo(pSheet.playerName, SaveLoadSystem.LoadImage("/0.png", dir, false), pSheet.playerColors.colorNormal.color);
+            character.SetCharacterInfo(pSheet.playerName, SaveLoadSystem.LoadImage("/0.png", dir, false), pSheet.playerColors);
         }
         
+        scrollSnap.enabled = false;
         addChar.SetAsLastSibling();
         content.gameObject.SetActive(true);
         scrollSnap.UpdateSnap(true);
+        scrollSnap.enabled = true;
     }
 }

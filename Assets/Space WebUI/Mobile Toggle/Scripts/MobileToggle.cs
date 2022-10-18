@@ -147,7 +147,7 @@ public class MobileToggle : Selectable, IPointerClickHandler, ISubmitHandler, IC
     
     private void ColorToggle(bool ignoreAnimation = false)
     {
-        if (m_AnimateColor && !ignoreAnimation)
+        if (m_AnimateColor && !ignoreAnimation && Application.isPlaying)
             StartCoroutine(CrossFadeColorAsync(m_IsOn ? m_OnColor : m_OffColor));
         else
             m_ToggleBackground.color = m_IsOn ? m_OnColor : m_OffColor;

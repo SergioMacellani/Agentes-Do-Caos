@@ -33,14 +33,7 @@ public class CSVImportManager : MonoBehaviour
     private float h, s, v;
     public void Awake()
     {
-        Color.RGBToHSV(characterColor, out h, out s, out v);
-        List<ColorKey> colorKeys = new List<ColorKey>();
-        colorKeys.Add(new ColorKey("Light", Color.HSVToRGB(h,Mathf.Clamp01(s-.35f),v)));
-        colorKeys.Add(new ColorKey("Normal", characterColor));
-        colorKeys.Add(new ColorKey("Dark", Color.HSVToRGB(h,s,Mathf.Clamp01(v-.30f))));
-        colorKeys.Add(new ColorKey("Menu", Color.HSVToRGB(h,s,.25f)));
-
-        ColorPaletteManager.CreatePalette(colorKeys.ToArray());
+        ColorPaletteManager.SetPallete(characterColor);
     }
 
     public void GetCSV()
@@ -57,6 +50,11 @@ public class CSVImportManager : MonoBehaviour
         characterName.text = pSheet.playerName.showName;
         convertMenu.SwitchMenu(1);
     }
+
+    public void SetColor(Color col)
+    {
+        pSheet.playerColors = col;
+    }
     
     public void ConvertCSV()
     {
@@ -65,7 +63,7 @@ public class CSVImportManager : MonoBehaviour
     
     private IEnumerator ConvertCharacterAsync()
     {
-        string playerName = pSheet.playerName.firstName.ToLower();
+        string playerName = pSheet.DataName;
 
         SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{playerName}/");
         convertText.text = $"Importando... 1/5";

@@ -18,6 +18,8 @@ public class WebImportManager : MonoBehaviour
     [SerializeField]
     private Image characterImage;
     [SerializeField]
+    private Image characterMask;
+    [SerializeField]
     private TextMeshProUGUI characterName;
     [SerializeField]
     private Sprite nullCharacterImage;
@@ -47,6 +49,7 @@ public class WebImportManager : MonoBehaviour
         searchPanel.SetActive(true);
         importPanel.SetActive(false);
         loadingIcon.SetActive(false);
+        SetMaskColor(new Color(0.86f, 0.86f, 0.86f));
         characterImage.sprite = nullCharacterImage;
         searchInput.text = "";
         characterName.text = "";
@@ -60,10 +63,11 @@ public class WebImportManager : MonoBehaviour
         characterImage.sprite = nullCharacterImage;
         characterName.text = "Carregando...";
         playerSheetImported = false;
+        SetMaskColor(new Color(0.86f, 0.86f, 0.86f));
         
         if (UseDatabase)
         {
-            string path = $"{urlPath}/chardata.chaos";
+            string path = $"{urlPath.Replace(" ","").ToLower()}/chardata.chaos";
             StartCoroutine(AJAX.GetRequestAsync(path, LoadedCharacter));
         }
         else
@@ -91,7 +95,7 @@ public class WebImportManager : MonoBehaviour
     {
         if (UseDatabase)
         {
-            string path = $"{pSheet.playerName.firstName.ToLower()}/0.png";
+            string path = $"{pSheet.DataName}/0.png";
             StartCoroutine(AJAX.GetImage(path, characterName, LoadedImage));
         }
         else
@@ -108,13 +112,24 @@ public class WebImportManager : MonoBehaviour
             characterName.text = pSheet.playerName.showName;
             loadingIcon.SetActive(false);
             playerSheetImported = true;
+            
+            SetMaskColor(pSheet.playerColors);
         }
         else
         {
             characterImage.sprite = nullCharacterImage;
             characterName.text = "Personagem não encontrado";
             loadingIcon.SetActive(false);
+            
+            SetMaskColor(new Color(0.86f, 0.86f, 0.86f));
         }
+    }
+
+    private void SetMaskColor(Color col)
+    {
+        Color.RGBToHSV(col, out var h, out var s, out var v);
+        col = Color.HSVToRGB(h, s, Mathf.Clamp01(v - .30f));
+        characterMask.color = new Color(col.r, col.g, col.b, characterMask.color.a);
     }
     
     public void ImportCharacter()
@@ -129,7 +144,7 @@ public class WebImportManager : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private IEnumerator ImportCharacterAsync()
     {
-        string playerName = pSheet.playerName.firstName.ToLower();
+        var playerName = pSheet.DataName;
 
         SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{playerName}/");
         importText.text = $"Importando... 1/5";

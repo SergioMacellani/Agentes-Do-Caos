@@ -21,12 +21,15 @@ public class CharacterInfo : MonoBehaviour
         _playerName.SetName(name);
         nameText.text = name.showName;
         portraitImage.sprite = portrait;
+        
+        Color.RGBToHSV(mask, out var h, out var s, out var v);
+        mask = Color.HSVToRGB(h, s, Mathf.Clamp01(v - .30f));
         maskImage.color = new Color(mask.r, mask.g, mask.b, maskImage.color.a);
     }
 
     public void SelectCharacter()
     {
-        SaveLoadSystem.LoadFile("chardata.chaos", out var json, $"characters/{_playerName.firstName}/");
+        SaveLoadSystem.LoadFile("chardata.chaos", out var json, $"characters/{_playerName.dataName}/");
         GameInfo.LoadPlayerSheetData(json);
         GameInfo.LoadScene();
     }

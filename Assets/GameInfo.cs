@@ -12,7 +12,7 @@ public static class GameInfo
         if(PlayerSheetData == null) PlayerSheetData = ScriptableObject.CreateInstance<PlayerSheetData>();
         
         PlayerSheetData.SetData(json);
-        ColorPaletteManager.CreatePalette(PlayerSheetData.playerColors.GetColors());
+        ColorPaletteManager.SetPallete(PlayerSheetData.playerColors);
     }
 
     public static void LoadScene(string scene = "PlayerFichaNew")

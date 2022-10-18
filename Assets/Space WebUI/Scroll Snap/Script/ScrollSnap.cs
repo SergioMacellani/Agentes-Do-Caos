@@ -13,6 +13,7 @@ public class ScrollSnap : ScrollRect
     public float snapVelocity = .1f;
     public float distanceDivisor = 1.5f;
     public float sizeLimit = 0.25f;
+    public int minChildren = 3;
     
     private int centerIten = 0;
     private float[] _pagePositions = new float[]{};
@@ -22,29 +23,78 @@ public class ScrollSnap : ScrollRect
     protected override void Start()
     {
         base.Start();
-        UpdateSnap();
-        content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+        if (minChildren < content.childCount)
+        {
+            UpdateSnap();
+            content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            foreach (Transform child in content.transform)
+            {
+                child.localScale = Vector3.one;
+                child.GetComponent<Button>().interactable = true;
+            }
+        }
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
-        ItensDistanceSize();
+        
+        if (minChildren < content.childCount)
+        {
+            ItensDistanceSize();
+        }
+        else
+        {
+            foreach (Transform child in content.transform)
+            {
+                child.localScale = Vector3.one;
+                child.GetComponent<Button>().interactable = true;
+            }
+        }
     }
     
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
-        UpdateSnap();
-        content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+        if (minChildren < content.childCount)
+        {
+            UpdateSnap();
+            content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            foreach (Transform child in content.transform)
+            {
+                child.localScale = Vector3.one;
+                child.GetComponent<Button>().interactable = true;
+            }
+            StartCoroutine(SnapAsync(horizontalScrollbar, .5f));
+        }
     }
     
     public void UpdateSnap(bool externalUpdate = false)
     {
-        CalculatePagePositions();
-        ContentItensDistance();
-        ItensDistanceSize();
-        if(externalUpdate) content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+        if (minChildren > content.childCount)
+        {
+            CalculatePagePositions();
+            ContentItensDistance();
+            ItensDistanceSize();
+            if (externalUpdate) content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            foreach (Transform child in content.transform)
+            {
+                child.localScale = Vector3.one;
+                child.GetComponent<Button>().interactable = true;
+            }
+
+            horizontalScrollbar.value = .5f;
+            StartCoroutine(SnapAsync(horizontalScrollbar, .5f));
+        }
     }
     
     private void CalculatePagePositions()
@@ -61,6 +111,8 @@ public class ScrollSnap : ScrollRect
     }
     private void ContentItensDistance()
     {
+        if (minChildren <= content.childCount) return;
+        
         int i = 0;
         int shorterDistance = int.MaxValue;
         
@@ -82,6 +134,12 @@ public class ScrollSnap : ScrollRect
 
     private void ItensDistanceSize()
     {
+        if (minChildren >= content.childCount)
+        {
+            horizontalScrollbar.value = .5f;
+            return;
+        }
+        
         float width = _canvas.pixelRect.width/2;
         float widthDiference = 960/width;
         foreach (Transform child in content.transform)
@@ -96,9 +154,9 @@ public class ScrollSnap : ScrollRect
     {
 #if UNITY_EDITOR
         if (!Application.isPlaying) scroll.value = targetValue;
-        else StartCoroutine(SnapAsync(scroll, targetValue));
+        else StartCoroutine(SnapAsync(scroll, minChildren >= content.childCount ? .5f : targetValue));
 #else
-        StartCoroutine(SnapAsync(scroll, targetValue));
+        StartCoroutine(SnapAsync(scroll, minChildren >= content.childCount ? .5f : targetValue));
 #endif
     }
     

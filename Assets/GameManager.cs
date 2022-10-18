@@ -42,14 +42,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        #if UNITY_EDITOR
+        if(GameInfo.PlayerSheetData == null)
+            GameInfo.PlayerSheetData = pSheet;
+        #endif
+        
         pSheet = GameInfo.PlayerSheetData;
         if(generateNewCsvData) csv.ConvertPlayer(ref pSheet);
     }
 
     private void Start()
     {
-        //SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"hanna", "chaos","/characters/");
-        //StartCoroutine(AJAX.GetRequestAsync(LoadData));
         SetSheetValues();
     }
 
@@ -72,7 +75,7 @@ public class GameManager : MonoBehaviour
         potionsScript.SetValue(pSheet.potions);
         statusScript.SetValue(pSheet);
         diceScript.SetValue(pSheet);
-        skillsScript.SetSkills(1,2,2,1);
+        skillsScript.SetSkills(pSheet.skills);
         magicsScript.SetMagicPoints(pSheet.magics);
         BackgroundColor();
         StartCoroutine(SaveTimer());
@@ -105,18 +108,33 @@ public class GameManager : MonoBehaviour
     private IEnumerator SavePlayerSheetAsync(bool saveExit)
     {
         savingIcon.gameObject.SetActive(true);
+        Debug.Log("<color=blue>Saving...</color>");
+        var waitForSeconds = new WaitForSeconds(0);
         
-        pSheet.essential = essentialsScript.GetValue();
-        pSheet.stats = statusScript.GetValue();
-        pSheet.inventory = inventoryScript.GetValue();
-        pSheet.potions = potionsScript.GetValue();
-        pSheet.texts = notesScript.GetValue();
+        try
+        {
+            pSheet.essential = essentialsScript.GetValue();
+            pSheet.stats = statusScript.GetValue();
+            pSheet.inventory = inventoryScript.GetValue();
+            pSheet.potions = potionsScript.GetValue();
+            pSheet.texts = notesScript.GetValue();
         
+            SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{pSheet.playerName.dataName}/");
+            
+            Debug.Log("<color=green>Saved!</color>");
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(new Exception("<color=red>Saving Error: </color>" + e), this);
+
+            savingIcon.GetComponent<Animator>().Play("Error");
+            waitForSeconds = new WaitForSeconds(1f);
+        }
+        
+        yield return waitForSeconds;
         savingIcon.gameObject.SetActive(false);
         
         if(saveExit) GameInfo.LoadScene("Menu");
-        
-        yield break;
     }
     
     private void BackgroundColor()
@@ -141,14 +159,21 @@ public class GameManager : MonoBehaviour
 
     public void ShareChaos()
     {
-        
+#if PLATFORM_ANDROID || PLATFORM_IOS
+        new NativeShare() 
+            .SetTitle("Agentes do Caos RPG - Character Sheet")
+            .AddFile(SaveLoadSystem.path + $"/characters/{pSheet.playerName.dataName}/chardata.chaos")
+            .SetSubject("Chaos Character")
+            .SetText("Check out my character!")
+            .Share();
+#endif
     }
     
     private IEnumerator SaveTimer()
     {
         while (true)
         {
-            yield return new WaitForSeconds(60);
+            yield return new WaitForSeconds(120);
             SaveData();
         }
         // ReSharper disable once IteratorNeverReturns

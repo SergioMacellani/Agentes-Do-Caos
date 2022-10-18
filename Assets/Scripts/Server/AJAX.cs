@@ -46,7 +46,7 @@ public static class AJAX
 
         if (www.result is UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.ConnectionError)
         {
-            Debug.Log(www.error);
+            Debug.Log(www.error + " " + www.url);
             callback?.Invoke(null);
         }
         else

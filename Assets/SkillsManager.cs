@@ -14,11 +14,11 @@ public class SkillsManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI sentidos;
 
-    public void SetSkills(int psique, int combate, int ocultismo, int sentidos)
+    public void SetSkills(PlayerSkills skills)
     {
-        this.psique.text = psique.ToString();
-        this.combate.text = combate.ToString();
-        this.ocultismo.text = ocultismo.ToString();
-        this.sentidos.text = sentidos.ToString();
+        psique.text = skills.psique.ToString();
+        combate.text = skills.combate.ToString();
+        ocultismo.text = skills.ocultismo.ToString();
+        sentidos.text = skills.sentidos.ToString();
     }
 }

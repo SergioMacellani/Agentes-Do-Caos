@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerFichaNew.unity
     guid: ed8b9aface7730348a25987f563bec28
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CreatePlayer.unity
     guid: 3fe45365d8269994ca1d1fe385fcf999
   - enabled: 0

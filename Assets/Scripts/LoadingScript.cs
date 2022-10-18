@@ -11,7 +11,7 @@ public class LoadingScript : MonoBehaviour
     private void Start()
     {
         StartCoroutine(LoadGame());
-        RenderSettings.skybox.SetColor("_Tint", GameInfo.PlayerSheetData.playerColors.colorNormal.color);
+        RenderSettings.skybox.SetColor("_Tint", GameInfo.PlayerSheetData.playerColors);
     }
 
     IEnumerator LoadGame()

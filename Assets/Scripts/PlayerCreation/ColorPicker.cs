@@ -127,13 +127,9 @@ public class ColorPicker : MonoBehaviour
         {
             target.target.color = new Color(pickerColor.r, pickerColor.g, pickerColor.b, target.alpha);
         }
-        List<ColorKey> colorKeys = new List<ColorKey>();
-        colorKeys.Add(new ColorKey("Light", Color.HSVToRGB(h,Mathf.Clamp01(s-.35f),v)));
-        colorKeys.Add(new ColorKey("Normal", pickerColor));
-        colorKeys.Add(new ColorKey("Dark", Color.HSVToRGB(h,s,Mathf.Clamp01(v-.30f))));
-        colorKeys.Add(new ColorKey("Menu", Color.HSVToRGB(h,s,.25f)));
-
-        ColorPaletteManager.CreatePalette(colorKeys.ToArray());
+        
+        ColorPaletteManager.SetPallete(pickerColor);
+        
         OnColorChanged.Invoke(pickerColor);
     }
 
