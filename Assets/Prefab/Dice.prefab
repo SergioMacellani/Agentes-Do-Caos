@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
+  m_Color: {r: 0.15, g: 0.72, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customDice: 0
   _diceNumber: 1
+  NumText: {fileID: 644186013434078358}
 --- !u!114 &8374281612004262018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorName: Normal
+  applyAlpha: 1
 --- !u!1 &7044734025365073398
 GameObject:
   m_ObjectHideFlags: 0

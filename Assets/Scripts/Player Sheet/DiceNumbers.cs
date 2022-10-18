@@ -13,54 +13,47 @@ public class DiceNumbers : MonoBehaviour
     private int _diceNumber;
     
     //Basic
-    private TextMeshProUGUI NumText;
-    private int roladas = 0, numRand, DiceNum;
-    private bool rol;
-    private float timer = .55f;
-    
-    void Awake()
+    public TextMeshProUGUI NumText;
+    protected int roladas = 0;
+    protected int numRand;
+    protected int DiceNum;
+    protected bool rol;
+    protected float timer = .55f;
+
+    private void Awake()
     {
         NumText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        if (!_customDice)
-        {
-            DiceNum = int.Parse(this.name.Trim(new char[] {' ', 'D', '.'}));
-        }
-        else
-        {
-            DiceNum = _diceNumber;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (rol)
-        {
-            if (timer >= .75f)
-            {
-                if (roladas < 6)
-                {
-                    numRand = Random.Range(1, DiceNum + 1);
-                    NumText.text = numRand.ToString();
-                    roladas++;
-                    timer = 0;
-                }
-                else
-                {
-                    numRand = Random.Range(1, DiceNum + 1);
-                    NumText.text = numRand.ToString();
-                    roladas = 0;
-                    rol = false;
-                }
-            }
-            timer += 10 * Time.deltaTime;
-        }
-        
+        DiceNum = !_customDice ? int.Parse(this.name.Trim(new char[] {' ', 'D', '.'})) : _diceNumber;
     }
 
     public void DiceRoll()
     {
+        StartCoroutine(RollingDice());
+    }
+
+    protected virtual IEnumerator RollingDice()
+    {
         rol = true;
-        timer = .75f;
+        timer = .05f;
+        
+        while (rol)
+        {
+            if (roladas < 6)
+            {
+                numRand = Random.Range(1, DiceNum + 1);
+                NumText.text = numRand.ToString();
+                roladas++;
+                timer += .5f;
+            }
+            else
+            {
+                numRand = Random.Range(1, DiceNum + 1);
+                NumText.text = numRand.ToString();
+                roladas = 0;
+                rol = false;
+            }
+            
+            yield return new WaitForSeconds(timer);
+        }
     }
 }
