@@ -8,9 +8,6 @@ using UnityEngine.UI;
 
 public class DocumentManager : MonoBehaviour
 {
-    [SerializeField] 
-    private PlayerSheetData pSheet;
-    
     [SerializeField]
     private DeleteDocumentImage deleteDocumentImage;
     
@@ -29,6 +26,7 @@ public class DocumentManager : MonoBehaviour
     private DocumentImage currentImage;
     
     private List<DocumentItem> documentItems = new List<DocumentItem>();
+    private List<PlayerDocument> playerDocuments = new List<PlayerDocument>();
 
     public DocumentImage CurrentImage
     {
@@ -36,9 +34,10 @@ public class DocumentManager : MonoBehaviour
         set { currentImage = value; }
     }
 
-    private void Start()
+    public void SetDocument(List<PlayerDocument> playerDocument)
     {
-        foreach (var docs in pSheet.documents)
+        playerDocuments = playerDocument;
+        foreach (var docs in playerDocuments)
         {
             DocumentItem newDoc = Instantiate(documentItemPrefab, documentArea);
             newDoc.SetDocumentData(new DocumentData(docs, false), this);
@@ -46,18 +45,20 @@ public class DocumentManager : MonoBehaviour
         }
     }
 
+    public List<PlayerDocument> GetDocuments => playerDocuments;
+
     public void AddDocumentToList(DocumentData document)
     {
-        if (pSheet.documents.Find(x => x.Code == document.Code) == null)
+        if (playerDocuments.Find(x => x.Code == document.Code) == null)
         {
-            DocumentItem newDoc = Instantiate(documentItemPrefab, documentArea);
+            var newDoc = Instantiate(documentItemPrefab, documentArea);
             newDoc.SetDocumentData(document, this);
-            pSheet.documents.Add(new PlayerDocument(document));
+            playerDocuments.Add(new PlayerDocument(document));
             documentItems.Add(newDoc);
         }
         else
         {
-            pSheet.documents.Find(x => x.Code == document.Code).Name = document.Name;
+            playerDocuments.Find(x => x.Code == document.Code).Name = document.Name;
             documentItems.Find(x => x.documentData.Code == document.Code).SetDocumentData(document, this);
         }
 
@@ -90,12 +91,12 @@ public class DocumentManager : MonoBehaviour
 
     public void DeleteNormal(PlayerDocument document)
     {
-        pSheet.documents.Remove(pSheet.documents.Find(x => x.Code == document.Code));
+        playerDocuments.Remove(playerDocuments.Find(x => x.Code == document.Code));
     }
     
     public void DeleteHard(PlayerDocument document)
     {
-        pSheet.documents.Remove(pSheet.documents.Find(x => x.Code == document.Code));
+        playerDocuments.Remove(playerDocuments.Find(x => x.Code == document.Code));
 
         SaveLoadSystem.DeleteFIle(document.Code, "png", "Documents/");
     }

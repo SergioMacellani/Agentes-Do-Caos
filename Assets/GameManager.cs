@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InventoryManager inventoryScript;
     [SerializeField] private PotionsManager potionsScript;
     [SerializeField] private NotesManager notesScript;
+    [SerializeField] private DocumentManager docsScript;
     
     [Space]
     [Header("Colors")]
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         diceScript.SetValue(pSheet);
         skillsScript.SetSkills(pSheet.skills);
         magicsScript.SetMagicPoints(pSheet.magics);
+        docsScript.SetDocument(pSheet.documents);
         BackgroundColor();
         StartCoroutine(SaveTimer());
     }
@@ -103,6 +105,7 @@ public class GameManager : MonoBehaviour
         pSheet.inventory = inventoryScript.GetValue();
         pSheet.potions = potionsScript.GetValue();
         pSheet.texts = notesScript.GetValue();
+        pSheet.documents = docsScript.GetDocuments;
     }
 
     private IEnumerator SavePlayerSheetAsync(bool saveExit)
@@ -118,6 +121,7 @@ public class GameManager : MonoBehaviour
             pSheet.inventory = inventoryScript.GetValue();
             pSheet.potions = potionsScript.GetValue();
             pSheet.texts = notesScript.GetValue();
+            pSheet.documents = docsScript.GetDocuments;
         
             SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{pSheet.playerName.dataName}/");
             

@@ -15,10 +15,20 @@ public class SelectCharacter : MonoBehaviour
 
     private string[] charDirectory = Array.Empty<string>();
     private ScrollSnap scrollSnap => GetComponent<ScrollSnap>();
+
+    private bool updateScroll = false;
     
     private void OnEnable()
     {
         DetectCharacters();
+    }
+
+    private void LateUpdate()
+    {
+        if (!updateScroll) return;
+        
+        updateScroll = false;
+        scrollSnap.UpdateSnap(true);
     }
 
     private void DetectCharacters()
@@ -54,10 +64,8 @@ public class SelectCharacter : MonoBehaviour
             character.SetCharacterInfo(pSheet.playerName, SaveLoadSystem.LoadImage("/0.png", dir, false), pSheet.playerColors);
         }
         
-        scrollSnap.enabled = false;
         addChar.SetAsLastSibling();
         content.gameObject.SetActive(true);
-        scrollSnap.UpdateSnap(true);
-        scrollSnap.enabled = true;
+        updateScroll = true;
     }
 }
