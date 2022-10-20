@@ -28,7 +28,6 @@ public class ColorPalette : MonoBehaviour
       if (ColorPaletteManager.HasColor(colorName))
       {
          Color nextColor = ColorPaletteManager.GetColor(colorName);
-         
          if(color == nextColor) return;
          color = nextColor;
          graphic.color = applyAlpha ? color : new Color(color.r, color.g, color.b, graphic.color.a);
