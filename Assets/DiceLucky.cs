@@ -7,7 +7,7 @@ public class DiceLucky : DiceNumbers
     protected override IEnumerator RollingDice()
     {
         rol = true;
-        timer = .05f;
+        timer = .01f;
 
         while (rol)
         {
@@ -16,7 +16,7 @@ public class DiceLucky : DiceNumbers
                 numRand = Random.Range(1, DiceNum + 1);
                 NumText.text = numRand % 2 == 0 ? "Sorte" : "Azar";
                 roladas++;
-                timer += .5f;
+                timer += .02f;
             }
             else
             {

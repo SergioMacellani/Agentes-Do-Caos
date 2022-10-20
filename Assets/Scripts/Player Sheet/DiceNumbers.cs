@@ -28,13 +28,16 @@ public class DiceNumbers : MonoBehaviour
 
     public void DiceRoll()
     {
+        rol = false;
+        roladas = 0;
+        
         StartCoroutine(RollingDice());
     }
 
     protected virtual IEnumerator RollingDice()
     {
         rol = true;
-        timer = .05f;
+        timer = .01f;
         
         while (rol)
         {
@@ -43,7 +46,7 @@ public class DiceNumbers : MonoBehaviour
                 numRand = Random.Range(1, DiceNum + 1);
                 NumText.text = numRand.ToString();
                 roladas++;
-                timer += .5f;
+                timer += .02f;
             }
             else
             {

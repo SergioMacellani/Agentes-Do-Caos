@@ -63,6 +63,7 @@ public class ScrollSnap : ScrollRect
         {
             UpdateSnap();
             content.GetChild(centerIten).GetComponent<Button>().interactable = true;
+            Debug.Log("Center Item: " + centerIten);
         }
         else
         {
@@ -77,7 +78,7 @@ public class ScrollSnap : ScrollRect
     
     public void UpdateSnap(bool externalUpdate = false)
     {
-        if (minChildren > content.childCount)
+        if (minChildren < content.childCount)
         {
             CalculatePagePositions();
             ContentItensDistance();
@@ -93,6 +94,8 @@ public class ScrollSnap : ScrollRect
             }
 
             horizontalScrollbar.value = .5f;
+            
+            if (!Application.isPlaying) return;
             StartCoroutine(SnapAsync(horizontalScrollbar, .5f));
         }
     }
@@ -111,8 +114,6 @@ public class ScrollSnap : ScrollRect
     }
     private void ContentItensDistance()
     {
-        if (minChildren <= content.childCount) return;
-        
         int i = 0;
         int shorterDistance = int.MaxValue;
         
@@ -124,7 +125,7 @@ public class ScrollSnap : ScrollRect
                 centerIten = i;
             }
             
-            child.GetComponent<Button>().interactable = false;
+            if (minChildren < content.childCount) child.GetComponent<Button>().interactable = false;
             i++;
         }
         
