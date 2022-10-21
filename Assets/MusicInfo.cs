@@ -15,14 +15,21 @@ public class MusicInfo : MonoBehaviour
     [SerializeField]
     private Image musicStatus;
     
-    private AudioClip musicClip;
+    private MusicData data;
+    private MusicManager musicManager;
     
-    public void SetMusicInfo(int order, Sprite cover, string name, bool isPlaying)
+    public void SetMusicInfo(MusicData musicData, MusicManager mm)
     {
-        musicOrder.text = order.ToString();
-        musicCover.sprite = cover;
-        musicName.text = name;
-        musicStatus.gameObject.SetActive(isPlaying);
+        musicManager = mm;
+        data = musicData;
+        musicOrder.text = data.musicOrder.ToString();
+        musicCover.sprite = data.musicCover;
+        musicName.text = data.musicName;
+    }
+
+    public void PlayMusic()
+    {
+        musicManager.PlayMusic(data);
     }
 }
 
@@ -32,11 +39,13 @@ public class MusicData
     public string musicName;
     public Sprite musicCover;
     public AudioClip musicClip;
+    public int musicOrder;
     
-    public MusicData(string name, Sprite cover, AudioClip clip)
+    public MusicData(string name, Sprite cover, AudioClip clip, int order)
     {
         musicName = name;
         musicCover = cover;
         musicClip = clip;
+        musicOrder = order;
     }
 }

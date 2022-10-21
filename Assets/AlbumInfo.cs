@@ -20,9 +20,16 @@ public class AlbumInfo : MonoBehaviour
 
     private int albumStatusIndex = 0;
     private Color[] albumStatusColors = new Color[3] { Color.red, Color.yellow, Color.green };
-    
-    public void SetAlbum(AlbumData data)
+    private MusicManager musicManager;
+
+    public void SelectAlbum()
     {
+        musicManager.SelectAlbum(data);
+    }
+    
+    public void SetAlbum(AlbumData data, MusicManager mm)
+    {
+        musicManager = mm;
         this.data = data;
         SetAlbumName(this.data.albumShortName);
         SetAlbumCover(this.data.albumCover);
