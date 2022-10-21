@@ -10,6 +10,8 @@ public class SettingsManager : MonoBehaviour
 
     public void ColorSheet(bool colorSheet)
     {
+        if(ColorPaletteManager.IsGray() && !colorSheet) return;
+        
         _canvas.gameObject.SetActive(false);
         ColorPaletteManager.LoadData((colorSheet ? "Color Palette" : "Grey Palette"));
         _canvas.gameObject.SetActive(true);

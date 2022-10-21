@@ -71,7 +71,8 @@ public class MobileToggle : Selectable, IPointerClickHandler, ISubmitHandler, IC
         get => m_IsOn;
         set => Set(value);
     }
-    public void Set(bool value)
+
+    private void Set(bool value)
     {
         if (m_IsOn == value) return;
 
@@ -100,6 +101,12 @@ public class MobileToggle : Selectable, IPointerClickHandler, ISubmitHandler, IC
     #endregion
 
     #region Private Void Functions
+
+    protected override void Start()
+    {
+        base.Start();
+        onValueChanged.Invoke(m_IsOn);
+    }
 
     private void InternalMobileToggle()
     {

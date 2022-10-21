@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -46,6 +47,19 @@ public static class SaveLoadSystem
         
         return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
     }
+    
+    public static async Task<AudioClip> LoadAudio(string name, string path = "", bool useDir = true)
+    {
+        if (!File.Exists($"{((useDir) ? DirPath : null)}{path}{name}")) return null;
+
+        byte[] bytes = File.ReadAllBytes($"{((useDir) ? DirPath : null)}{path}{name}");
+        Texture2D texture = new Texture2D(1, 1);
+        texture.LoadImage(bytes);
+        
+        var clip = await AJAX.GetAudio(path);
+ 
+        return clip;
+    }
 
     public static void DeleteFIle(string name, string format, string path = "")
     {
@@ -55,8 +69,19 @@ public static class SaveLoadSystem
     
     public static string OpenFileExplorer(string title = "", string fileExtension = ".csv", string directory = "")
     {
-        #if UNITY_EDITOR
+#if (!PLATFORM_ANDROID && !PLATFORM_IOS) || UNITY_EDITOR
         string path = EditorUtility.OpenFilePanel($"S{title} (.{fileExtension})", directory, fileExtension);
+
+        if (path.Length != 0) return path;
+        else return null;
+#endif
+        return null;
+    }
+    
+    public static string OpenFolderExplorer(string title = "", string directory = "", string fileExtension = "")
+    {
+#if (!PLATFORM_ANDROID && !PLATFORM_IOS) || UNITY_EDITOR
+        string path = EditorUtility.OpenFolderPanel($"S{title}", directory, fileExtension);
 
         if (path.Length != 0) return path;
         else return null;

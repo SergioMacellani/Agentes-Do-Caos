@@ -12,6 +12,7 @@ public class SelectCharacter : MonoBehaviour
     [SerializeField] private CharacterInfo charPrefab;
     [SerializeField] private Transform content;
     [SerializeField] private RectTransform addChar;
+    [SerializeField] private RectTransform masterChar;
 
     private string[] charDirectory = Array.Empty<string>();
     private ScrollSnap scrollSnap => GetComponent<ScrollSnap>();
@@ -29,6 +30,11 @@ public class SelectCharacter : MonoBehaviour
         
         updateScroll = false;
         scrollSnap.UpdateSnap(true);
+    }
+
+    public void OpenMasterScene()
+    {
+        GameInfo.LoadScene("MasterPage");
     }
 
     private void DetectCharacters()
@@ -50,7 +56,7 @@ public class SelectCharacter : MonoBehaviour
         
         foreach (Transform charBtt in content)
         {
-            if(charBtt != addChar) Destroy(charBtt.gameObject);
+            if(charBtt != addChar && charBtt !=  masterChar) Destroy(charBtt.gameObject);
         }
         
         foreach (var dir in charDirectory)

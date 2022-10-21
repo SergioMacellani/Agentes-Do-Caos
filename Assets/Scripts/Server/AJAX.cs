@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.Mathematics;
 using UnityEditor;
@@ -54,6 +55,30 @@ public static class AJAX
             Texture2D texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
             callback?.Invoke(Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero));
         }
+    }
+    
+    public static async Task<AudioClip> GetAudio(string path)
+    {
+        AudioClip clip = null;
+        var www = UnityWebRequestMultimedia.GetAudioClip(path, path.EndsWith(".wav") ? AudioType.WAV : AudioType.MPEG);
+        www.SendWebRequest();
+            
+        try
+        {
+            while (!www.isDone) await Task.Delay(5);
+ 
+            if (www.result is UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.ConnectionError) Debug.Log($"{www.error}");
+            else
+            {
+                clip = DownloadHandlerAudioClip.GetContent(www);
+                clip.name = path;
+            }
+        }
+        catch (Exception err)
+        {
+            Debug.Log($"{err.Message}, {err.StackTrace}");
+        }
+        return clip;
     }
 
     private static IEnumerator PostRequestAsync(string path, string key, string value)
