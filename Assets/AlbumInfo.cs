@@ -50,9 +50,13 @@ public class AlbumData
 {
     public string albumShortName;
     public string albumLongName;
-    public Sprite albumCover;
-    public int albumStatus;
+    public Color albumColor = Color.magenta;
     
+    [NonSerialized]
+    public int albumStatus;
+    [NonSerialized]
+    public Sprite albumCover;
+    [NonSerialized]
     public List<MusicData> musicDataList = new List<MusicData>();
     
     public AlbumData(string albumShortName, string albumLongName, Sprite albumCover, int albumStatus)

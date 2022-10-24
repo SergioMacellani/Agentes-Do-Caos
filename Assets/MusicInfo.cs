@@ -13,23 +13,56 @@ public class MusicInfo : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI musicName;
     [SerializeField]
-    private Image musicStatus;
+    private StatesButton musicStatus;
     
     private MusicData data;
     private MusicManager musicManager;
+    private bool shuffle = false;
+    private int shuffleOrder = 0;
     
-    public void SetMusicInfo(MusicData musicData, MusicManager mm)
+    public AudioClip GetAudioClip => data.musicClip;
+    public string GetMusicName => data.musicName;
+    public int GetMusicOrder => shuffle ? shuffleOrder : data.musicOrder;
+    public int GetRealMusicOrder => data.musicOrder;
+    
+    public void SetMusicInfo(MusicData musicData, MusicManager mm, bool first = false)
     {
         musicManager = mm;
         data = musicData;
         musicOrder.text = data.musicOrder.ToString();
         musicCover.sprite = data.musicCover;
         musicName.text = data.musicName;
+        
+        if(first) musicManager.PlayMusic(this, false);
+    }
+    
+    public void SetShuffle(int order)
+    {
+        shuffle = true;
+        shuffleOrder = order;
+        musicOrder.text = shuffleOrder.ToString();
+    }
+    
+    public void ResetOrder()
+    {
+        shuffle = false;
+        shuffleOrder = 0;
+        musicOrder.text = data.musicOrder.ToString();
     }
 
     public void PlayMusic()
     {
-        musicManager.PlayMusic(data);
+        musicManager.PlayMusic(this);
+    }
+    
+    public void PauseMusic()
+    {
+        musicManager.PauseMusic();
+    }
+
+    public void SetStatus(bool status)
+    {
+        musicStatus.SetValue(status);
     }
 }
 

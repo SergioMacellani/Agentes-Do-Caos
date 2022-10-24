@@ -10,20 +10,20 @@ public static class SaveLoadSystem
     private static string DirPath = Application.persistentDataPath+"/data/";
     public static string path => DirPath;
 
-    public static void SaveFile(string text, string name, string format, string path = "")
+    public static void SaveFile(string text, string name, string format, string path = "", bool useDir = true)
     {
-        if (!Directory.Exists($"{DirPath}{path}"))
-            Directory.CreateDirectory($"{DirPath}{path}");
+        if (!Directory.Exists($"{((useDir) ? DirPath : null)}{path}"))
+            Directory.CreateDirectory($"{((useDir) ? DirPath : null)}{path}");
 
-        File.WriteAllText($"{DirPath}{path}{name}.{format}", text);
+        File.WriteAllText($"{((useDir) ? DirPath : null)}{path}{name}.{format}", text);
     }
     
-    public static void SaveFile(byte[] text, string name, string format, string path = "")
+    public static void SaveFile(byte[] text, string name, string format, string path = "", bool useDir = true)
     {
-        if (!Directory.Exists($"{DirPath}{path}"))
-            Directory.CreateDirectory($"{DirPath}{path}");
+        if (!Directory.Exists($"{((useDir) ? DirPath : null)}{path}"))
+            Directory.CreateDirectory($"{((useDir) ? DirPath : null)}{path}");
 
-        File.WriteAllBytes($"{DirPath}{path}{name}.{format}", text);
+        File.WriteAllBytes($"{((useDir) ? DirPath : null)}{path}{name}.{format}", text);
     }
     
     public static void LoadFile(string name, out string json, string path = "", bool useDir = true)
@@ -47,7 +47,7 @@ public static class SaveLoadSystem
         
         return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
     }
-    
+
     public static async Task<AudioClip> LoadAudio(string name, string path = "", bool useDir = true)
     {
         if (!File.Exists($"{((useDir) ? DirPath : null)}{path}{name}")) return null;
