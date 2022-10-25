@@ -42,17 +42,19 @@ public class StatesButton : Selectable, IPointerClickHandler, ISubmitHandler
         stateTargetGraphic.sprite = statesSprites[state];
     }
     
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         base.OnValidate();
-        #if UNITY_EDITOR
+        
         if(onClicks == null) onClicks = new List<UnityEvent<int>>(statesSprites.Count);
         else if(onClicks.Count < statesSprites.Count) onClicks.AddRange(new UnityEvent<int>[statesSprites.Count - onClicks.Count]);
         else if(onClicks.Count > statesSprites.Count) onClicks.RemoveRange(statesSprites.Count, onClicks.Count - statesSprites.Count);
         state = Mathf.Clamp(state, 0, statesSprites.Count - 1);
         SetValue(state);
-        #endif
+        
     }
+#endif
 
     public void OnPointerClick(PointerEventData eventData)
     {
