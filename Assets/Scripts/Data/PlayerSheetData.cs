@@ -39,7 +39,7 @@ public class PlayerSheetData : ScriptableObject
     public PlayerInv inventory;
 
     [Header("Text")] 
-    public PlayerText texts;
+    public PlayerNotes notes;
     
     [Header("Documents")]
     public List<PlayerDocument> documents;
@@ -104,6 +104,15 @@ public class PlayerSheetData : ScriptableObject
     public void SetMagics(float[] values)
     {
         magics.Magics = SetDictionary(magics.Magics, values);
+    }
+
+    public void SetNotes(string[] notes, string[] traumas, string[] habilidades)
+    {
+        var notesText = notes.Aggregate("", (current, text) => current + (text + "\n"));
+        var traumasText = traumas.Aggregate("", (current, text) => current + (text + "\n"));
+        var habilidadesText = habilidades.Aggregate("", (current, text) => current + (text + "\n"));
+        
+        this.notes.SetNotepad(new string[3]{notesText, habilidadesText, traumasText}, new string[3]{"Notas", "Habilidades", "Traumas"});
     }
 
     public SerializedDictionary<string, int> SetDictionary(SerializedDictionary<string, int> dic, float[] values)
@@ -265,11 +274,32 @@ public class PlayerInv
 }
 
 [System.Serializable]
-public class PlayerText
+public class PlayerNotes
 {
     public int fontSize = 40;
-    [TextArea()] public string Notes;
-    [TextArea()] public string Traumas;
+    public List<NotepadData> notepad = new List<NotepadData>();
+    
+    public void SetNotepad(string[] text, string[] title)
+    {
+        notepad.Clear();
+        for (int i = 0; i < text.Length; i++)
+        {
+            notepad.Add(new NotepadData(text[i], title[i]));
+        }
+    }
+}
+
+[System.Serializable]
+public class NotepadData
+{
+    public string title = "Sem Titulo";
+    [TextArea()] public string notes;
+    
+    public NotepadData(string notes, string title = "Sem Titulo")
+    {
+        this.notes = notes;
+        this.title = title ?? "Sem Titulo";
+    }
 }
 
 [System.Serializable]

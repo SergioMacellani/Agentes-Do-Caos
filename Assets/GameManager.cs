@@ -44,11 +44,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         #if UNITY_EDITOR
-        if(GameInfo.PlayerSheetData == null)
-            GameInfo.PlayerSheetData = pSheet;
+        //if(GameInfo.PlayerSheetData == null)
+            //GameInfo.PlayerSheetData = pSheet;
         #endif
         
-        pSheet = GameInfo.PlayerSheetData;
+        //pSheet = GameInfo.PlayerSheetData;
         if(generateNewCsvData) csv.ConvertPlayer(ref pSheet);
     }
 
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         
         essentialsScript.SetValue(pSheet);
         inventoryScript.SetValue(pSheet);
-        notesScript.SetValue(pSheet);
+        notesScript.SetValue(pSheet.notes);
         potionsScript.SetValue(pSheet.potions);
         statusScript.SetValue(pSheet);
         diceScript.SetValue(pSheet);
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         pSheet.stats = statusScript.GetValue();
         pSheet.inventory = inventoryScript.GetValue();
         pSheet.potions = potionsScript.GetValue();
-        pSheet.texts = notesScript.GetValue();
+        pSheet.notes = notesScript.GetValue();
         pSheet.documents = docsScript.GetDocuments;
     }
 
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
             pSheet.stats = statusScript.GetValue();
             pSheet.inventory = inventoryScript.GetValue();
             pSheet.potions = potionsScript.GetValue();
-            pSheet.texts = notesScript.GetValue();
+            pSheet.notes = notesScript.GetValue();
             pSheet.documents = docsScript.GetDocuments;
         
             SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{pSheet.playerName.dataName}/");

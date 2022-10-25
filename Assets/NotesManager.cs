@@ -9,17 +9,59 @@ public class NotesManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _notesText;
     [SerializeField] private Scrollbar _scrollbar;
-    
+    [SerializeField] private RectTransform _notepadContent;
+    [SerializeField] private NotepadItem _notepadPrefab;
+    [SerializeField] private GameObject _addNote;
+
+    private PlayerNotes _playerNotes;
+    private int noteIndex = 0;
     private ScreenOrientation _orientation;
     private bool _verticalRotation = false;
     
     public bool VerticalRotation { set => _verticalRotation = value; }
 
-    public void SetValue(PlayerSheetData pSheet)
+    public void SetValue(PlayerNotes pNotes)
     {
-        _notesText.text = pSheet.texts.Notes;
-        _notesText.pointSize = pSheet.texts.fontSize;
+        _playerNotes = pNotes;
+        
+        _notesText.text = _playerNotes.notepad[0].notes;
+        _notesText.pointSize = _playerNotes.fontSize;
         _notesText.verticalScrollbar.value = 0;
+
+        UpdateNotepads();
+    }
+
+    private void UpdateNotepads()
+    {
+        foreach (Transform note in _notepadContent)
+        {
+            Destroy(note.gameObject);
+        }
+
+        foreach (var notepad in _playerNotes.notepad)
+        {
+            Instantiate(_notepadPrefab, _notepadContent).Init(notepad, this);
+        }
+    }
+
+    public void SelectNotepad(NotepadData notepad)
+    {
+        _notesText.text = notepad.notes;
+        noteIndex = _playerNotes.notepad.IndexOf(notepad);
+    }
+    
+    public void SaveNotepad()
+    {
+        _playerNotes.notepad[noteIndex].notes = _notesText.text;
+    }
+
+    public void AddNotepad(TMP_InputField input)
+    {
+        _playerNotes.notepad.Add(new NotepadData("", input.text));
+        Instantiate(_notepadPrefab, _notepadContent).Init(_playerNotes.notepad[^1], this);
+        SelectNotepad(_playerNotes.notepad[^1]);
+        noteIndex = _playerNotes.notepad.Count - 1;
+        _addNote.SetActive(false);
     }
 
     public void RotateScreen(bool rotate)
@@ -42,23 +84,15 @@ public class NotesManager : MonoBehaviour
             StartCoroutine(ScrollToNotes());
         }
     }
-    
-    public PlayerText GetValue()
-    {
-        PlayerText pText = new PlayerText
-        {
-            Notes = _notesText.text,
-            fontSize = (int)_notesText.pointSize
-        };
-        
-        return pText;
-    }
+
+    public PlayerNotes GetValue() => _playerNotes;
 
     public void FontSize(int value)
     {
         if(_notesText.pointSize + value > 14 && _notesText.pointSize + value < 72)
         {
             _notesText.pointSize += value;
+            _playerNotes.fontSize = (int)_notesText.pointSize;
         }
     }
     
