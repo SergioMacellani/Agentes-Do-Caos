@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,6 +48,8 @@ public class MusicManager : MonoBehaviour
     
     [SerializeField]
     private List<MusicInfo> musicInfos = new List<MusicInfo>();
+
+    public TextMeshProUGUI txt;
     
     private AudioSource audioSource;
     private bool isPlaying = false;
@@ -55,9 +58,38 @@ public class MusicManager : MonoBehaviour
     
     private List<int> musicIndex = new List<int>();
 
-    private void Awake()
+    private async void Awake()
     {
         TryGetComponent(out audioSource);
+        await LoadMusicList();
+    }
+
+    private async Task LoadMusicList()
+    {
+        foreach (Transform a in albumContainer)
+        {
+            Destroy(a.gameObject);
+        }
+        
+        var directory = SaveLoadSystem.path + "music/info";
+        if(!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+        
+        List<string> files = Directory.GetFiles(directory).ToList();
+        if(files.Count == 0) return;
+
+        var first = true;
+        int i = 0;
+        foreach (var file in files)
+        {
+            if (!file.EndsWith(".acmp")) return;
+            
+            SaveLoadSystem.LoadFile(file, out var json);
+            var data = JsonUtility.FromJson<AlbumData>(json);
+            await CreateAlbumItem(data.albumLink, data, first);
+            first = false;
+
+            i++;
+        }
     }
 
     private void FixedUpdate()
@@ -91,27 +123,53 @@ public class MusicManager : MonoBehaviour
 
     public async void SearchAlbum()
     {
-        var path = SaveLoadSystem.OpenFolderExplorer();
+        var path = SaveLoadSystem.OpenFolderExplorer("Album Folder", new string[2]{"mp3", "wav"});
+        txt.text = path;
         if (path == null) return;
 
-        AlbumData data = new AlbumData("","", null, 0);
-        data.albumShortName = Path.GetFileName(path);
-        List<string> files = Directory.GetFiles(path).ToList();
+        var data = await CreateAlbumItem(path);
 
+        SaveLoadSystem.SaveFile(JsonUtility.ToJson(data, true), data.albumShortName, "acmp", "music/info/");
+    }
+
+    public async Task<AlbumData> CreateAlbumItem(string path, AlbumData data = null, bool first = false)
+    {
+        data ??= new AlbumData(Path.GetFileName(path), "", null, 0, path);
+        
+        List<string> files = Directory.GetFiles(path).ToList();
+        
         var find = files.Find(x => x.Contains(".jpg") || x.Contains(".png"));
         data.albumCover = find != null ? SaveLoadSystem.LoadImage("", find, false) : defaultAlbumArt;
-
+        
+        Texture2D texture = Resize(data.albumCover.texture, 4, 4);
+        data.albumColor = texture.GetPixel(Random.Range(0, texture.height),Random.Range(0, texture.height));
+        
+        data.musicDataList = new List<MusicData>();
+        
         var i = 0;
         foreach (var file in files.Where(file => file.EndsWith(".wav") || file.EndsWith(".mp3")))
         {
-            data.musicDataList.Add(new MusicData(Path.GetFileName(file).Replace(Path.GetExtension(file), ""), data.albumCover, await SaveLoadSystem.LoadAudio("", file, false), i+1));
+            var music = new MusicData(Path.GetFileName(file).Replace(Path.GetExtension(file), ""), data.albumCover, await SaveLoadSystem.LoadAudio("", file, false), i + 1);
+            data.musicDataList.Add(music);
             i++;
         }
-        SaveLoadSystem.SaveFile(JsonUtility.ToJson(data, true), data.albumShortName, "acmp", path+"/", false);
-        
-        Instantiate(albumPrefab, albumContainer).SetAlbum(data, this);
+
+        Instantiate(albumPrefab, albumContainer).SetAlbum(data, this, first);
+        return data;
     }
     
+    Texture2D Resize(Texture2D texture2D,int targetX,int targetY)
+    {
+        RenderTexture rt=new RenderTexture(targetX, targetY,24);
+        RenderTexture.active = rt;
+        Graphics.Blit(texture2D,rt);
+        Texture2D result=new Texture2D(targetX,targetY);
+        result.ReadPixels(new Rect(0,0,targetX,targetY),0,0);
+        result.filterMode = FilterMode.Point;
+        result.Apply();
+        return result;
+    }
+
     public void SelectAlbum(AlbumData albumData)
     {
         foreach (Transform msc in musicContainer)
@@ -132,6 +190,7 @@ public class MusicManager : MonoBehaviour
         //if(isPlaying) return;
         playingMusicCover.sprite = albumData.albumCover;
         playingMusicAlbum.text = albumData.albumShortName;
+        musicSlider.fillRect.GetComponent<Image>().color = albumData.albumColor;
     }
 
     public void PlayMusic(MusicInfo musicInfo, bool play = true)

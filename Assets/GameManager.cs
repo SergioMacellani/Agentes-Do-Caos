@@ -44,12 +44,16 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         #if UNITY_EDITOR
-        //if(GameInfo.PlayerSheetData == null)
-            //GameInfo.PlayerSheetData = pSheet;
+        if(generateNewCsvData) 
+        {
+            csv.ConvertPlayer(ref pSheet);
+            return;
+        }
+        if(GameInfo.PlayerSheetData == null)
+            GameInfo.PlayerSheetData = pSheet;
         #endif
         
-        //pSheet = GameInfo.PlayerSheetData;
-        if(generateNewCsvData) csv.ConvertPlayer(ref pSheet);
+        pSheet = GameInfo.PlayerSheetData;
     }
 
     private void Start()

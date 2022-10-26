@@ -33,6 +33,28 @@ public static class AJAX
         }
     }
     
+    public static IEnumerator GetData(string path, TextMeshProUGUI text, System.Action<byte[]> callback = null, string AURL = "")
+    {
+        UnityWebRequest www = UnityWebRequest.Get((AURL == "" ? URL : AURL) + path);
+        var webRequest = www.SendWebRequest();
+        
+        while (!webRequest.webRequest.isDone)
+        {
+            text.text = www.downloadProgress.ToString("P0");
+            yield return new WaitForSeconds(.2f);
+        }
+
+        if (www.result is UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.LogError(www.url);
+            callback?.Invoke(null);
+        }
+        else
+        {
+            callback?.Invoke(www.downloadHandler.data);
+        }
+    }
+    
     public static IEnumerator GetImage(string path, TextMeshProUGUI text, System.Action<Sprite> callback = null, string AURL = "")
     {
         UnityWebRequest www = UnityWebRequest.Get((AURL == "" ? URL : AURL) + path);
@@ -71,6 +93,7 @@ public static class AJAX
             else
             {
                 clip = DownloadHandlerAudioClip.GetContent(www);
+                File.GetAttributes(path);
                 clip.name = path;
             }
         }

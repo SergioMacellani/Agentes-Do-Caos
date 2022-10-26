@@ -27,13 +27,15 @@ public class AlbumInfo : MonoBehaviour
         musicManager.SelectAlbum(data);
     }
     
-    public void SetAlbum(AlbumData data, MusicManager mm)
+    public void SetAlbum(AlbumData data, MusicManager mm, bool first = false)
     {
         musicManager = mm;
         this.data = data;
         SetAlbumName(this.data.albumShortName);
         SetAlbumCover(this.data.albumCover);
         SetAlbumStatus(this.data.albumStatus);
+        
+        if(first) SelectAlbum();
     }
     
     public void SetAlbumName(string albumName) => this.albumName.text = albumName;
@@ -50,6 +52,7 @@ public class AlbumData
 {
     public string albumShortName;
     public string albumLongName;
+    public string albumLink;
     public Color albumColor = Color.magenta;
     
     [NonSerialized]
@@ -59,11 +62,12 @@ public class AlbumData
     [NonSerialized]
     public List<MusicData> musicDataList = new List<MusicData>();
     
-    public AlbumData(string albumShortName, string albumLongName, Sprite albumCover, int albumStatus)
+    public AlbumData(string albumShortName, string albumLongName, Sprite albumCover, int albumStatus, string albumLink)
     {
         this.albumShortName = albumShortName;
         this.albumLongName = albumLongName;
         this.albumCover = albumCover;
         this.albumStatus = albumStatus;
+        this.albumLink = albumLink;
     }
 }

@@ -23,7 +23,10 @@ public class NotesManager : MonoBehaviour
     public void SetValue(PlayerNotes pNotes)
     {
         _playerNotes = pNotes;
-        
+
+        if(_playerNotes.notepad.Count == 0)
+            _playerNotes.notepad.Add(new NotepadData("", "Notas"));
+            
         _notesText.text = _playerNotes.notepad[0].notes;
         _notesText.pointSize = _playerNotes.fontSize;
         _notesText.verticalScrollbar.value = 0;
@@ -52,6 +55,7 @@ public class NotesManager : MonoBehaviour
     
     public void SaveNotepad()
     {
+        Debug.Log("Anotações salvas!");
         _playerNotes.notepad[noteIndex].notes = _notesText.text;
     }
 

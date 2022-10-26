@@ -38,7 +38,7 @@ public class CSVImportManager : MonoBehaviour
 
     public void GetCSV()
     {
-        string path = SaveLoadSystem.OpenFileExplorer("Selecione a sua ficha", "csv");
+        string path = SaveLoadSystem.OpenFileExplorer("Selecione a sua ficha", new string[]{"csv"});
         if (path == null) return;
         
         ConvertCsvData.ConvertPlayer(ref pSheet, path);
@@ -95,7 +95,7 @@ public class CSVImportManager : MonoBehaviour
 
     public void SetAvatar(int i)
     {
-        string path = SaveLoadSystem.OpenFileExplorer("Selecione o seu avatar", "png");
+        string path = SaveLoadSystem.OpenFileExplorer("Selecione o seu avatar", new string[]{"png","jpg","jpeg","bmp"});
         if (path == null) return;
         
         characterImages[i].sprite = SaveLoadSystem.LoadImage("", path, false);

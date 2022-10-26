@@ -8,6 +8,7 @@ using UnityEngine;
 public static class SaveLoadSystem
 {
     private static string DirPath = Application.persistentDataPath+"/data/";
+    private static string CachePath = Application.temporaryCachePath+"/";
     public static string path => DirPath;
 
     public static void SaveFile(string text, string name, string format, string path = "", bool useDir = true)
@@ -28,20 +29,35 @@ public static class SaveLoadSystem
     
     public static void LoadFile(string name, out string json, string path = "", bool useDir = true)
     {
-        if (!File.Exists($"{((useDir) ? DirPath : null)}{path}{name}"))
+        string pathToLoad = $"{((useDir) ? DirPath : null)}{path}{name}";
+        
+        if (!File.Exists(pathToLoad))
         {
             json = null;
             return;
         }
 
-        json = File.ReadAllText($"{((useDir) ? DirPath : null)}{path}{name}");
+        json = File.ReadAllText(pathToLoad);
+    }
+    
+    public static void LoadFile(string path, out string json)
+    {
+        if (!File.Exists(path))
+        {
+            json = null;
+            return;
+        }
+
+        json = File.ReadAllText(path);
     }
 
     public static Sprite LoadImage(string name, string path = "", bool useDir = true)
     {
-        if (!File.Exists($"{((useDir) ? DirPath : null)}{path}{name}")) return null;
+        string pathToLoad = $"{((useDir) ? DirPath : null)}{path}{name}";
+        
+        if (!File.Exists(pathToLoad)) return null;
 
-        byte[] bytes = File.ReadAllBytes($"{((useDir) ? DirPath : null)}{path}{name}");
+        byte[] bytes = File.ReadAllBytes(pathToLoad);
         Texture2D texture = new Texture2D(1, 1);
         texture.LoadImage(bytes);
         
@@ -50,11 +66,9 @@ public static class SaveLoadSystem
 
     public static async Task<AudioClip> LoadAudio(string name, string path = "", bool useDir = true)
     {
-        if (!File.Exists($"{((useDir) ? DirPath : null)}{path}{name}")) return null;
-
-        byte[] bytes = File.ReadAllBytes($"{((useDir) ? DirPath : null)}{path}{name}");
-        Texture2D texture = new Texture2D(1, 1);
-        texture.LoadImage(bytes);
+        string pathToLoad = $"{((useDir) ? DirPath : null)}{path}{name}";
+        
+        if (!File.Exists(pathToLoad)) return null;
         
         var clip = await AJAX.GetAudio(path);
  
@@ -67,25 +81,38 @@ public static class SaveLoadSystem
             File.Delete($"{DirPath}{path}{name}.{format}");
     }
     
-    public static string OpenFileExplorer(string title = "", string fileExtension = ".csv", string directory = "")
+    public static string OpenFileExplorer(string title = "", string[] fileExtensions = null, string directory = "")
     {
-#if (!PLATFORM_ANDROID && !PLATFORM_IOS) || UNITY_EDITOR
-        string path = EditorUtility.OpenFilePanel($"S{title} (.{fileExtension})", directory, fileExtension);
-
-        if (path.Length != 0) return path;
-        else return null;
+        string path = null;
+        
+        for (int i = 0; i < fileExtensions.Length; i++)
+        {
+            fileExtensions[i] = NativeFilePicker.ConvertExtensionToFileType(fileExtensions[i]);
+        }
+        NativeFilePicker.PickFile((p) => path = p, fileExtensions);
+        
+#if (PLATFORM_ANDROID || PLATFORM_IOS) && !UNITY_EDITOR
+        path = Path.Combine(CachePath, path);
 #endif
-        return null;
+        
+        return path;
     }
     
-    public static string OpenFolderExplorer(string title = "", string directory = "", string fileExtension = "")
+    public static string OpenFolderExplorer(string title = "", string[] fileExtensions = null, string directory = "", string defaultName = "")
     {
-#if (!PLATFORM_ANDROID && !PLATFORM_IOS) || UNITY_EDITOR
-        string path = EditorUtility.OpenFolderPanel($"S{title}", directory, fileExtension);
+        string path = null;
 
-        if (path.Length != 0) return path;
-        else return null;
+#if (!PLATFORM_ANDROID && !PLATFORM_IOS) || UNITY_EDITOR
+        path = EditorUtility.OpenFolderPanel($"S{title}", directory, defaultName);
+#else
+        NativeFilePicker.RequestPermission();
+        for (int i = 0; i < fileExtensions.Length; i++)
+        {
+            fileExtensions[i] = NativeFilePicker.ConvertExtensionToFileType(fileExtensions[i]);
+        }
+        NativeFilePicker.PickFile((p) => path = p, fileExtensions);
 #endif
-        return null;
+        
+        return path;
     }
 }
