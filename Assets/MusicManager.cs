@@ -137,6 +137,11 @@ public class MusicManager : MonoBehaviour
         data ??= new AlbumData(Path.GetFileName(path), "", null, 0, path);
         
         List<string> files = Directory.GetFiles(path).ToList();
+
+        foreach (var f in files)
+        {
+            txt.text += f + "\n";
+        }
         
         var find = files.Find(x => x.Contains(".jpg") || x.Contains(".png"));
         data.albumCover = find != null ? SaveLoadSystem.LoadImage("", find, false) : defaultAlbumArt;
@@ -149,7 +154,17 @@ public class MusicManager : MonoBehaviour
         var i = 0;
         foreach (var file in files.Where(file => file.EndsWith(".wav") || file.EndsWith(".mp3")))
         {
-            var music = new MusicData(Path.GetFileName(file).Replace(Path.GetExtension(file), ""), data.albumCover, await SaveLoadSystem.LoadAudio("", file, false), i + 1);
+            AudioClip clip = null;
+            try
+            {
+                clip = await SaveLoadSystem.LoadAudio("", file, false);
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
+            var music = new MusicData(Path.GetFileNameWithoutExtension(file), data.albumCover, clip, i + 1);
             data.musicDataList.Add(music);
             i++;
         }
