@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 754306371}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.999984
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3065,7 +3065,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1826941614}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.999984
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10340,7 +10340,7 @@ MonoBehaviour:
   pSheet: {fileID: 11400000, guid: 351e3b53857c4e34aa5fc180e8fbe76a, type: 2}
   cPalette: {fileID: 11400000, guid: 0b99e1ff6d681cb4eabd76880905dd0e, type: 2}
   csv: {fileID: 718235242}
-  generateNewCsvData: 1
+  generateNewCsvData: 0
   savingIcon: {fileID: 980496121}
   playerName: {fileID: 107655932}
   abilityPoints: {fileID: 1523498115}
@@ -14369,7 +14369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0008544922}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &963350003
@@ -15966,7 +15966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0008544922}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1082533596

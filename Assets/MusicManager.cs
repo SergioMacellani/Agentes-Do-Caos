@@ -131,7 +131,7 @@ public class MusicManager : MonoBehaviour
 
         SaveLoadSystem.SaveFile(JsonUtility.ToJson(data, true), data.albumShortName, "acmp", "music/info/");
     }
-
+    
     public async Task<AlbumData> CreateAlbumItem(string path, AlbumData data = null, bool first = false)
     {
         data ??= new AlbumData(Path.GetFileName(path), "", null, 0, path);
@@ -161,9 +161,9 @@ public class MusicManager : MonoBehaviour
             }
             catch (Exception e)
             {
-                
+                Debug.Log(e);
             }
-            
+
             var music = new MusicData(Path.GetFileNameWithoutExtension(file), data.albumCover, clip, i + 1);
             data.musicDataList.Add(music);
             i++;
