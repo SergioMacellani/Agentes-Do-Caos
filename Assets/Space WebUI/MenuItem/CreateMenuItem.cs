@@ -20,5 +20,12 @@ public class CreateMenuItem
     {
         SafeInstantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Space WebUI/Mobile Toggle/Resources/Mobile Toggle.prefab"));
     }
+    
+    [MenuItem("GameObject/UI/Space WebUI/Rounded Container", false, 0)]
+    private static void CreateRoundedContainer()
+    {
+        SafeInstantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Space WebUI/Rounded Corners/Resources/Rounded Container.prefab"));
+    }
+    
     #endif
 }
