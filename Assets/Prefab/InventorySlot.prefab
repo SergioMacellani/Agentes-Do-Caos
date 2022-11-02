@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9, g: 0, b: 0.3, a: 1}
+  m_Color: {r: 0.8666667, g: 0.2, b: 0.2, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
-  m_isRichTextEditingAllowed: 0
+  m_isRichTextEditingAllowed: 1
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
 --- !u!114 &7457698662514714319
@@ -407,6 +407,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dfbfd29e7fdee42bc47659cba8862d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isString: 0
+  isFloat: 1
+  title: 
 --- !u!1001 &8723289103582486083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,3 +560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dfbfd29e7fdee42bc47659cba8862d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isString: 0
+  isFloat: 1
+  title: PESO DO ITEM
