@@ -78,7 +78,7 @@ public class StatusBar : MonoBehaviour
 
     public void UpdateArmorLifeBar(StatusBar bar)
     {
-        SetMaxValue(bar.GetCurrentValue*3);
+        SetValue(new StatsValue(bar.GetCurrentValue*3));
     }
 
     private void UpdateBar()

@@ -329,6 +329,12 @@ public struct StatsValue
         this.max = max;
     }
     
+    public StatsValue(int max)
+    {
+        this.current = max;
+        this.max = max;
+    }
+    
     public void SetValue(int c, int m)
     {
         current = c;
