@@ -80,6 +80,11 @@ public class StatusBar : MonoBehaviour
     {
         SetValue(new StatsValue(bar.GetCurrentValue*3));
     }
+    
+    public void UpdateArmorLifeBar(string value)
+    {
+        SetValue(new StatsValue(int.Parse(value)*3));
+    }
 
     private void UpdateBar()
     {

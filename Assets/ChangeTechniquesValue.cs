@@ -4,8 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeInputValue : MonoBehaviour
+public class ChangeTechniquesValue : MonoBehaviour
 {
+    [SerializeField] private UpdateTechniques _updateTechniques;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TMP_InputField valueText;
     [SerializeField] private Image[] modifierImages;
@@ -13,38 +14,41 @@ public class ChangeInputValue : MonoBehaviour
     private Color _activeColor = new Color(1,1,1,.25f);
     private Color _inactiveColor = new Color(.35f,.35f,.35f,.25f);
     
-    private float value;
-    private bool isFloat = true;
-    private float[] modiferValues = { .25f, .5f, 1, 5, 10 };
-    private float valueModifier = 1;
+    private int value;
+    public int baseValue;
+    private int[] modiferValues = { 1, 5, 10 };
+    private int valueModifier = 1;
     
-    private InputFieldLagFix _input;
+    private TechniqueItem _technique;
     private CanvasGroup _canvasGroup => GetComponent<CanvasGroup>();
 
-    public virtual void OpenChangeInput(InputFieldLagFix input, bool isFloat = true, string title = "")
+    public virtual void OpenChangeInput(TechniqueItem technique, int legacy)
     {
-        _input = input;
-        this.isFloat = isFloat;
+        _technique = technique;
         CanvasGroupSettings(true);
-        valueText.text = input.GetInputText;
-        value = float.Parse(input.GetInputText);
-        ChangeModifier(2);
-        titleText.text = $"MODIFICAR VALOR{(title != "" ? $" DE {title}" : $"")}";
-        
-        modifierImages[0].GetComponent<Button>().interactable = isFloat;
-        modifierImages[1].GetComponent<Button>().interactable = isFloat;
+        valueText.text = technique.GetValue.ToString();
+        value = int.Parse(valueText.text);
+        baseValue = legacy;
+        ChangeModifier(0);
+        titleText.text = $"MODIFICAR VALOR DE {technique.GetName.ToUpper()}";
     }
     
-    public void ChangeValue(float val)
+    public void ChangeValue(int val)
     {
         value += val * valueModifier;
-        valueText.text = value.ToString(isFloat ? "0.##" : "F0");
+        if(value < baseValue)
+            value = baseValue;
+        
+        valueText.text = value.ToString("F0");
     }
     
     public void ChangeValue(string val)
     {
-        value = float.Parse(val);
-        valueText.text = value.ToString(isFloat ? "0.##" : "F0");
+        value = int.Parse(val);
+        if(value < baseValue)
+            value = baseValue;
+        
+        valueText.text = value.ToString("F0");
     }
     
     public void ChangeModifier(int index)
@@ -59,15 +63,16 @@ public class ChangeInputValue : MonoBehaviour
     
     public void SaveValue()
     {
-        _input.SaveValue(valueText.text);
+        _technique.SaveValue(value);
+        _updateTechniques.UpdateItem(new Technique(_technique.GetName, value));
         CanvasGroupSettings(false);
-        _input = null;
+        _technique = null;
     }
 
     public void CancelChange()
     {
         CanvasGroupSettings(false);
-        _input = null;
+        _technique = null;
     }
     
     private void CanvasGroupSettings(bool active)

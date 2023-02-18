@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3813091774723070791}
   - component: {fileID: 3281428573916936399}
   m_Layer: 5
-  m_Name: Tecnic
+  m_Name: TecnicUpdate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -3813091774723070791}
         m_TargetAssemblyTypeName: TechniqueItem, Assembly-CSharp
-        m_MethodName: SelectTechnique
+        m_MethodName: UpdateValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -152,6 +152,7 @@ MonoBehaviour:
   _name: {fileID: 8323528568694140264}
   _value: {fileID: 7418619308687955701}
   _techniquesManager: {fileID: 0}
+  _changeTechniquesValue: {fileID: 0}
 --- !u!114 &3281428573916936399
 MonoBehaviour:
   m_ObjectHideFlags: 0

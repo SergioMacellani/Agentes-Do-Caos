@@ -100,6 +100,11 @@ public class PlayerSheetData : ScriptableObject
     {
         techniques.Techniques = SetDictionary(techniques.Techniques, values);
     }
+    
+    public void SetTechniques(int[] values)
+    {
+        techniques.Techniques = SetDictionary(techniques.Techniques, values);
+    }
 
     public void SetMagics(float[] values)
     {
@@ -123,6 +128,20 @@ public class PlayerSheetData : ScriptableObject
         foreach (var d in dic.Keys.ToList())
         {
             createdDic.Add(d, (int)values[i]);
+            i++;
+        }
+
+        return createdDic;
+    }
+    
+    public SerializedDictionary<string, int> SetDictionary(SerializedDictionary<string, int> dic, int[] values)
+    {
+        SerializedDictionary<string, int> createdDic = new SerializedDictionary<string, int>();
+        int i = 0;
+        
+        foreach (var d in dic.Keys.ToList())
+        {
+            createdDic.Add(d, values[i]);
             i++;
         }
 

@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Ninito.UsualSuspects;
+using TMPro;
 using UnityEngine;
 
-public class TechniquesManager : MonoBehaviour
+public class UpdateTechniques : MonoBehaviour
 {
+    private SerializedDictionary<string, int> tecnics;
+    
     [SerializeField]
-    private DiceManager diceManager;
+    private ChangeTechniquesValue changeTechniquesValue;
+    
+    [SerializeField]
+    private TechniquesManager techniquesManager;
     
     [SerializeField]
     private TechniqueItem techniquePrefab;
 
-    [SerializeField] 
-    private GameObject parentGameObject;
+    [SerializeField] private TextMeshProUGUI pointText;
     
+    [Space]
+
     [SerializeField]
     private Transform[] psiqueTechiniquesContainers;
     [SerializeField]
@@ -23,8 +30,16 @@ public class TechniquesManager : MonoBehaviour
     private Transform ocultismTechiniquesContainer;
     [SerializeField]
     private Transform senseTechiniquesContainer;
+
+    public void Initialize(PlayerSheetData pSheet)
+    {
+        tecnics = pSheet.techniques.Techniques;
+        SetTechniques();
+        gameObject.SetActive(true);
+        updatePointText();
+    }
     
-    public void SetTechniques(SerializedDictionary<string, int> tecnics)
+    public void SetTechniques()
     {
         ClearTechniques();
         
@@ -59,25 +74,11 @@ public class TechniquesManager : MonoBehaviour
                 techniqueItem = Instantiate(techniquePrefab, senseTechiniquesContainer);  
             }
 
-            techniqueItem.Initialize(new Technique(tecnic.Key, tecnic.Value), this);
+            techniqueItem.Initialize(new Technique(tecnic.Key, tecnic.Value), changeTechniquesValue);
             i++;
         }
-        
-        SelectTechnique(new Technique(tecnics.Keys.ToArray()[0], tecnics.Values.ToArray()[0]));
-        parentGameObject.SetActive(false);
     }
 
-    public void SelectTechnique(Technique technique)
-    {
-        diceManager.SetTechnique(technique);
-        OpenClose();
-    }
-
-    public void OpenClose()
-    {
-        parentGameObject.SetActive(!parentGameObject.activeSelf);
-    }
-    
     private void ClearTechniques()
     {
         foreach (Transform child in psiqueTechiniquesContainers[0])
@@ -104,5 +105,35 @@ public class TechniquesManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public void UpdateItem(Technique technique)
+    {
+        tecnics[technique.Name] = technique.Value;
+        updatePointText();
+    }
+    
+    public void SaveUpdate()
+    {
+        techniquesManager.SetTechniques(tecnics);
+        GameManager.Instance.SetTechniques(tecnics);
+        gameObject.SetActive(false);
+    }
+    
+    public void CancelUpdate()
+    {
+        gameObject.SetActive(false);
+        ClearTechniques();
+    }
+
+    private void updatePointText()
+    {
+        int p = 0;
+        foreach (var tec in tecnics)
+        {
+            p += tec.Value;
+        }
+
+        pointText.text = $"PONTOS: {p}";
     }
 }

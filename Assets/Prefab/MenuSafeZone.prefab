@@ -3790,7 +3790,6 @@ GameObject:
   - component: {fileID: 6165392045785129471}
   - component: {fileID: 4952529097822933264}
   - component: {fileID: 2619436271447851844}
-  - component: {fileID: 329482345834648289}
   - component: {fileID: 6001420595765070706}
   m_Layer: 5
   m_Name: UpdateSheet
@@ -3901,23 +3900,6 @@ MonoBehaviour:
   m_Interactable: 0
   m_TargetGraphic: {fileID: 4952529097822933264}
   m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &329482345834648289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5833993701623693946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734b77b5c0fd97a46b2d0478f4c37ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gm: {fileID: 0}
-  fileExtension: chaos
-  onFileLoaded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6001420595765070706

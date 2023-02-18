@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Ninito.UsualSuspects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -40,9 +42,25 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("Colors")]
     [SerializeField] private Material skyboxMaterial;
+    
+    [Space]
+    [Header("Updaters")]
+    [SerializeField] private UpdateTechniques updateTechniquesScript;
+
+    //create a instance
+    public static GameManager Instance;
 
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         #if UNITY_EDITOR
         if(generateNewCsvData) 
         {
@@ -110,6 +128,8 @@ public class GameManager : MonoBehaviour
         pSheet.potions = potionsScript.GetValue();
         pSheet.notes = notesScript.GetValue();
         pSheet.documents = docsScript.GetDocuments;
+        
+        SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{pSheet.playerName.dataName}/");
     }
 
     private IEnumerator SavePlayerSheetAsync(bool saveExit)
@@ -126,6 +146,8 @@ public class GameManager : MonoBehaviour
             pSheet.potions = potionsScript.GetValue();
             pSheet.notes = notesScript.GetValue();
             pSheet.documents = docsScript.GetDocuments;
+            
+            Debug.Log(pSheet.techniques.Techniques["Tiro"]);
         
             SaveLoadSystem.SaveFile(JsonUtility.ToJson(pSheet, true),"chardata", "chaos",$"characters/{pSheet.playerName.dataName}/");
             
@@ -175,6 +197,18 @@ public class GameManager : MonoBehaviour
             .SetText("Check out my character!")
             .Share();
 #endif
+    }
+
+    public void UpdateTechniques()
+    {
+        updateTechniquesScript.Initialize(pSheet);
+    }
+    
+    public void SetTechniques(SerializedDictionary<string, int> tecnics)
+    {
+        pSheet.SetTechniques(tecnics.Values.ToArray());
+        Debug.Log("Tecnics Updated");
+        Debug.Log(pSheet.techniques.Techniques["Tiro"]);
     }
     
     private IEnumerator SaveTimer()

@@ -13,6 +13,15 @@ namespace UnityEngine.UI
     [HelpURL("http://sergiom.dev/rpg/ficha")]
     public class ContentSizeAuto : MonoBehaviour
     {
+        protected enum AutoScaleReference
+        {
+            Parent,
+            Screen
+        }
+        
+        [SerializeField] protected AutoScaleReference m_AutoScaleReference = AutoScaleReference.Screen;
+        
+        [Space(5f)]
         [SerializeField] protected bool m_AutoScaleWidth = false;
         [SerializeField] protected bool m_AutoScaleHeight = false;
         
@@ -40,7 +49,16 @@ namespace UnityEngine.UI
                 }
             }
         }
-        protected Vector2 m_ScreenSize => new Vector2(rectCanvas.sizeDelta.x, rectCanvas.sizeDelta.y);
+        protected Vector2 m_ScreenSize
+        {
+            get
+            {
+                if(m_AutoScaleReference == AutoScaleReference.Screen)
+                    return new Vector2(Screen.width, Screen.height);
+                else
+                    return new Vector2(transform.parent.GetComponent<RectTransform>().rect.width, transform.parent.GetComponent<RectTransform>().rect.height);
+            }
+        }
 
         public bool AutoScaleWidth
         {
