@@ -25,12 +25,15 @@ public class CSVImportManager : MonoBehaviour
 
     [SerializeField]
     private List<Image> characterImages = new List<Image>();
+    [SerializeField]
     private List<string> imagesURL = new List<string>(4);
 
     [SerializeField]
     private UnityEvent OnPlayerSheetConverted;
     private ConvertCSVData ConvertCsvData => GetComponent<ConvertCSVData>();
     private float h, s, v;
+
+    public TextMeshProUGUI t;
     public void Awake()
     {
         ColorPaletteManager.SetPallete(characterColor);
@@ -96,6 +99,8 @@ public class CSVImportManager : MonoBehaviour
     public void SetAvatar(int i)
     {
         string path = SaveLoadSystem.OpenFileExplorer("Selecione o seu avatar", new string[]{"png","jpg","jpeg","bmp"});
+        t.text += "    " + path;
+
         if (path == null) return;
         
         characterImages[i].sprite = SaveLoadSystem.LoadImage("", path, false);

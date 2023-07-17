@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
@@ -84,17 +85,36 @@ public static class SaveLoadSystem
     public static string OpenFileExplorer(string title = "", string[] fileExtensions = null, string directory = "")
     {
         string path = null;
+        string files = fileExtensions.Aggregate("", (current, t) => current + NativeFilePicker.ConvertExtensionToFileType(t));
+
+        if (!NativeGallery.IsMediaPickerBusy())
+        {
+            NativeGallery.Permission permission = NativeGallery.GetAudioFromGallery((filePath) =>
+            {
+                path = filePath;
+            }, "Select a image", files);
+        }
         
+        /*
+#if (!PLATFORM_ANDROID) && UNITY_EDITOR
+        string files = "";
+        for (int i = 0; i < fileExtensions.Length; i++)
+        {
+            files += NativeFilePicker.ConvertExtensionToFileType(fileExtensions[i]);
+        }
+        
+        AndroidExplorer.OpenFileExplorer(files, (string filePath) => {
+            path = filePath;
+        });
+#else
         for (int i = 0; i < fileExtensions.Length; i++)
         {
             fileExtensions[i] = NativeFilePicker.ConvertExtensionToFileType(fileExtensions[i]);
         }
         NativeFilePicker.PickFile((p) => path = p, fileExtensions);
-        
-#if (PLATFORM_ANDROID || PLATFORM_IOS) && !UNITY_EDITOR
-        path = Path.Combine(CachePath, path);
 #endif
-        
+*/
+
         return path;
     }
     
